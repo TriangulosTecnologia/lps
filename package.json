@@ -1,8 +1,9 @@
 {
-  "name": "ttoss-monorepo-template",
+  "name": "lps-monorepo",
   "private": true,
   "version": "0.0.1",
-  "description": "ttoss monorepo template.",
+  "description": "Landing pages repository.",
+  "license": "GPL-3.0",
   "scripts": {
     "test": "lerna run test",
     "version": "lerna version",
@@ -22,11 +23,13 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@types/react": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-next": "11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.7.2",
@@ -53,6 +56,13 @@
     "typescript": "^4.3.2"
   },
   "workspaces": [
-    "packages/**/*"
-  ]
+    "lps/**/*"
+  ],
+  "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.19",
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "theme-ui": "^0.10.0"
+  }
 }

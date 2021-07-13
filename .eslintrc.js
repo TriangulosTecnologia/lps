@@ -16,6 +16,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
+    'next',
+    'next/core-web-vitals',
   ],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off', // Annoying to force return type.
