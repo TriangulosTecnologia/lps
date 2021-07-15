@@ -38,7 +38,10 @@ class MyDocument extends Document {
 }
 
 class D extends MyDocument {
-  fonts = ['https://fonts.googleapis.com/css2?family=Montserrat&display=swap'];
+  fonts = [
+    'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap',
+    'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap',
+  ];
 }
 
 export default D;

@@ -5,14 +5,17 @@ import Hero1 from '../components/Hero1';
 const Home = () => {
   return (
     <ReactFullpage
-      // fullpage options
-      // licenseKey={'YOUR_KEY_HERE'}
-      scrollingSpeed={1000} /* Options here */
-      verticalCentered={false}
+      {...{
+        scrollingSpeed: 1000,
+        verticalCentered: false,
+        scrollOverflow: true,
+      }}
       render={() => {
         return (
           <ReactFullpage.Wrapper>
-            <Hero1 className="section" />
+            <div className="section">
+              <Hero1 />
+            </div>
           </ReactFullpage.Wrapper>
         );
       }}

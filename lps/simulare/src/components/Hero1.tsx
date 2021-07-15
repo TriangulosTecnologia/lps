@@ -1,6 +1,9 @@
-import { Box, Flex, Text } from 'theme-ui';
+import { useBreakpointIndex } from '@theme-ui/match-media';
+import { Box, Flex, Heading, Text } from 'theme-ui';
 
-import Header from './Header';
+import ArrowDownButton from './ArrowDownButton';
+import Layout from './Layout';
+import Message from './Message';
 
 const Polygon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -18,37 +21,15 @@ const Polygon = (props: React.SVGProps<SVGSVGElement>) => {
   );
 };
 
-const Button = () => {
-  return (
-    <svg
-      width="89"
-      height="50"
-      viewBox="39 0 89 50"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <ellipse
-        cx="64.1521"
-        cy="25"
-        rx="24"
-        ry="23.8479"
-        transform="rotate(-90 64.1521 25)"
-        stroke="#5C5C5C"
-      />
-      <path
-        d="M64.3169 38.0202C64.5121 38.2155 64.8287 38.2155 65.024 38.0202L68.2059 34.8382C68.4012 34.643 68.4012 34.3264 68.2059 34.1311C68.0107 33.9359 67.6941 33.9359 67.4988 34.1311L64.6704 36.9595L61.842 34.1311C61.6467 33.9359 61.3301 33.9359 61.1349 34.1311C60.9396 34.3264 60.9396 34.643 61.1349 34.8382L64.3169 38.0202ZM64.1704 12.3333L64.1704 37.6666L65.1704 37.6666L65.1704 12.3333L64.1704 12.3333Z"
-        fill="black"
-      />
-      <ellipse cx="40.3043" cy="25" rx="1.88273" ry="1.89474" fill="#24BB78" />
-    </svg>
-  );
-};
+const Hero1 = () => {
+  const a = useBreakpointIndex();
 
-const Hero1 = ({ className }: { className?: string }) => {
+  console.log(a);
+
   return (
     <Box
-      className={className}
       sx={{
+        height: '100vh',
         position: 'relative',
         '::before': {
           content: '" "',
@@ -65,61 +46,112 @@ const Hero1 = ({ className }: { className?: string }) => {
         },
       }}
     >
-      <Header />
-
-      <Flex sx={{ flexDirection: 'column' }}>
-        <Text
-          sx={{ fontFamily: 'Montserrat', color: 'white', fontWeight: 400 }}
-        >
-          Simulador de Financiamento
-        </Text>
-        <Text>Descomplique</Text>
-        <Text>Sua Venda</Text>
-      </Flex>
-
-      <Box sx={{ marginTop: 30, maxWidth: 300 }}>
-        <Text sx={{}}>
-          Faça diversas simulações de <Text>Terreno e Construção</Text> com
-          valores da <Text>Caixa Econômica Federal</Text> de um jeito{' '}
-          <Text>rápido</Text> e <Text>fácil.</Text>
-        </Text>
-      </Box>
-
-      <Flex sx={{ width: '100%', justifyContent: 'space-evenly' }}>
-        <Flex sx={{ alignItems: 'center' }}>
-          <Text>Cadastre-se</Text>
-          <Button />
-        </Flex>
-        <Flex sx={{ alignItems: 'center' }}>
-          <Text>Saiba Mais</Text>
-          <Button />
-        </Flex>
-      </Flex>
-
-      <Box
-        sx={{
-          height: [305, '100%'],
-          position: 'absolute',
-          right: 0,
-          top: 0,
-        }}
-      >
-        <Flex
+      <Layout>
+        <Box
           sx={{
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
+            paddingX: [0, null, null, 50],
+            maxWidth: [600, null, null, 700],
+            zIndex: 10,
+            position: 'relative',
           }}
         >
-          <Text sx={{ color: 'white' }}>
-            <Text>Terreno+</Text>
-            <Text>Construção</Text>
-          </Text>
-        </Flex>
-        <Polygon />
-      </Box>
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              marginTop: [220, 120],
+              textTransform: 'uppercase',
+              position: 'relative',
+            }}
+          >
+            <Text sx={{ fontSize: [18, 24, 34] }}>
+              Simulador de Financiamento
+            </Text>
+            <Heading as="h1" sx={{ fontSize: [42, 56, 80] }}>
+              <Text as="span" sx={{ color: 'primary' }}>
+                Descomplique
+              </Text>
+              <br />
+              Sua Venda
+            </Heading>
+          </Flex>
+
+          <Box sx={{ marginY: [40, null, 80] }}>
+            <Message>
+              <Text sx={{ fontSize: [15, null, 24], fontWeight: 400 }}>
+                Faça diversas simulações de{' '}
+                <Text variant="primary" sx={{ fontWeight: 700 }}>
+                  Terreno e Construção
+                </Text>{' '}
+                com valores da{' '}
+                <Text variant="primary" sx={{ fontWeight: 700 }}>
+                  Caixa Econômica Federal
+                </Text>{' '}
+                de um jeito{' '}
+                <Text variant="primary" sx={{ fontWeight: 700 }}>
+                  rápido
+                </Text>{' '}
+                e{' '}
+                <Text variant="primary" sx={{ fontWeight: 700 }}>
+                  fácil.
+                </Text>
+              </Text>
+            </Message>
+          </Box>
+
+          <Flex
+            sx={{
+              width: '100%',
+              justifyContent: 'space-evenly',
+              flexWrap: 'wrap',
+              fontSize: [15, null, 19],
+            }}
+          >
+            <Flex sx={{ alignItems: 'center', margin: 15 }}>
+              <Text sx={{ marginRight: '10px' }}>Cadastre-se</Text>
+              <ArrowDownButton color="secondary" />
+            </Flex>
+            <Flex sx={{ alignItems: 'center', margin: 15 }}>
+              <Text sx={{ marginRight: '10px' }}>Saiba Mais</Text>
+              <ArrowDownButton />
+            </Flex>
+          </Flex>
+        </Box>
+
+        <Box
+          sx={{
+            height: [300, 400, 500, '100%'],
+            position: 'absolute',
+            right: '-5px',
+            top: 0,
+          }}
+        >
+          <Flex
+            sx={{
+              top: '5px',
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              sx={{
+                color: 'white',
+                fontWeight: '800',
+                textTransform: 'uppercase',
+                fontSize: [15, 18, 26, 48],
+              }}
+            >
+              Terreno
+              <Text sx={{ color: 'black' }}>+</Text>
+              <br />
+              Construção
+            </Text>
+          </Flex>
+          <Polygon />
+        </Box>
+      </Layout>
     </Box>
   );
 };

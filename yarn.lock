@@ -2093,6 +2093,11 @@
     "@emotion/react" "^11.1.1"
     csstype "^3.0.5"
 
+"@theme-ui/match-media@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@theme-ui/match-media/-/match-media-0.10.1.tgz#2121f5a68abfdac6d93dfebcafe7210bc0efbb9b"
+  integrity sha512-yN2+h5FQ6KyeCYvV9ZWMzK8jWy8xVghdglpoXC7/GQtKEfjYG4aMdfpcvrD5K4hDrhlDQ2adF5wOJn+QhqznYw==
+
 "@theme-ui/mdx@0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.10.0.tgz#14124cb194df8023f7253391900d8d17a6011a92"
