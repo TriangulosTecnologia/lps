@@ -30,6 +30,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off', // Remove error when importing Yarn Workspace modules.
     'import/prefer-default-export': 'off', // Allow single Named-export.
     'no-console': 'off',
+    'no-use-before-define': 'off', // https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
     'prettier/prettier': [
       'error',
       {

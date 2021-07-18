@@ -48,10 +48,10 @@ const Button: React.FC<{ color?: string }> = ({
             ry="24"
             stroke={colors.gray80}
           />
-          <ellipse cx="3" cy="27" rx="3" ry="3" fill={fill} strokeWidth={0} />
+          <ellipse cx="3" cy="25.5" rx="3" ry="3" fill={fill} strokeWidth={0} />
         </svg>
       </Box>
-      <Box sx={{ position: 'relative' }}>{children}</Box>
+      <Box sx={{}}>{children}</Box>
     </Flex>
   );
 };
