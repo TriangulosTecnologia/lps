@@ -1,4 +1,4 @@
-import { Box, Text } from 'theme-ui';
+import { Box, Flex, Text, ThemeUIStyleObject } from 'theme-ui';
 
 const Emphasis = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -8,18 +8,25 @@ const Emphasis = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Message = ({ children }: { children: React.ReactNode }) => {
+const Message = ({
+  children,
+  sx,
+}: {
+  children: React.ReactNode;
+  sx?: ThemeUIStyleObject;
+}) => {
   return (
-    <Box
-      sx={{
-        borderLeft: '3px solid',
-        borderColor: 'primary',
-        borderRadius: 3,
-        paddingLeft: [7],
-      }}
-    >
-      {children}
-    </Box>
+    <Flex sx={sx}>
+      <Box
+        sx={{
+          width: '4px',
+          backgroundColor: 'primary',
+          borderRadius: '2px',
+          marginRight: [7],
+        }}
+      />
+      <Box>{children}</Box>
+    </Flex>
   );
 };
 

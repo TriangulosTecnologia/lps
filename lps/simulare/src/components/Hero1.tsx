@@ -2,9 +2,9 @@ import { useBreakpointIndex } from '@theme-ui/match-media';
 import Image from 'next/image';
 import { Box, Flex, Heading, Text } from 'theme-ui';
 
-import ArrowDownButton from './ArrowDownButton';
 import Layout from './Layout';
 import Message from './Message';
+import Button from './Button';
 
 import terrenoEConstrucao from '../../public/terreno-e-construcao.png';
 import terrenoEConstrucaoSemi from '../../public/terreno-e-construcao-semi.png';
@@ -98,13 +98,14 @@ const Hero1 = () => {
             flexDirection: ['column'],
           }}
         >
-          <Flex sx={{ alignItems: 'center', margin: 6 }}>
-            <Text sx={{ marginRight: 6 }}>Cadastre-se</Text>
-            <ArrowDownButton color="secondary" />
-          </Flex>
-          <Flex sx={{ alignItems: 'center', margin: 6 }}>
-            <Text sx={{ marginRight: 6 }}>Saiba Mais</Text>
-            <ArrowDownButton />
+          <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+            <Button
+              sx={{ marginBottom: [8] }}
+              icon="arrow-down"
+              label="Cadastre-se"
+              color="secondary"
+            />
+            <Button icon="arrow-down" label="Saiba Mais" />
           </Flex>
         </Flex>
       </Box>
