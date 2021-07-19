@@ -1,21 +1,36 @@
 import Image from 'next/image';
 import { Box } from 'theme-ui';
 
+// import Navigation from './Navigation';
+
 import logo from '../../public/logo.png';
 
 const Header = () => {
   return (
-    <Box as="header" sx={{ position: 'relative' }}>
-      <Image src={logo} alt="logo" />
+    <Box as="header" sx={{ padding: 8 }}>
+      <Image src={logo} alt="simulare" />
     </Box>
   );
 };
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<{ renderAbsolute?: React.ReactNode }> = ({
+  children,
+}) => {
   return (
-    <Box sx={{ paddingY: 15, paddingX: [15, null, 30] }}>
+    <Box className="section" sx={{ position: 'relative' }}>
       <Header />
-      <main>{children}</main>
+      <Box
+        sx={{
+          height: '100%',
+          width: '10px',
+          backgroundColor: 'green',
+          position: 'absolute',
+          top: 0,
+        }}
+      >
+        {/* <Navigation circles={5} /> */}
+      </Box>
+      <Box sx={{ paddingX: 8 }}>{children}</Box>
     </Box>
   );
 };

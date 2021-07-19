@@ -1,25 +1,22 @@
-import ReactFullpage from '@fullpage/react-fullpage';
+import dynamic from 'next/dynamic';
 
+import { FullpageProvider } from '../components/Fullpage';
 import Hero1 from '../components/Hero1';
+
+const Hero2 = dynamic(() => import('../components/Hero2'));
 
 const Home = () => {
   return (
-    <ReactFullpage
+    <FullpageProvider
       {...{
         scrollingSpeed: 1000,
         verticalCentered: false,
         scrollOverflow: true,
       }}
-      render={() => {
-        return (
-          <ReactFullpage.Wrapper>
-            <div className="section">
-              <Hero1 />
-            </div>
-          </ReactFullpage.Wrapper>
-        );
-      }}
-    />
+    >
+      <Hero1 />
+      <Hero2 />
+    </FullpageProvider>
   );
 };
 
