@@ -34,7 +34,7 @@ const Layout: React.FC<{ displayNavigation?: boolean }> = ({
       >
         {displayNavigation && <Navigation circles={5} />}
       </Box>
-      <Box sx={{ paddingX: 8 }}>{children}</Box>
+      <Box sx={{ paddingLeft: 8, paddingRight: 10 }}>{children}</Box>
     </Box>
   );
 };

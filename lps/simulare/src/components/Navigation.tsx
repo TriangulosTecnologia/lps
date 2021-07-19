@@ -68,7 +68,7 @@ const Navigation = ({ circles = 0 }: { circles?: number }) => {
             cy={circleDistance * currentSection}
             r={2 * circleRadius}
             stroke={colors.primary}
-            strokeWidth={2}
+            strokeWidth={1}
           />
         </svg>
       </Flex>
