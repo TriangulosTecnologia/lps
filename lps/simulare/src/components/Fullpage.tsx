@@ -101,7 +101,7 @@ export interface fullpageOptions {
   /* end key sections */
 }
 
-export interface fullpageApi {
+export interface FullpageApi {
   continuousHorizontal: any;
   dragAndMove: any;
   fadingEffect: any;
@@ -152,24 +152,41 @@ interface FullPageProps extends fullpageOptions {
   licenseKey?: string;
   render?: (comp: {
     state: any;
-    fullpageApi: fullpageApi;
+    fullpageApi: FullpageApi;
   }) => React.ReactElement | void;
   debug?: boolean;
   pluginWrapper?: () => void;
 }
 
-const FullpageContext = React.createContext({});
+const FullpageContext = React.createContext<{
+  currentSection: number;
+  moveTo?: FullpageApi['moveTo'];
+  moveSectionDown?: FullpageApi['moveSectionDown'];
+}>({
+  currentSection: 0,
+});
 
 export const FullpageProvider: React.FC<FullPageProps> = ({
   children,
   ...fullpageProps
 }) => {
+  const [currentSection, setCurrentSection] = React.useState(0);
+
   return (
     <ReactFullpage
       {...fullpageProps}
-      render={() => {
+      afterLoad={(_: any, destination: any) =>
+        setCurrentSection(destination.index)
+      }
+      render={({ fullpageApi }: { fullpageApi?: FullpageApi }) => {
         return (
-          <FullpageContext.Provider value={{}}>
+          <FullpageContext.Provider
+            value={{
+              currentSection,
+              moveTo: fullpageApi?.moveTo,
+              moveSectionDown: fullpageApi?.moveSectionDown,
+            }}
+          >
             <ReactFullpage.Wrapper>{children}</ReactFullpage.Wrapper>
           </FullpageContext.Provider>
         );

@@ -1,34 +1,38 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Box } from 'theme-ui';
-
-// import Navigation from './Navigation';
+import { Box, Flex } from 'theme-ui';
 
 import logo from '../../public/logo.png';
 
-const Header = () => {
-  return (
-    <Box as="header" sx={{ padding: 8 }}>
-      <Image src={logo} alt="simulare" />
-    </Box>
-  );
-};
+const Navigation = dynamic(() => import('./Navigation'));
 
-const Layout: React.FC<{ renderAbsolute?: React.ReactNode }> = ({
+const Layout: React.FC<{ displayNavigation?: boolean }> = ({
   children,
+  displayNavigation,
 }) => {
+  const headerPadding = 8;
+
   return (
     <Box className="section" sx={{ position: 'relative' }}>
-      <Header />
+      <Flex
+        as="header"
+        sx={{
+          padding: headerPadding,
+          justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
+        }}
+      >
+        <Image src={logo} alt="simulare" />
+      </Flex>
       <Box
         sx={{
           height: '100%',
-          width: '10px',
-          backgroundColor: 'green',
           position: 'absolute',
           top: 0,
+          right: headerPadding,
+          paddingRight: '1px',
         }}
       >
-        {/* <Navigation circles={5} /> */}
+        {displayNavigation && <Navigation circles={5} />}
       </Box>
       <Box sx={{ paddingX: 8 }}>{children}</Box>
     </Box>

@@ -12,6 +12,7 @@ const Button: React.FC<{ color?: string }> = ({
 
   return (
     <Flex
+      role="button"
       sx={{
         width: 54,
         height: 54,
