@@ -1,100 +1,79 @@
 import { Flex, useThemeUI } from 'theme-ui';
 
-// const circleDistance = 50;
+import { useFullpage } from './Fullpage';
 
-// eslint-disable-next-line no-empty-pattern
-const Navigation = ({}: { circles?: number }) => {
+const circleDistance = 60;
+
+const circleRadius = 5;
+
+const Navigation = ({ circles = 0 }: { circles?: number }) => {
   const { theme } = useThemeUI();
+
+  const { currentSection, moveTo } = useFullpage();
 
   const colors = theme.colors as any;
 
-  // const getCy = () => {
-  //   // return circleDistance * index * 0 + 500;
-  //   return '10%';
-  // };
-
   return (
-    <Flex
-      sx={{ position: 'relative', height: '100%', backgroundColor: 'blue' }}
-    >
+    <Flex sx={{ height: '100%', paddingTop: 10 }}>
+      <svg
+        width="3"
+        height="100%"
+        viewBox="0 0 3 1000"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="2"
+          y1="0"
+          x2="2"
+          y2="1000"
+          stroke={colors.gray80}
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
+      </svg>
       <Flex
-        sx={{ position: 'absolute', height: '100%', backgroundColor: 'red' }}
+        sx={{
+          height: '100%',
+          marginLeft: `-14px`,
+          circle: {
+            cursor: 'pointer',
+          },
+        }}
       >
         <svg
-          width="20"
-          height="100%"
-          viewBox="0 0 20 1000"
+          width={5 * circleRadius}
+          viewBox={`-${2.5 * circleRadius} 0 ${5 * circleRadius} ${
+            (circles - 1) * circleDistance
+          }`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <line
-            x1="10"
-            y1="0"
-            x2="10"
-            y2="1000"
-            stroke={colors.gray80}
-            strokeLinecap="round"
-          />
-        </svg>
-      </Flex>
-
-      <Flex sx={{ position: 'absolute' }}>
-        <svg
-          width="20"
-          height="1000"
-          viewBox="0 0 20 1000"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          {[...Array(circles)].map((_, index) => {
+            return (
+              <circle
+                onClick={() => {
+                  moveTo?.(index + 1);
+                }}
+                key={index}
+                cx={0}
+                cy={circleDistance * index}
+                r={circleRadius}
+                fill={currentSection === index ? colors.primary : colors.gray80}
+              />
+            );
+          })}
           <circle
-            // key={index}
-            cx="10.5"
-            cy={10}
-            r="4.5"
-            fill={colors.gray80}
+            cx={0}
+            cy={circleDistance * currentSection}
+            r={2 * circleRadius}
+            stroke={colors.primary}
+            strokeWidth={2}
           />
         </svg>
       </Flex>
     </Flex>
   );
-
-  // return (
-  //   <svg
-  //     width="21"
-  //     height="100%"
-  //     viewBox="0 0 21 1000"
-  //     fill="none"
-  //     xmlns="http://www.w3.org/2000/svg"
-  //   >
-  //     <line
-  //       x1="10.5"
-  //       y1="0"
-  //       x2="10.5"
-  //       y2="1000"
-  //       stroke={colors.gray80}
-  //       strokeLinecap="round"
-  //     />
-  //     <g alignmentBaseline="mathematical">
-  //       {[...Array(circles)].map((_, index) => {
-  //         return (
-  //           <circle
-  //             key={index}
-  //             cx="10.5"
-  //             cy={getCy(index)}
-  //             r="4.5"
-  //             fill={colors.gray80}
-  //           />
-  //         );
-  //       })}
-  //     </g>
-  //     {/* <circle cx="10.5" cy="275.5" r="4.5" fill="#5C5C5C" />
-  //     <circle cx="10.5" cy="230.5" r="4.5" fill="#5C5C5C" />
-  //     <circle cx="10.5" cy="319.5" r="4.5" fill="#24BB78" />
-  //     <circle cx="10.5" cy="364.5" r="4.5" fill="#5C5C5C" />
-  //     <circle cx="10.5" cy="409.5" r="4.5" fill="#5C5C5C" />
-  //     <circle cx="10.5" cy="319.5" r="9.5" stroke="#24BB78" /> */}
-  //   </svg>
-  // );
 };
 
 export default Navigation;
