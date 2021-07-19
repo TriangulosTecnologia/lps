@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Box, Flex, Heading } from 'theme-ui';
 
-import ArrowDownButton from './ArrowDownButton';
 import Layout from './Layout';
 import Message from './Message';
+import Button from './Button';
 
 import notebook from '../../public/notebook.png';
 
@@ -47,7 +47,7 @@ const Hero2 = () => {
           </Box>
         </Flex>
 
-        <ArrowDownButton />
+        <Button icon="arrow-down" />
       </Flex>
     </Layout>
   );
