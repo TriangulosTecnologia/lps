@@ -5,6 +5,7 @@ import Hero1 from '../components/Hero1';
 
 const Hero2 = dynamic(() => import('../components/Hero2'));
 const Features = dynamic(() => import('../components/Features'));
+const FormRegister = dynamic(() => import('../components/FormRegister'));
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Hero1 />
       <Hero2 />
       <Features />
+      <FormRegister />
     </FullpageProvider>
   );
 };
