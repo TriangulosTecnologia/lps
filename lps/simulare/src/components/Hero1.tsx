@@ -88,8 +88,8 @@ const Hero1 = () => {
           <Message>
             <Text
               sx={{
-                fontSize: ['sm', 'base', 'lg', null, 'xl'],
-                lineHeight: ['sm', 'base', 'lg', null, 'xl'],
+                fontSize: ['sm', 'base', 'lg', 'xl', '2xl'],
+                lineHeight: ['sm', 'base', 'lg', 'xl', '2xl'],
                 fontWeight: 400,
               }}
             >

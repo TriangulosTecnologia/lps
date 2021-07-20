@@ -68,7 +68,7 @@ const Button: React.FC<ButtonProps> = ({
         <Text
           sx={{
             marginRight: [7],
-            fontSize: ['sm', 'base', 'lg'],
+            fontSize: ['sm', 'base', 'lg', null, 'xl'],
             fontFamily: 'body',
           }}
         >
