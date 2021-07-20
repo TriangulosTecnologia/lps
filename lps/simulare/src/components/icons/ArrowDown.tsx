@@ -1,8 +1,7 @@
 const ArrowDown = () => {
   return (
     <svg
-      width="9"
-      height="21"
+      height="50%"
       viewBox="0 0 9 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

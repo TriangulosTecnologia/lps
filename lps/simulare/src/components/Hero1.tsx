@@ -20,7 +20,7 @@ const Hero1 = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: '-20px',
+          top: ['-20px', null, null, 0],
           right: '-1px',
           height: [300, 400, 500, 600, '100%'],
           width: '100%',
@@ -52,8 +52,8 @@ const Hero1 = () => {
 
       <Box
         sx={{
-          paddingX: [0, null, null, 50],
-          maxWidth: [600, null, null, 700],
+          paddingX: [0, 25, 50, 50],
+          maxWidth: [600, 700, 800, 700],
           zIndex: 10,
           position: 'relative',
         }}
@@ -61,13 +61,21 @@ const Hero1 = () => {
         <Flex
           sx={{
             flexDirection: 'column',
-            marginTop: [150],
+            marginTop: [150, null, null, null, 100],
             textTransform: 'uppercase',
             position: 'relative',
           }}
         >
-          <Text sx={{ fontSize: ['base'] }}>Simulador de Financiamento</Text>
-          <Heading as="h1" sx={{ fontSize: ['4xl'], lineHeight: ['4xl'] }}>
+          <Text sx={{ fontSize: ['base', 'lg', 'xl', '2xl'] }}>
+            Simulador de Financiamento
+          </Text>
+          <Heading
+            as="h1"
+            sx={{
+              fontSize: ['4xl', '5xl', '6xl', '7xl', '8xl'],
+              lineHeight: ['4xl', '5xl', '6xl', '7xl', '8xl'],
+            }}
+          >
             <Text as="span" sx={{ color: 'primary' }}>
               Descomplique
             </Text>
@@ -76,10 +84,14 @@ const Hero1 = () => {
           </Heading>
         </Flex>
 
-        <Box sx={{ marginY: [9] }}>
+        <Box sx={{ marginY: [9, 10] }}>
           <Message>
             <Text
-              sx={{ fontSize: ['sm'], lineHeight: ['sm'], fontWeight: 400 }}
+              sx={{
+                fontSize: ['sm', 'base', 'lg', null, 'xl'],
+                lineHeight: ['sm', 'base', 'lg', null, 'xl'],
+                fontWeight: 400,
+              }}
             >
               Faça diversas simulações de{' '}
               <Message.Emphasis>Terreno e Construção</Message.Emphasis> com
@@ -101,9 +113,11 @@ const Hero1 = () => {
             flexDirection: ['column'],
           }}
         >
-          <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+          <Flex
+            sx={{ flexDirection: ['column', 'row'], alignItems: 'flex-end' }}
+          >
             <Button
-              sx={{ marginBottom: [8] }}
+              sx={{ marginBottom: [8, 0], marginRight: [0, 9] }}
               icon="arrow-down"
               label="Cadastre-se"
               color="secondary"

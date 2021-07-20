@@ -65,7 +65,13 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
     >
       {label && (
-        <Text sx={{ marginRight: [7], fontSize: ['sm'], fontFamily: 'body' }}>
+        <Text
+          sx={{
+            marginRight: [7],
+            fontSize: ['sm', 'base', 'lg'],
+            fontFamily: 'body',
+          }}
+        >
           {label}
         </Text>
       )}
