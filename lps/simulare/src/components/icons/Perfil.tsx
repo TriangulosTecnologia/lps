@@ -1,4 +1,6 @@
-const Perfil = () => {
+import * as React from 'react';
+
+const Perfil = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="24"
@@ -6,6 +8,7 @@ const Perfil = () => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fillRule="evenodd"
