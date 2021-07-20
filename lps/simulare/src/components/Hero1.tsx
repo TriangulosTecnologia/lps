@@ -2,6 +2,7 @@ import { useBreakpointIndex } from '@theme-ui/match-media';
 import Image from 'next/image';
 import { Box, Flex, Heading, Text } from 'theme-ui';
 
+import { useFullpage } from './Fullpage';
 import Layout from './Layout';
 import Message from './Message';
 import Button from './Button';
@@ -10,6 +11,8 @@ import terrenoEConstrucao from '../../public/terreno-e-construcao.png';
 import terrenoEConstrucaoSemi from '../../public/terreno-e-construcao-semi.png';
 
 const Hero1 = () => {
+  const { moveSectionDown, moveTo } = useFullpage();
+
   const breakpoint = useBreakpointIndex();
 
   return (
@@ -104,8 +107,13 @@ const Hero1 = () => {
               icon="arrow-down"
               label="Cadastre-se"
               color="secondary"
+              onClick={() => moveTo?.(4)}
             />
-            <Button icon="arrow-down" label="Saiba Mais" />
+            <Button
+              icon="arrow-down"
+              label="Saiba Mais"
+              onClick={() => moveSectionDown?.()}
+            />
           </Flex>
         </Flex>
       </Box>

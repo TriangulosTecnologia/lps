@@ -1,13 +1,16 @@
 import Image from 'next/image';
 import { Box, Flex, Heading } from 'theme-ui';
 
+import Button from './Button';
+import { useFullpage } from './Fullpage';
 import Layout from './Layout';
 import Message from './Message';
-import Button from './Button';
 
 import notebook from '../../public/notebook.png';
 
 const Hero2 = () => {
+  const { moveSectionDown } = useFullpage();
+
   return (
     <Layout>
       <Flex
@@ -46,8 +49,7 @@ const Hero2 = () => {
             <Image src={notebook} alt="Notebook" />
           </Box>
         </Flex>
-
-        <Button icon="arrow-down" />
+        <Button icon="arrow-down" onClick={() => moveSectionDown?.()} />
       </Flex>
     </Layout>
   );

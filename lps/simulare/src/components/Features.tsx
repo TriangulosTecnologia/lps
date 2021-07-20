@@ -1,6 +1,8 @@
 import { Box, Flex, Heading, Text } from 'theme-ui';
 
+import Button from './Button';
 import FeatureCard, { FeatureCardProps } from './FeatureCard';
+import { useFullpage } from './Fullpage';
 import Layout from './Layout';
 import Message from './Message';
 
@@ -25,6 +27,8 @@ const components: FeatureCardProps[] = [
 ];
 
 const Features = () => {
+  const { moveSectionDown } = useFullpage();
+
   return (
     <Layout displayNavigation>
       <Message>
@@ -41,6 +45,9 @@ const Features = () => {
             </Box>
           );
         })}
+      </Flex>
+      <Flex sx={{ flexDirection: 'row', justifyContent: 'center' }}>
+        <Button icon="arrow-down" onClick={() => moveSectionDown?.()} />
       </Flex>
     </Layout>
   );

@@ -20,7 +20,7 @@ const icons = {
 
 type IconType = keyof typeof icons;
 
-type ButtonProps = {
+export type ButtonProps = {
   color?: 'primary' | 'secondary';
   label?: string;
   icon: IconType;
@@ -49,6 +49,7 @@ const Button: React.FC<ButtonProps> = ({
         display: 'flex',
         alignItems: 'center',
         backgroundColor: 'transparent',
+        cursor: 'pointer',
         ...sx,
       }}
       onClick={onClick}
@@ -66,7 +67,6 @@ const Button: React.FC<ButtonProps> = ({
           position: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
-          cursor: 'pointer',
           '&:hover': {
             '.strokeFill': {
               stroke: fill,

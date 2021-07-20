@@ -4,12 +4,16 @@ import { Box, Flex } from 'theme-ui';
 
 import logo from '../../public/logo.png';
 
+import { useFullpage } from './Fullpage';
+
 const Navigation = dynamic(() => import('./Navigation'));
 
 const Layout: React.FC<{ displayNavigation?: boolean }> = ({
   children,
   displayNavigation,
 }) => {
+  const { moveTo } = useFullpage();
+
   const headerPadding = 8;
 
   return (
@@ -21,7 +25,9 @@ const Layout: React.FC<{ displayNavigation?: boolean }> = ({
           justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
         }}
       >
-        <Image src={logo} alt="simulare" />
+        <Box onClick={() => moveTo?.(1)} sx={{ cursor: 'pointer' }}>
+          <Image src={logo} alt="simulare" />
+        </Box>
       </Flex>
       <Box
         sx={{
