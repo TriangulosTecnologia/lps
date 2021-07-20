@@ -7,7 +7,9 @@ const Input = ({ sx, ...props }: InputProps) => {
         border: 'none',
         borderBottom: '2px solid #808080',
         borderRadius: 0,
-        fontSize: ['base'],
+        lineHeight: ['sm', '2xl'],
+        fontSize: ['base', '2xl'],
+        paddingBottom: [6, 7],
         ':focus': {
           outline: 0,
           borderBottomColor: '#FFFFFF',
