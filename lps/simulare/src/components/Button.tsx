@@ -8,13 +8,23 @@ import {
   ButtonProps as ButtonPropsUi,
 } from 'theme-ui';
 
-import { ArrowDown, Perfil, Whatsapp, Email, Send } from './icons';
+import {
+  ArrowDown,
+  Email,
+  EmailFilled,
+  Perfil,
+  Send,
+  Whatsapp,
+  WhatsAppFilled,
+} from './icons';
 
 const icons = {
   'arrow-down': ArrowDown,
   email: Email,
+  'email-filled': EmailFilled,
   perfil: Perfil,
   whatsapp: Whatsapp,
+  'whatsapp-filled': WhatsAppFilled,
   send: Send,
 };
 
@@ -62,8 +72,8 @@ const Button: React.FC<ButtonProps> = ({
 
       <Flex
         sx={{
-          width: 54,
-          height: 54,
+          width: [54, 64],
+          height: [54, 64],
           position: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
@@ -79,11 +89,11 @@ const Button: React.FC<ButtonProps> = ({
             position: 'absolute',
             top: 0,
             left: 0,
+            width: '100%',
+            height: '100%',
           }}
         >
           <svg
-            width="54"
-            height="54"
             viewBox="0 0 54 54"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

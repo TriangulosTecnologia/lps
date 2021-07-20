@@ -8,16 +8,21 @@ import { useFullpage } from './Fullpage';
 
 const Navigation = dynamic(() => import('./Navigation'));
 
-const Layout: React.FC<{ displayNavigation?: boolean }> = ({
+const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
   children,
   displayNavigation,
+  dataAnchor,
 }) => {
   const { moveTo } = useFullpage();
 
   const headerPadding = 8;
 
   return (
-    <Box className="section" sx={{ position: 'relative' }}>
+    <Box
+      className="section"
+      data-anchor={dataAnchor}
+      sx={{ position: 'relative' }}
+    >
       <Flex
         as="header"
         sx={{

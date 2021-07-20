@@ -12,7 +12,7 @@ const Hero2 = () => {
   const { moveSectionDown } = useFullpage();
 
   return (
-    <Layout>
+    <Layout dataAnchor="hero1">
       <Flex
         sx={{
           height: '100%',

@@ -30,7 +30,7 @@ const Features = () => {
   const { moveSectionDown } = useFullpage();
 
   return (
-    <Layout displayNavigation>
+    <Layout displayNavigation dataAnchor="features">
       <Message>
         <Text sx={{ fontSize: 'sm' }}>Conheça as</Text>
         <Heading as="h2" sx={{ fontSize: 'lg' }}>

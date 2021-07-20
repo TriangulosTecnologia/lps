@@ -15,6 +15,7 @@ const Home = () => {
         scrollingSpeed: 1000,
         verticalCentered: false,
         scrollOverflow: true,
+        anchors: ['hero1', 'hero2', 'features', 'register', 'contact'],
       }}
     >
       <Hero1 />

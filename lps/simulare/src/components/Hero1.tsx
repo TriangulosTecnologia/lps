@@ -16,7 +16,7 @@ const Hero1 = () => {
   const breakpoint = useBreakpointIndex();
 
   return (
-    <Layout>
+    <Layout dataAnchor="hero1">
       <Box
         sx={{
           position: 'absolute',
