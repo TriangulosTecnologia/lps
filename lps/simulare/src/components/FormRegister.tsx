@@ -1,6 +1,14 @@
 import { ReactElement } from 'react';
 
-import { Box, Flex, Heading, Text, Grid, ThemeUIStyleObject } from 'theme-ui';
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Grid,
+  ThemeUIStyleObject,
+  BoxProps,
+} from 'theme-ui';
 
 import Button from './Button';
 
@@ -27,22 +35,47 @@ const Fieldset = ({ children, sx }: FieldsetProps) => (
   </Flex>
 );
 
-const Header = () => (
+const Header = ({ sx }: BoxProps) => (
   <Box
     sx={{
       backgroundImage: 'url(/sell-more.png)',
-      height: '59px',
+      height: ['59px', '192px'],
+      maxWidth: '1163px',
+      width: '100%',
       position: 'relative',
-      backgroundRepeat: 'round',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
       marginLeft: '-8px',
       marginRight: 8,
+      display: 'flex',
+      alignItems: 'flex-start',
+      ...sx,
     }}
   >
-    <Message sx={{ bottom: '-10px', position: 'absolute', paddingLeft: 6 }}>
-      <Text sx={{ fontFamily: 'body', fontSize: ['sm'] }} as="p">
+    <Message
+      sx={{
+        paddingLeft: [6, 11],
+        paddingTop: [0, 9],
+        marginTop: [8, 0],
+      }}
+    >
+      <Text
+        sx={{
+          fontFamily: 'body',
+          fontSize: ['sm', 'xl'],
+          lineHeight: ['xs', 'base'],
+        }}
+        as="p"
+      >
         Seja o fechador de negócios
       </Text>
-      <Heading sx={{ fontFamily: 'heading', fontSize: ['2xl'] }}>
+      <Heading
+        sx={{
+          fontFamily: 'heading',
+          fontSize: ['2xl', '4xl'],
+          lineHeight: ['xl', '4xl'],
+        }}
+      >
         CADASTRE-SE
       </Heading>
     </Message>
@@ -60,18 +93,39 @@ const FormRegister = () => {
       <form onSubmit={onSubmit}>
         <Grid
           sx={{
-            gridTemplateRows: ['5fr 7fr 4fr'],
+            display: ['block', 'grid'],
+            rowGap: '89px',
+            columnGap: [0, 10],
+            paddingTop: [0, 10],
+            paddingLeft: [0, 10],
+            paddingRight: [0, 12],
+            gridTemplateAreas: "'header header' 'form buttons'",
+            gridTemplateColumns: '5fr 4fr',
           }}
         >
-          <Header />
+          <Header sx={{ gridArea: 'header', marginBottom: [11, 0] }} />
 
-          <Box sx={{ paddingRight: [9] }}>
+          <Box
+            sx={{
+              paddingRight: [9, 0],
+              gridArea: 'form',
+              maxWidth: '650px',
+              marginLeft: [0, 'auto'],
+              width: '100%',
+              marginBottom: [10, 0],
+            }}
+          >
             <Fieldset sx={{ marginBottom: [9] }}>
-              <Perfil />
+              <Box sx={{ width: ['26px', '32px'] }}>
+                <Perfil width="100%" height="100%" />
+              </Box>
               <Input sx={{ marginLeft: [7] }} placeholder="Nome" />
             </Fieldset>
             <Fieldset sx={{ marginBottom: [9] }}>
-              <Email />
+              <Box sx={{ width: ['26px', '32px'] }}>
+                <Email width="100%" height="100%" />
+              </Box>
+
               <Input
                 sx={{ marginLeft: [7] }}
                 placeholder="Email profissional"
@@ -79,7 +133,9 @@ const FormRegister = () => {
             </Fieldset>
 
             <Fieldset>
-              <Whatsapp />
+              <Box sx={{ width: ['26px', '32px'] }}>
+                <Whatsapp width="100%" height="100%" />
+              </Box>
               <Input
                 sx={{ marginLeft: [7] }}
                 placeholder="Telefone de contato"
@@ -90,11 +146,13 @@ const FormRegister = () => {
           <Flex
             sx={{
               width: '100%',
-              justifyContent: ['flex-start'],
-              alignItems: ['center'],
+              justifyContent: ['flex-start', 'flex-end'],
+              alignItems: ['center', 'flex-start'],
               flexWrap: 'wrap',
               fontSize: ['sm'],
               flexDirection: ['column'],
+              gridArea: 'buttons',
+              marginBottom: [0, -11],
             }}
           >
             <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
