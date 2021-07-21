@@ -1,6 +1,7 @@
+import { useResponsiveValue } from '@theme-ui/match-media';
 import Image from 'next/image';
 import React from 'react';
-import { Flex, Heading } from 'theme-ui';
+import { Box, Flex, Heading, Text, useThemeUI } from 'theme-ui';
 
 export type FeatureCardProps = {
   heading1: string;
@@ -10,13 +11,41 @@ export type FeatureCardProps = {
   image: StaticImageData;
 };
 
-const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
+const SmallLine = () => {
+  const { theme } = useThemeUI();
+
+  const primary = theme.colors?.primary as string;
+
   return (
-    <Flex sx={{ height: '60px', width: '100%' }}>
+    <svg
+      width="29"
+      height="6"
+      viewBox="0 0 29 6"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="3"
+        y1="3"
+        x2="26"
+        y2="3"
+        stroke={primary}
+        strokeWidth="6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
+  const displaySecondBlock = useResponsiveValue([false, null, null, true]);
+
+  return (
+    <Flex sx={{ height: '100%', width: '100%', alignItems: 'center' }}>
       <Flex
         sx={{
-          height: '60px',
-          width: '60px',
+          height: [60, null, null, 80],
+          width: [60, null, null, 80],
           zIndex: 1,
           border: '1px solid',
           borderColor: 'primary',
@@ -26,7 +55,7 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
           alignItems: 'center',
         }}
       >
-        <Flex sx={{ width: '75%', justifyContent: 'center' }}>
+        <Flex sx={{ width: '70%', justifyContent: 'center' }}>
           <Image src={image} alt="Impressora" />
         </Flex>
       </Flex>
@@ -36,17 +65,19 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
           border: '1px solid',
           borderColor: 'primary',
           borderRadius: '20px',
-          paddingLeft: 9,
+          paddingLeft: [9, null, null, null, 10],
           paddingRight: 6,
+          paddingY: [6, null, null, 7],
           marginLeft: '-20px',
           zIndex: 0,
-          alignItems: 'center',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         <Heading
           as="h3"
           sx={{
-            fontSize: 'base',
+            fontSize: ['base', 'lg'],
             lineHeight: 'sm',
             fontWeight: 700,
             fontFamily: 'heading',
@@ -56,6 +87,23 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
           <br />
           {heading2}
         </Heading>
+        {displaySecondBlock && (
+          <>
+            <Box sx={{ marginY: 4 }}>
+              <SmallLine />
+            </Box>
+            <Text
+              sx={{
+                fontSize: 'sm',
+                lineHeight: 'sm',
+              }}
+            >
+              {heading1}
+              <br />
+              {heading2}
+            </Text>
+          </>
+        )}
       </Flex>
     </Flex>
   );

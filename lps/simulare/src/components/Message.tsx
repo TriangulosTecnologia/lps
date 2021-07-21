@@ -22,7 +22,7 @@ const Message = ({
           width: '4px',
           backgroundColor: 'primary',
           borderRadius: '2px',
-          marginRight: [7],
+          marginRight: [7, 8, 9],
         }}
       />
       <Box>{children}</Box>

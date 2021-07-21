@@ -1,5 +1,9 @@
 export const theme = {
-  breakpoints: ['40em', '52em', '64em', '76em'],
+  /**
+   * For a font size equals 16px, the breakpoints will be:
+   * [640, 768, 1024, 1280, 1536, 1920] in pixels.
+   */
+  breakpoints: ['40rem', '48rem', '64rem', '80rem', '96rem', '120rem'],
 
   colors: {
     text: 'white',
