@@ -7,6 +7,7 @@ export const theme = {
     primary: '#24BB78',
     secondary: '#FF6600',
     gray80: '#808080',
+    muted: '#808080',
   },
 
   /**

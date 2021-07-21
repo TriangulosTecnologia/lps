@@ -89,7 +89,7 @@ const FormRegister = () => {
   };
 
   return (
-    <Layout displayNavigation>
+    <Layout displayNavigation dataAnchor="register">
       <form onSubmit={onSubmit}>
         <Grid
           sx={{

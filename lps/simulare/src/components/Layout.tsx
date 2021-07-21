@@ -4,16 +4,25 @@ import { Box, Flex } from 'theme-ui';
 
 import logo from '../../public/logo.png';
 
+import { useFullpage } from './Fullpage';
+
 const Navigation = dynamic(() => import('./Navigation'));
 
-const Layout: React.FC<{ displayNavigation?: boolean }> = ({
+const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
   children,
   displayNavigation,
+  dataAnchor,
 }) => {
+  const { moveTo } = useFullpage();
+
   const headerPadding = 8;
 
   return (
-    <Box className="section" sx={{ position: 'relative' }}>
+    <Box
+      className="section"
+      data-anchor={dataAnchor}
+      sx={{ position: 'relative' }}
+    >
       <Flex
         as="header"
         sx={{
@@ -21,7 +30,9 @@ const Layout: React.FC<{ displayNavigation?: boolean }> = ({
           justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
         }}
       >
-        <Image src={logo} alt="simulare" />
+        <Box onClick={() => moveTo?.(1)} sx={{ cursor: 'pointer' }}>
+          <Image src={logo} alt="simulare" />
+        </Box>
       </Flex>
       <Box
         sx={{
@@ -34,7 +45,9 @@ const Layout: React.FC<{ displayNavigation?: boolean }> = ({
       >
         {displayNavigation && <Navigation circles={5} />}
       </Box>
-      <Box sx={{ paddingX: 8 }}>{children}</Box>
+      <Box sx={{ paddingLeft: 8, paddingRight: 10, paddingBottom: 11 }}>
+        {children}
+      </Box>
     </Box>
   );
 };
