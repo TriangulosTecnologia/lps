@@ -15,13 +15,13 @@ const Triangle = () => {
 
   return (
     <svg
-      width="528"
-      height="379"
-      viewBox="0 0 528 379"
+      width="600"
+      height="460"
+      viewBox="0 0 600 460"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M0 0H528.266V379L0 0Z" fill={primary} />
+      <path d="M0 0H649V460L0 0Z" fill={primary} />
     </svg>
   );
 };

@@ -78,8 +78,8 @@ const Button: React.FC<ButtonProps> = ({
 
       <Flex
         sx={{
-          width: [54, 64],
-          height: [54, 64],
+          width: [54, 64, 72],
+          height: [54, 64, 72],
           position: 'relative',
           justifyContent: 'center',
           alignItems: 'center',
