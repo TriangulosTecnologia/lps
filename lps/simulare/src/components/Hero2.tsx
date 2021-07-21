@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, Flex, Heading } from 'theme-ui';
+import { Box, Flex, Heading, useThemeUI } from 'theme-ui';
 
 import Button from './Button';
 import { useFullpage } from './Fullpage';
@@ -8,11 +8,39 @@ import Message from './Message';
 
 import notebook from '../../public/notebook.png';
 
+const Triangle = () => {
+  const { theme } = useThemeUI();
+
+  const primary = theme.colors?.primary as string;
+
+  return (
+    <svg
+      width="528"
+      height="379"
+      viewBox="0 0 528 379"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 0H528.266V379L0 0Z" fill={primary} />
+    </svg>
+  );
+};
+
 const Hero2 = () => {
   const { moveSectionDown } = useFullpage();
 
   return (
-    <Layout dataAnchor="hero1">
+    <Layout dataAnchor="hero2">
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          display: ['none', null, null, null, 'block'],
+        }}
+      >
+        <Triangle />
+      </Box>
       <Flex
         sx={{
           height: '100%',
@@ -23,7 +51,8 @@ const Hero2 = () => {
       >
         <Flex
           sx={{
-            flexDirection: ['column'],
+            flexDirection: ['column', null, null, 'row'],
+            alignItems: 'center',
             marginY: [10],
           }}
         >
@@ -36,16 +65,22 @@ const Hero2 = () => {
                  */
                 position: 'relative',
                 zIndex: 1,
-                maxWidth: 500,
-                fontSize: ['2xl'],
-                lineHeight: ['2xl'],
+                maxWidth: [500, 600, null, 700, 600],
+                fontSize: ['2xl', '3xl', null, '4xl', '5xl'],
+                lineHeight: ['2xl', '3xl', null, '4xl', '5xl'],
               }}
             >
               Faça o <Message.Emphasis>DOBRO</Message.Emphasis> de atendimentos
               na <Message.Emphasis>METADE</Message.Emphasis> do tempo.
             </Heading>
           </Message>
-          <Box sx={{ marginTop: [-6] }}>
+          <Box
+            sx={{
+              marginTop: [-6, null, null],
+              marginLeft: [0, 0, 0, -12],
+              maxWidth: 700,
+            }}
+          >
             <Image src={notebook} alt="Notebook" />
           </Box>
         </Flex>

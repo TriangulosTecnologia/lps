@@ -1,21 +1,16 @@
-import { Divider, Flex, Heading, Link, Text } from 'theme-ui';
+import { Divider, Flex, Link, Text } from 'theme-ui';
 
 import Button from './Button';
 import Layout from './Layout';
-import Message from './Message';
+import MessageTitle from './MessageTitle';
 
 const Contact = () => {
   return (
     <Layout displayNavigation dataAnchor="contact">
       <Flex sx={{ flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Message>
-          <Text sx={{ fontSize: 'sm' }}>Dúvidas?</Text>
-          <Heading as="h2" sx={{ fontSize: 'lg' }}>
-            ENTRE EM CONTATO
-          </Heading>
-        </Message>
+        <MessageTitle text="Dúvidas?" title="Entre em Contato" />
 
-        <Flex>
+        <Flex sx={{ flexWrap: 'wrap', justifyContent: 'center' }}>
           <Button label="(17) 98147.2314" icon="whatsapp-filled" />
           <Button label="contato@simulare.com" icon="email-filled" />
         </Flex>
