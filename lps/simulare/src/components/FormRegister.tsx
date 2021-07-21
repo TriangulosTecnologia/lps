@@ -1,4 +1,8 @@
 import { ReactElement } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import InputMask from 'react-input-mask';
+import * as yup from 'yup';
 
 import {
   Box,
@@ -11,6 +15,8 @@ import {
 } from 'theme-ui';
 
 import Button from './Button';
+
+import { useFullpage } from './Fullpage';
 
 import Email from './icons/Email';
 import Perfil from './icons/Perfil';
@@ -82,15 +88,31 @@ const Header = ({ sx }: BoxProps) => (
   </Box>
 );
 
+const phoneRegExp = /\(\d{2,}\) \d{4,}-\d{4}/g;
+
 const FormRegister = () => {
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    console.log('submit form');
+  const schema = yup.object().shape({
+    name: yup.string().required('É necessário preencher seu nome'),
+    email: yup
+      .string()
+      .required('O campo email é obrigatório')
+      .email('Digite um email válido'),
+    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+  });
+
+  const { register, handleSubmit, watch, setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const { moveSectionDown } = useFullpage();
+
+  const onSubmit = (data: any) => {
+    alert(JSON.stringify(data));
   };
 
   return (
     <Layout displayNavigation dataAnchor="register">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid
           sx={{
             display: ['block', 'grid'],
@@ -119,7 +141,12 @@ const FormRegister = () => {
               <Box sx={{ width: ['26px', '32px'] }}>
                 <Perfil width="100%" height="100%" />
               </Box>
-              <Input sx={{ marginLeft: [7] }} placeholder="Nome" />
+              <Input
+                sx={{ marginLeft: [7] }}
+                placeholder="Nome"
+                id="name"
+                {...register('name')}
+              />
             </Fieldset>
             <Fieldset sx={{ marginBottom: [9] }}>
               <Box sx={{ width: ['26px', '32px'] }}>
@@ -129,6 +156,8 @@ const FormRegister = () => {
               <Input
                 sx={{ marginLeft: [7] }}
                 placeholder="Email profissional"
+                id="email"
+                {...register('email')}
               />
             </Fieldset>
 
@@ -136,10 +165,19 @@ const FormRegister = () => {
               <Box sx={{ width: ['26px', '32px'] }}>
                 <Whatsapp width="100%" height="100%" />
               </Box>
-              <Input
-                sx={{ marginLeft: [7] }}
-                placeholder="Telefone de contato"
-              />
+
+              <InputMask
+                mask={'(99) 99999-9999'}
+                value={watch('phone')}
+                onChange={(e) => setValue('phone', e.target.value)}
+              >
+                {() => (
+                  <Input
+                    sx={{ marginLeft: [7] }}
+                    placeholder="Telefone de contato"
+                  />
+                )}
+              </InputMask>
             </Fieldset>
           </Box>
 
@@ -164,7 +202,12 @@ const FormRegister = () => {
                 color="secondary"
               />
 
-              <Button type="button" label="Contato" icon="arrow-down" />
+              <Button
+                type="button"
+                label="Contato"
+                icon="arrow-down"
+                onClick={() => moveSectionDown?.()}
+              />
             </Flex>
           </Flex>
         </Grid>
