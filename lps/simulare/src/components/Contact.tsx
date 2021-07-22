@@ -47,6 +47,7 @@ const Contact = () => {
               color: 'textSecondary',
               fontSize: ['xs', 'sm', 'base'],
               lineHeight: ['xs', 'sm', 'base'],
+              maxWidth: [700],
             }}
           >
             Nós possuímos uma grande preocupação com a segurança de seus dados e

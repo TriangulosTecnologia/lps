@@ -13,7 +13,6 @@ const Home = () => {
     <FullpageProvider
       scrollingSpeed={1000}
       verticalCentered={false}
-      scrollOverflow={true}
       touchSensitivity={10}
       anchors={['hero1', 'hero2', 'features', 'register', 'contact']}
     >
