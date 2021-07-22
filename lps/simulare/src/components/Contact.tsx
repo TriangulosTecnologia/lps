@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Box, Divider, Flex, Link, Text } from 'theme-ui';
 
 import Button from './Button';
@@ -13,6 +14,8 @@ const PaddingLeft: React.FC = ({ children }) => {
 };
 
 const Contact = () => {
+  const [showText, setShowText] = React.useState(false);
+
   return (
     <Layout displayNavigation dataAnchor="contact">
       <Flex
@@ -38,7 +41,9 @@ const Contact = () => {
           </Flex>
 
           <Text
+            as="p"
             sx={{
+              display: showText ? 'block' : 'none',
               color: 'textSecondary',
               fontSize: ['xs', 'sm', 'base'],
               lineHeight: ['xs', 'sm', 'base'],
@@ -50,29 +55,24 @@ const Contact = () => {
             cadastrais, afirmando que não comercializamos suas informações
             pessoais. Tais informações serão utilizadas para entrar em contato
             com você para apresentação de nossa solução.
-            <br />
-            <br />
-            Você poderá solicitar a sua exclusão do banco de dados, e assim não
-            receberá mais informações dos nossos produtos e serviços. Não
-            obstante o descrito acima, havendo solicitação formal, por qualquer
-            Autoridade Pública ou Judicial, devidamente fundamentada, o Cliente
-            e/ou Usuário nos autoriza expressamente a encaminhar os dados
-            cadastrais solicitados, independente de notificação prévia ao
-            Cliente e/ou Usuário.
           </Text>
         </PaddingLeft>
       </Flex>
 
-      <Divider sx={{ marginY: 9, marginX: [6, 8] }} />
+      <Divider sx={{ marginY: [8, 9], marginLeft: [6, 8], marginRight: 8 }} />
 
       <PaddingLeft>
-        <Flex sx={{ flexDirection: 'column', marginTop: [9, 10] }}>
+        <Flex sx={{ flexDirection: 'column', marginTop: [8, 10] }}>
           <Text
             sx={{
               fontSize: ['sm', 'base', 'lg'],
             }}
           >
-            <Link sx={{ color: 'white' }} href="#contact">
+            <Link
+              sx={{ color: showText ? 'white' : undefined }}
+              onClick={() => setShowText(true)}
+              href="#contact"
+            >
               Política de Privacidade
             </Link>
             <Text> | </Text>
@@ -85,7 +85,7 @@ const Contact = () => {
             sx={{
               width: '100%',
               textAlign: ['center', null, 'start'],
-              marginTop: 9,
+              marginTop: [8, 9],
               marginBottom: 6,
               fontSize: ['xs', 'sm'],
             }}

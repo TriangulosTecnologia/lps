@@ -28,7 +28,7 @@ const Navigation = ({ circles = 0 }: { circles?: number }) => {
           x2="2"
           y2="1000"
           stroke={colors.gray80}
-          strokeWidth={2}
+          strokeWidth={1}
           strokeLinecap="round"
         />
       </svg>
