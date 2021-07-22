@@ -67,7 +67,11 @@ const Contact = () => {
 
       <PaddingLeft>
         <Flex sx={{ flexDirection: 'column', marginTop: [9, 10] }}>
-          <Text sx={{ fontSize: ['sm', 'base', 'lg'] }}>
+          <Text
+            sx={{
+              fontSize: ['sm', 'base', 'lg'],
+            }}
+          >
             <Link sx={{ color: 'white' }} href="#contact">
               Política de Privacidade
             </Link>
@@ -82,6 +86,7 @@ const Contact = () => {
               width: '100%',
               textAlign: ['center', null, 'start'],
               marginTop: 9,
+              marginBottom: 6,
               fontSize: ['xs', 'sm'],
             }}
           >
