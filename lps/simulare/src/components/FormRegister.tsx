@@ -139,7 +139,7 @@ const FormRegister = () => {
           >
             <Fieldset sx={{ marginBottom: [9] }}>
               <Box sx={{ width: ['26px', '32px'] }}>
-                <Perfil width="100%" height="100%" />
+                <Perfil />
               </Box>
               <Input
                 sx={{ marginLeft: [7] }}
@@ -150,7 +150,7 @@ const FormRegister = () => {
             </Fieldset>
             <Fieldset sx={{ marginBottom: [9] }}>
               <Box sx={{ width: ['26px', '32px'] }}>
-                <Email width="100%" height="100%" />
+                <Email />
               </Box>
 
               <Input
@@ -163,7 +163,7 @@ const FormRegister = () => {
 
             <Fieldset>
               <Box sx={{ width: ['26px', '32px'] }}>
-                <Whatsapp width="100%" height="100%" />
+                <Whatsapp />
               </Box>
 
               <InputMask

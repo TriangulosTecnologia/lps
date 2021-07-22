@@ -71,7 +71,7 @@ const Features = () => {
           flexWrap: 'wrap',
           justifyContent: 'center',
           paddingRight: 6,
-          marginY: [7, 10, 10, 11],
+          marginY: [7, 10, 10, 10, 10, 11],
         }}
       >
         {components.map((props) => {
@@ -81,7 +81,7 @@ const Features = () => {
               sx={{
                 width: '100%',
                 maxWidth: 400,
-                marginY: [5, null, null, 8, 9],
+                marginY: [5, null, null, 7, 7, 9],
                 marginRight: [8, null, null, 9, 10],
               }}
             >
