@@ -33,6 +33,7 @@ const Hero1 = () => {
           layout="fill"
           objectFit="contain"
           objectPosition="right"
+          loading="lazy"
         />
       </Box>
 
