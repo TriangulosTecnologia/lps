@@ -1,7 +1,7 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
+
 import * as yup from 'yup';
 
 import {
@@ -15,6 +15,7 @@ import {
 } from 'theme-ui';
 
 import Button from './Button';
+import InputMask from './InputMask';
 
 import { useFullpage } from './Fullpage';
 
@@ -100,7 +101,7 @@ const FormRegister = () => {
     phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
   });
 
-  const { register, handleSubmit, watch, setValue } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -142,10 +143,10 @@ const FormRegister = () => {
                 <Perfil width="100%" height="100%" />
               </Box>
               <Input
+                {...register('name')}
                 sx={{ marginLeft: [7] }}
                 placeholder="Nome"
                 id="name"
-                {...register('name')}
               />
             </Fieldset>
             <Fieldset sx={{ marginBottom: [9] }}>
@@ -154,10 +155,10 @@ const FormRegister = () => {
               </Box>
 
               <Input
+                {...register('email')}
                 sx={{ marginLeft: [7] }}
                 placeholder="Email profissional"
                 id="email"
-                {...register('email')}
               />
             </Fieldset>
 
@@ -167,17 +168,11 @@ const FormRegister = () => {
               </Box>
 
               <InputMask
-                mask={'(99) 99999-9999'}
-                value={watch('phone')}
-                onChange={(e) => setValue('phone', e.target.value)}
-              >
-                {() => (
-                  <Input
-                    sx={{ marginLeft: [7] }}
-                    placeholder="Telefone de contato"
-                  />
-                )}
-              </InputMask>
+                {...register('phone')}
+                placeholder="Telefone"
+                mask="(99) 99999-9999"
+                sx={{ marginLeft: [7] }}
+              />
             </Fieldset>
           </Box>
 
