@@ -11,12 +11,10 @@ const FormRegister = dynamic(() => import('../components/FormRegister'));
 const Home = () => {
   return (
     <FullpageProvider
-      {...{
-        scrollingSpeed: 1000,
-        verticalCentered: false,
-        scrollOverflow: true,
-        anchors: ['hero1', 'hero2', 'features', 'register', 'contact'],
-      }}
+      scrollingSpeed={1000}
+      verticalCentered={false}
+      touchSensitivity={10}
+      anchors={['hero1', 'hero2', 'features', 'register', 'contact']}
     >
       <Hero1 />
       <Hero2 />

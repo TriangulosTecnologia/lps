@@ -20,7 +20,7 @@ const Hero1 = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: ['-20px', null, null, 0],
+          top: ['-80px', 0],
           right: '-1px',
           height: [300, 400, 500, 600, '100%'],
           width: '100%',
@@ -33,6 +33,7 @@ const Hero1 = () => {
           layout="fill"
           objectFit="contain"
           objectPosition="right"
+          loading="lazy"
         />
       </Box>
 
@@ -61,7 +62,7 @@ const Hero1 = () => {
         <Flex
           sx={{
             flexDirection: 'column',
-            marginTop: [180, 150, null, null, 100],
+            marginTop: [100, 150, null, null, 100],
             textTransform: 'uppercase',
             position: 'relative',
           }}
@@ -111,7 +112,6 @@ const Hero1 = () => {
             flexWrap: 'wrap',
             fontSize: ['sm'],
             flexDirection: ['column'],
-            marginTop: 10,
           }}
         >
           <Flex

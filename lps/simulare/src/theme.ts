@@ -12,6 +12,7 @@ export const theme = {
     secondary: '#FF6600',
     gray80: '#808080',
     muted: '#808080',
+    textSecondary: '#D9D9D9',
   },
 
   /**
@@ -69,6 +70,10 @@ export const theme = {
       fontWeight: 'body',
       lineHeight: 'base',
       fontSize: 'base',
+    },
+    a: {
+      color: 'muted',
+      textDecoration: 'none',
     },
   },
 };

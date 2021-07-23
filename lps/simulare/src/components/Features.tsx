@@ -70,8 +70,8 @@ const Features = () => {
           flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          paddingRight: 9,
-          marginY: [9, 10, 10, 11],
+          paddingRight: 6,
+          marginY: [7, 10, 10, 10, 10, 11],
         }}
       >
         {components.map((props) => {
@@ -81,7 +81,7 @@ const Features = () => {
               sx={{
                 width: '100%',
                 maxWidth: 400,
-                marginY: [7, null, null, 8, 9],
+                marginY: [5, null, null, 7, 7, 9],
                 marginRight: [8, null, null, 9, 10],
               }}
             >
@@ -90,7 +90,13 @@ const Features = () => {
           );
         })}
       </Flex>
-      <Flex sx={{ flexDirection: 'row', justifyContent: 'center' }}>
+      <Flex
+        sx={{
+          display: 'none',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
+      >
         <Button icon="arrow-down" onClick={() => moveSectionDown?.()} />
       </Flex>
     </Layout>

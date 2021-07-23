@@ -30,7 +30,10 @@ const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
           justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
         }}
       >
-        <Box onClick={() => moveTo?.(1)} sx={{ cursor: 'pointer' }}>
+        <Box
+          onClick={() => moveTo?.(1)}
+          sx={{ cursor: 'pointer', maxWidth: [150] }}
+        >
           <Image src={logo} alt="simulare" />
         </Box>
       </Flex>
@@ -45,9 +48,7 @@ const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
       >
         {displayNavigation && <Navigation circles={5} />}
       </Box>
-      <Box sx={{ paddingLeft: 8, paddingRight: 9, paddingBottom: 11 }}>
-        {children}
-      </Box>
+      <Box sx={{ paddingLeft: 8, paddingRight: 9 }}>{children}</Box>
     </Box>
   );
 };

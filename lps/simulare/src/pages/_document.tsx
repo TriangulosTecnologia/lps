@@ -13,7 +13,6 @@ class MyDocument extends Document {
       <Html lang="pt-BR">
         <Head>
           <meta charSet="utf-8" />
-          <link rel="icon" href="/favicon.ico" />
           {this.fonts.length > 0 && (
             <>
               <link rel="preconnect" href="https://fonts.googleapis.com" />

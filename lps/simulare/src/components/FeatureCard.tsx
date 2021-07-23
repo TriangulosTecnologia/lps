@@ -44,8 +44,8 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
     <Flex sx={{ height: '100%', width: '100%', alignItems: 'center' }}>
       <Flex
         sx={{
-          height: [60, null, null, 80],
-          width: [60, null, null, 80],
+          height: [50, 60, null, 80],
+          width: [50, 60, null, 80],
           zIndex: 1,
           border: '1px solid',
           borderColor: 'primary',
@@ -66,8 +66,8 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
           borderColor: 'primary',
           borderRadius: '20px',
           paddingLeft: [9, null, null, null, 10],
-          paddingRight: 6,
-          paddingY: [6, null, null, 7],
+          paddingRight: [6],
+          paddingY: [5, 6, null, 7],
           marginLeft: '-20px',
           zIndex: 0,
           flexDirection: 'column',
@@ -77,9 +77,9 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
         <Heading
           as="h3"
           sx={{
-            fontSize: ['base', 'lg'],
+            fontSize: ['sm', 'lg'],
             lineHeight: 'sm',
-            fontWeight: 700,
+            fontWeight: [400, 700],
             fontFamily: 'heading',
           }}
         >
