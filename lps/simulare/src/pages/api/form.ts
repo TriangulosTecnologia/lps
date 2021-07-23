@@ -10,32 +10,16 @@ type FormData = {
   phone: string;
 };
 
-// TODO: Adjust query mutation
-/**
- * Console log error
- * "errors": [
-    {
-      "message": "Parse error on \"phone\" (STRING) at [5, 23]",
-      "locations": [
-        {
-          "line": 5,
-          "column": 23
-        }
-      ]
-    }
-  ],
-  "account_id": 9485063
- * 
- */
-
 const getMutation = ({ name, email, phone }: FormData) => {
+  const phoneCleaned = phone
+    .replace(' ', '')
+    .replace('(', '')
+    .replace(')', '')
+    .replace('-', '');
+
   const columnValues = {
     phone: {
-      phone: phone
-        .replace(' ', '')
-        .replace('(', '')
-        .replace(')', '')
-        .replace('-', ''),
+      phone: `+55${phoneCleaned}`,
       countryShortName: 'BR',
     },
     e_mail: {
@@ -48,7 +32,7 @@ const getMutation = ({ name, email, phone }: FormData) => {
     create_item(
       item_name: "${name}",
       board_id: ${BOARD_ID},
-      column_values: ${JSON.stringify(columnValues)},
+      column_values: ${JSON.stringify(JSON.stringify(columnValues))},
       group_id: "topics"
     ) {
       id
