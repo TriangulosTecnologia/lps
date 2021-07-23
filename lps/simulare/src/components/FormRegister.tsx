@@ -26,6 +26,8 @@ import Input from './Input';
 import Layout from './Layout';
 import Message from './Message';
 
+import api from '../services/api';
+
 type FieldsetProps = {
   children: ReactElement[];
   sx?: ThemeUIStyleObject;
@@ -101,14 +103,31 @@ const FormRegister = () => {
     phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
   });
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    // reset
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
   const { moveSectionDown } = useFullpage();
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data));
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await api.post('/form', data);
+
+      // reset({
+      //   name: '',
+      //   email: '',
+      //   phone: '',
+      // });
+
+      alert('Cadastrado com sucesso!!!');
+      console.log('response::', response);
+    } catch (error) {
+      console.log('error::', error);
+    }
   };
 
   return (
