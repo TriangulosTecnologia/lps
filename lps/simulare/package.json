@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.6.1",
+    "axios": "^0.21.1",
     "react-hook-form": "^7.11.1",
     "react-input-mask": "^2.0.4",
     "yup": "^0.32.9"
