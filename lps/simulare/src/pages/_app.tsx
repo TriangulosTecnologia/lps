@@ -9,6 +9,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <NextSeo
+        title="Simulador de Vendas"
+        titleTemplate="%s | Simulare"
+        defaultTitle="Simulare"
+        description="Faça diversas simulações de Terreno e Construção com valores da Caixa Econômica Federal de um jeito rápido e fácil. A Simulare descomplica sua venda."
         additionalLinkTags={[
           {
             rel: 'icon',
