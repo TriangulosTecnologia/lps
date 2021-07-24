@@ -119,9 +119,12 @@ const FormRegister = () => {
         phone: '',
       });
 
-      alert('Cadastrado com sucesso!!!');
+      alert('Cadastrado com sucesso!');
     } catch (error) {
-      console.log('error::', error);
+      alert(
+        'Não foi possível fazer o seu cadastro. Por favor, entre em contato conosco por WhatsApp ou e-mail.'
+      );
+      moveSectionDown?.();
     }
   };
 
