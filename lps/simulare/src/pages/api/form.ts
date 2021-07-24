@@ -51,17 +51,18 @@ export default async function handler(
   try {
     const query = getMutation(req.body as FormData);
 
-    console.log('query::', query);
     const { data } = await graphql.post('/', { query });
 
-    console.log('response::', JSON.stringify(data, undefined, 2));
-
     if (data.errors) {
-      return res.status(400).json({ message: 'Error on Monday api request' });
+      return res
+        .status(400)
+        .json({ message: 'Error on Monday api request', error: data.errors });
     }
 
     return res.status(201).json({ message: 'Created with success!' });
   } catch (error) {
-    return res.status(400).json({ message: 'Error on Monday api request' });
+    return res
+      .status(400)
+      .json({ message: 'Error on Monday api request', error: error.message });
   }
 }
