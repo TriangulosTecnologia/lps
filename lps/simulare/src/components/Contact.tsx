@@ -27,6 +27,7 @@ const Contact = () => {
           sx={{
             flexDirection: 'column',
             height: '100%',
+            paddingTop: [11, 12],
           }}
         >
           <MessageTitle text="Dúvidas?" title="Entre em Contato" />
@@ -46,9 +47,18 @@ const Contact = () => {
               }}
             >
               <Flex sx={{ marginRight: [7, 8, 9, 10, 11] }}>
-                <Button label="(17) 98147.2314" icon="whatsapp-filled" />
+                <Flex
+                  sx={{
+                    flexDirection: ['column', 'row'],
+                    alignItems: 'flex-end',
+                    gap: 10,
+                  }}
+                >
+                  <Button label="(17) 98147.2314" icon="whatsapp-filled" />
+
+                  <Button label="contato@simulare.com" icon="email-filled" />
+                </Flex>
               </Flex>
-              <Button label="contato@simulare.com" icon="email-filled" />
             </Flex>
 
             <Text

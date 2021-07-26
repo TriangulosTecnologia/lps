@@ -17,7 +17,7 @@ const Hero2 = () => {
         sx={{
           height: '100%',
           flexDirection: ['column'],
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
         }}
       >
@@ -25,7 +25,8 @@ const Hero2 = () => {
           sx={{
             flexDirection: ['column', null, null, 'row'],
             alignItems: 'center',
-            marginY: [10],
+            marginTop: [10],
+            marginBottom: [10, 0],
           }}
         >
           <Message>

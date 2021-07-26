@@ -30,7 +30,10 @@ const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
         as="header"
         sx={{
           padding: headerPadding,
-          justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
+          position: 'absolute',
+          top: 0,
+          right: displayNavigation ? 0 : null,
+          left: !displayNavigation ? 0 : null,
         }}
       >
         <Box
