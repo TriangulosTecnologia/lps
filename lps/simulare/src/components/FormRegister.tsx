@@ -48,7 +48,7 @@ const Header = ({ sx }: BoxProps) => (
   <Box
     sx={{
       backgroundImage: 'url(/sell-more.png)',
-      height: ['59px', '192px'],
+      height: [59, 72, 110, 192],
       maxWidth: '1163px',
       width: '100%',
       position: 'relative',
@@ -146,7 +146,7 @@ const FormRegister = () => {
           justifyContent: 'space-evenly',
           rowGap: [null, null, null, '89px'],
           columnGap: [0, 10],
-          paddingTop: [0, 0, 0, 10],
+          paddingTop: [10, 7, 9, 10],
           paddingLeft: [0, 10],
           paddingRight: [0, 12],
           gridTemplateAreas: "'header header' 'form buttons'",
@@ -156,8 +156,8 @@ const FormRegister = () => {
         <Header
           sx={{
             gridArea: 'header',
-            marginTop: [10, null],
-            marginBottom: [11, 0],
+            marginTop: [0, null],
+            marginBottom: [11, 10, 8],
           }}
         />
 
@@ -168,7 +168,7 @@ const FormRegister = () => {
             maxWidth: '650px',
             marginLeft: [0, 'auto'],
             width: '100%',
-            marginBottom: [10, 0],
+            marginBottom: [10, 0, 6],
           }}
         >
           <Fieldset sx={{ marginBottom: [9] }}>

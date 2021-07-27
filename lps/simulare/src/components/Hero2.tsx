@@ -19,6 +19,7 @@ const Hero2 = () => {
           flexDirection: ['column'],
           justifyContent: 'space-evenly',
           alignItems: 'center',
+          paddingY: [9],
         }}
       >
         <Flex
@@ -27,6 +28,8 @@ const Hero2 = () => {
             alignItems: 'center',
             marginTop: [10],
             marginBottom: [10, 0],
+            height: '100%',
+            justifyContent: 'space-evenly',
           }}
         >
           <Message>
@@ -49,9 +52,9 @@ const Hero2 = () => {
           </Message>
           <Box
             sx={{
-              marginTop: [-6, null, null],
+              marginTop: [7, null, null],
               marginLeft: [0, 0, 0, -12],
-              maxWidth: 700,
+              maxWidth: ['75%', '60%', '55%', '50%', 600],
             }}
           >
             <Image src={notebook} alt="Notebook" loading="lazy" />

@@ -68,6 +68,7 @@ const Features = () => {
           justifyContent: 'space-evenly',
           flexDirection: 'column',
           height: '100%',
+          paddingY: [0, 7],
         }}
       >
         <MessageTitle text="Conheça as" title="Principais Vantagens" />
@@ -78,7 +79,7 @@ const Features = () => {
             flexWrap: 'wrap',
             justifyContent: 'center',
             paddingRight: 6,
-            marginY: [7, 10, 10, 10, 8, 11],
+            marginY: [7, 8, 8, 7, 7, 11],
           }}
         >
           {components.map((props) => {
@@ -88,7 +89,7 @@ const Features = () => {
                 sx={{
                   width: '100%',
                   maxWidth: 400,
-                  marginY: [5, null, null, 7, 7, 9],
+                  marginY: [5, null, null, 5, 5, 9],
                   marginRight: [8, null, null, 9, 10],
                 }}
               >
