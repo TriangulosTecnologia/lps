@@ -48,7 +48,7 @@ const Header = ({ sx }: BoxProps) => (
   <Box
     sx={{
       backgroundImage: 'url(/sell-more.png)',
-      height: ['59px', '192px'],
+      height: [59, 72, 110, 192],
       maxWidth: '1163px',
       width: '100%',
       position: 'relative',
@@ -91,6 +91,12 @@ const Header = ({ sx }: BoxProps) => (
   </Box>
 );
 
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+};
+
 const phoneRegExp = /\(\d{2,}\) \d{4,}-\d{4}/g;
 
 const FormRegister = () => {
@@ -103,13 +109,13 @@ const FormRegister = () => {
     phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
   });
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
   const { moveSectionDown } = useFullpage();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     try {
       await api.post('/form', data);
 
@@ -130,100 +136,110 @@ const FormRegister = () => {
 
   return (
     <Layout displayNavigation dataAnchor="register">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid
+      <Grid
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
+        sx={{
+          display: ['flex', 'flex', 'flex', 'grid'],
+          flexDirection: 'column',
+          height: ['100%'],
+          justifyContent: 'space-evenly',
+          rowGap: [null, null, null, '89px'],
+          columnGap: [0, 10],
+          paddingTop: [10, 7, 9, 10],
+          paddingLeft: [0, 10],
+          paddingRight: [0, 12],
+          gridTemplateAreas: "'header header' 'form buttons'",
+          gridTemplateColumns: '5fr 4fr',
+        }}
+      >
+        <Header
           sx={{
-            display: ['block', 'grid'],
-            rowGap: '89px',
-            columnGap: [0, 10],
-            paddingTop: [0, 10],
-            paddingLeft: [0, 10],
-            paddingRight: [0, 12],
-            gridTemplateAreas: "'header header' 'form buttons'",
-            gridTemplateColumns: '5fr 4fr',
+            gridArea: 'header',
+            marginTop: [0, null],
+            marginBottom: [11, 10, 8],
+          }}
+        />
+
+        <Box
+          sx={{
+            paddingRight: [9, 0],
+            gridArea: 'form',
+            maxWidth: '650px',
+            marginLeft: [0, 'auto'],
+            width: '100%',
+            marginBottom: [10, 0, 6],
           }}
         >
-          <Header sx={{ gridArea: 'header', marginBottom: [11, 0] }} />
+          <Fieldset sx={{ marginBottom: [9] }}>
+            <Box sx={{ width: ['26px', '32px'] }}>
+              <Perfil />
+            </Box>
+            <Input
+              {...register('name')}
+              sx={{ marginLeft: [7] }}
+              placeholder="Nome"
+              id="name"
+            />
+          </Fieldset>
+          <Fieldset sx={{ marginBottom: [9] }}>
+            <Box sx={{ width: ['26px', '32px'] }}>
+              <Email />
+            </Box>
 
-          <Box
-            sx={{
-              paddingRight: [9, 0],
-              gridArea: 'form',
-              maxWidth: '650px',
-              marginLeft: [0, 'auto'],
-              width: '100%',
-              marginBottom: [10, 0],
-            }}
-          >
-            <Fieldset sx={{ marginBottom: [9] }}>
-              <Box sx={{ width: ['26px', '32px'] }}>
-                <Perfil />
-              </Box>
-              <Input
-                {...register('name')}
-                sx={{ marginLeft: [7] }}
-                placeholder="Nome"
-                id="name"
-              />
-            </Fieldset>
-            <Fieldset sx={{ marginBottom: [9] }}>
-              <Box sx={{ width: ['26px', '32px'] }}>
-                <Email />
-              </Box>
+            <Input
+              {...register('email')}
+              sx={{ marginLeft: [7] }}
+              placeholder="Email profissional"
+              id="email"
+            />
+          </Fieldset>
 
-              <Input
-                {...register('email')}
-                sx={{ marginLeft: [7] }}
-                placeholder="Email profissional"
-                id="email"
-              />
-            </Fieldset>
+          <Fieldset>
+            <Box sx={{ width: ['26px', '32px'] }}>
+              <Whatsapp />
+            </Box>
 
-            <Fieldset>
-              <Box sx={{ width: ['26px', '32px'] }}>
-                <Whatsapp />
-              </Box>
+            <InputMask
+              {...register('phone')}
+              placeholder="Telefone"
+              mask="(99) 99999-9999"
+              sx={{ marginLeft: [7] }}
+            />
+          </Fieldset>
+        </Box>
 
-              <InputMask
-                {...register('phone')}
-                placeholder="Telefone"
-                mask="(99) 99999-9999"
-                sx={{ marginLeft: [7] }}
-              />
-            </Fieldset>
-          </Box>
+        <Flex
+          sx={{
+            width: '100%',
+            justifyContent: ['flex-start', 'flex-end'],
+            alignItems: ['center', 'flex-start'],
+            flexWrap: 'wrap',
+            fontSize: ['sm'],
+            flexDirection: ['column'],
+            gridArea: 'buttons',
+            marginLeft: [0, 11],
+            paddingBottom: [null, null, 9],
+          }}
+        >
+          <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+            <Button
+              sx={{ marginBottom: [8] }}
+              type="submit"
+              label="Enviar"
+              icon="send"
+              color="secondary"
+            />
 
-          <Flex
-            sx={{
-              width: '100%',
-              justifyContent: ['flex-start', 'flex-end'],
-              alignItems: ['center', 'flex-start'],
-              flexWrap: 'wrap',
-              fontSize: ['sm'],
-              flexDirection: ['column'],
-              gridArea: 'buttons',
-              marginBottom: [0, -11],
-            }}
-          >
-            <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
-              <Button
-                sx={{ marginBottom: [8] }}
-                type="submit"
-                label="Enviar"
-                icon="send"
-                color="secondary"
-              />
-
-              <Button
-                type="button"
-                label="Contato"
-                icon="arrow-down"
-                onClick={() => moveSectionDown?.()}
-              />
-            </Flex>
+            <Button
+              type="button"
+              label="Contato"
+              icon="arrow-down"
+              onClick={() => moveSectionDown?.()}
+            />
           </Flex>
-        </Grid>
-      </form>
+        </Flex>
+      </Grid>
     </Layout>
   );
 };

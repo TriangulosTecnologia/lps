@@ -18,16 +18,22 @@ const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
   const headerPadding = 8;
 
   return (
-    <Box
+    <Flex
       className="section"
       data-anchor={dataAnchor}
-      sx={{ position: 'relative' }}
+      sx={{
+        position: 'relative',
+        flexDirection: 'column',
+      }}
     >
       <Flex
         as="header"
         sx={{
           padding: headerPadding,
-          justifyContent: displayNavigation ? 'flex-end' : 'flex-start',
+          position: 'absolute',
+          top: 0,
+          right: displayNavigation ? 0 : null,
+          left: !displayNavigation ? 0 : null,
         }}
       >
         <Box
@@ -48,8 +54,17 @@ const Layout: React.FC<{ dataAnchor: string; displayNavigation?: boolean }> = ({
       >
         {displayNavigation && <Navigation circles={5} />}
       </Box>
-      <Box sx={{ paddingLeft: 8, paddingRight: 9 }}>{children}</Box>
-    </Box>
+      <Box
+        sx={{
+          paddingLeft: 8,
+          paddingRight: 9,
+          height: 'auto',
+          flex: 1,
+        }}
+      >
+        {children}
+      </Box>
+    </Flex>
   );
 };
 

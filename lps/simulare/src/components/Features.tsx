@@ -63,41 +63,50 @@ const Features = () => {
 
   return (
     <Layout displayNavigation dataAnchor="features">
-      <MessageTitle text="Conheça as" title="Principais Vantagens" />
       <Flex
         sx={{
-          width: '100%',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          paddingRight: 6,
-          marginY: [7, 10, 10, 10, 10, 11],
+          justifyContent: 'space-evenly',
+          flexDirection: 'column',
+          height: '100%',
+          paddingY: [0, 7],
         }}
       >
-        {components.map((props) => {
-          return (
-            <Box
-              key={props.heading1}
-              sx={{
-                width: '100%',
-                maxWidth: 400,
-                marginY: [5, null, null, 7, 7, 9],
-                marginRight: [8, null, null, 9, 10],
-              }}
-            >
-              <FeatureCard {...props} />
-            </Box>
-          );
-        })}
-      </Flex>
-      <Flex
-        sx={{
-          display: 'none',
-          flexDirection: 'row',
-          justifyContent: 'center',
-        }}
-      >
-        <Button icon="arrow-down" onClick={() => moveSectionDown?.()} />
+        <MessageTitle text="Conheça as" title="Principais Vantagens" />
+        <Flex
+          sx={{
+            width: '100%',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            paddingRight: 6,
+            marginY: [7, 8, 8, 7, 7, 11],
+          }}
+        >
+          {components.map((props) => {
+            return (
+              <Box
+                key={props.heading1}
+                sx={{
+                  width: '100%',
+                  maxWidth: 400,
+                  marginY: [5, null, null, 5, 5, 9],
+                  marginRight: [8, null, null, 9, 10],
+                }}
+              >
+                <FeatureCard {...props} />
+              </Box>
+            );
+          })}
+        </Flex>
+        <Flex
+          sx={{
+            display: 'none',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Button icon="arrow-down" onClick={() => moveSectionDown?.()} />
+        </Flex>
       </Flex>
     </Layout>
   );
