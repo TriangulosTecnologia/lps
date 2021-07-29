@@ -87,6 +87,7 @@ const Button: React.FC<ButtonProps> = ({
           justifyContent: 'center',
           alignItems: 'center',
           '&:hover': {
+            color: fill,
             '#pathCircle': {
               stroke: fill,
               strokeDasharray: 360,
