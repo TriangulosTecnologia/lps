@@ -24,6 +24,12 @@
 
 <br/>
 
+## 🚀 Projects
+
+- **[Simulare](https://github.com/TriangulosTecnologia/lps/tree/main/lps/simulare)**
+
+<br/>
+
 ## 📌 Technologies
 
 - [TypeScript](https://www.typescriptlang.org/)
