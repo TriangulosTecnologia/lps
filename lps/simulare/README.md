@@ -1,5 +1,3 @@
-<!-- TODO: Reorganize the data of the readme on the root path and project folder -->
-
 <p align="center">
   <a href="https://lps-simulare.vercel.app/">
     <img src="https://raw.githubusercontent.com/TriangulosTecnologia/lps/main/lps/simulare/public/logo.png" alt="Simulare" width="300" />
@@ -27,24 +25,6 @@ The <a href="https://lps-simulare.vercel.app/"> <strong> Simulare </strong> </a>
 <a href="https://monday.com/"><strong> Monday.com </strong></a> Ltd. is a Cloud-based platform that allows companies to create their own applications and work management software. The tool have a many aplications, we can management marketing campaing, projetcs flow, sells pipeline and more. Monday is a system usefull to one or more department, that is why we chose work with them. We can make monday a hub to all Simulare projects, to including all department in just one enviroment.
 </p>
 
-## 🛠 Design pattern
-
-<p align="justify">
-<a href="https://github.com/ttoss/monorepo"><strong> Monorepo </strong></a> as the name says, would be a single repository to keep the code of several projects. Each app domain is within this repository: backend, IoT, machine learning, web and mobile apps. This repository structure is useful because we can access any part of the application without changing the repository.
-</p>
-
-## 📌 Technologies
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [Next.js](https://nextjs.org/)
-- [Fullpage.js](https://alvarotrigo.com/react-fullpage/)
-- [ThemeUI](https://theme-ui.com/)
-- [React Hook Form](https://react-hook-form.com/)
-- [Yup](https://github.com/jquense/yup)
-- [React.js](https://reactjs.org/)
-- [ESlint](https://eslint.org/)
-- [husky](https://typicode.github.io/husky/#/)
-
 ## 🔥 Run
 
 - Cloning the project
@@ -55,9 +35,10 @@ $ git clone https://github.com/TriangulosTecnologia/lps.git
 
 <br />
 
-- Running the Application
+- Setup the application
 
 ```sh
+
 # Access the project directory
 $ cd lps
 
@@ -66,6 +47,20 @@ $ yarn
 
 # Access the project folder simulare
 $ cd lps/simulare
+
+```
+
+- Create an `.env.local` file with the example below
+
+```env
+
+TOKEN_MONDAY=PUT_YOUR_MONDAY_KEY_HERE
+
+```
+
+- Running the Application
+
+```sh
 
 # Launch the web application
 $ yarn dev
