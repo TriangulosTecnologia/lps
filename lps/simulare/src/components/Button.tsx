@@ -133,7 +133,7 @@ const Button: React.FC<ButtonProps> = ({
             <circle cx="2.84211" cy="37" r="2.84211" fill={fill} />
           </svg>
         </Box>
-        <Icon />
+        <Icon width="50%" height="50%" />
       </Flex>
     </ButtonUi>
   );
