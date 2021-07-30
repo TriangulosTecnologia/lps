@@ -7,6 +7,7 @@ import {
   Button as ButtonUi,
   ButtonProps as ButtonPropsUi,
 } from 'theme-ui';
+import { keyframes } from '@emotion/react';
 
 import {
   ArrowDown,
@@ -37,6 +38,8 @@ export type ButtonProps = {
   sx?: ThemeUIStyleObject;
   onClick?: () => void;
 } & ButtonPropsUi;
+
+const drawHover = keyframes({ to: { strokeDashoffset: 0 } });
 
 const Button: React.FC<ButtonProps> = ({
   color = 'primary',
@@ -84,8 +87,12 @@ const Button: React.FC<ButtonProps> = ({
           justifyContent: 'center',
           alignItems: 'center',
           '&:hover': {
-            '.strokeFill': {
+            color: fill,
+            '#pathCircle': {
               stroke: fill,
+              strokeDasharray: 360,
+              strokeDashoffset: 360,
+              animation: `${drawHover} 0.7s linear forwards`,
             },
           },
         }}
@@ -100,29 +107,33 @@ const Button: React.FC<ButtonProps> = ({
           }}
         >
           <svg
-            viewBox="0 0 54 54"
+            viewBox="0 0 76 74"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <ellipse
-              className="strokeFill"
-              cx="27"
-              cy="27"
-              rx="24"
-              ry="24"
+            <circle
+              cx="38.842"
+              cy="37"
+              r="36"
+              transform="rotate(180 38.842 37)"
               stroke={colors.gray80}
+              strokeDasharray="0"
+              strokeDashoffset="0"
             />
-            <ellipse
-              cx="3"
-              cy="25.5"
-              rx="3"
-              ry="3"
-              fill={fill}
-              strokeWidth={0}
+            <circle
+              id="pathCircle"
+              cx="38.842"
+              cy="37"
+              r="36"
+              transform="rotate(180 38.842 37)"
+              stroke="transparent"
+              strokeDasharray="0"
+              strokeDashoffset="0"
             />
+            <circle cx="2.84211" cy="37" r="2.84211" fill={fill} />
           </svg>
         </Box>
-        <Icon />
+        <Icon width="50%" height="50%" />
       </Flex>
     </ButtonUi>
   );

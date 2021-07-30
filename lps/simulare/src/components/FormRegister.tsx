@@ -133,6 +133,7 @@ const FormRegister = () => {
       moveSectionDown?.();
     }
   };
+  const iconColor = '#24BB78';
 
   return (
     <Layout displayNavigation dataAnchor="register">
@@ -172,7 +173,7 @@ const FormRegister = () => {
           }}
         >
           <Fieldset sx={{ marginBottom: [9] }}>
-            <Box sx={{ width: ['26px', '32px'] }}>
+            <Box sx={{ width: ['26px', '32px'], color: iconColor }}>
               <Perfil />
             </Box>
             <Input
@@ -183,7 +184,7 @@ const FormRegister = () => {
             />
           </Fieldset>
           <Fieldset sx={{ marginBottom: [9] }}>
-            <Box sx={{ width: ['26px', '32px'] }}>
+            <Box sx={{ width: ['26px', '32px'], color: iconColor }}>
               <Email />
             </Box>
 
@@ -196,7 +197,7 @@ const FormRegister = () => {
           </Fieldset>
 
           <Fieldset>
-            <Box sx={{ width: ['26px', '32px'] }}>
+            <Box sx={{ width: ['26px', '32px'], color: iconColor }}>
               <Whatsapp />
             </Box>
 
