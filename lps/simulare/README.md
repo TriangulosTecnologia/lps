@@ -25,6 +25,8 @@ The <a href="https://lps-simulare.vercel.app/"> <strong> Simulare </strong> </a>
 <a href="https://monday.com/"><strong> Monday.com </strong></a> Ltd. is a Cloud-based platform that allows companies to create their own applications and work management software. The tool have a many aplications, we can management marketing campaing, projetcs flow, sells pipeline and more. Monday is a system usefull to one or more department, that is why we chose work with them. We can make monday a hub to all Simulare projects, to including all department in just one enviroment.
 </p>
 
+<br />
+
 ## 🔥 Run
 
 - Cloning the project
@@ -68,6 +70,16 @@ $ yarn dev
 ```
 
 The app will be available in your browser at the address http://localhost:3000.
+
+<br/>
+
+## 🔖 Layout
+
+You can view the project layout through the link below:
+
+- [Link Layout](https://www.figma.com/proto/4YcN9TNkYF4rH7aha1aNOY/Simulare?node-id=463%3A143&scaling=min-zoom&page-id=443%3A6&starting-point-node-id=463%3A143)
+
+Remembering that you need to have an account at [Figma](http://figma.com/).
 
 <br/>
 
