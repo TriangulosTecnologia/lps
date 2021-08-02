@@ -41,7 +41,13 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
   const displaySecondBlock = useResponsiveValue([false, null, null, true]);
 
   return (
-    <Flex sx={{ height: '100%', width: '100%', alignItems: 'center' }}>
+    <Flex
+      sx={{
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+      }}
+    >
       <Flex
         sx={{
           height: [50, 60, null, 80],
@@ -77,7 +83,7 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
         <Heading
           as="h3"
           sx={{
-            fontSize: ['sm', 'lg'],
+            fontSize: ['sm', 'sm', 'sm', 'base', 'lg'],
             lineHeight: 'sm',
             fontWeight: [400, 700],
             fontFamily: 'heading',
@@ -94,7 +100,7 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
             </Box>
             <Text
               sx={{
-                fontSize: 'sm',
+                fontSize: ['xs', 'sm'],
                 lineHeight: 'sm',
               }}
             >
