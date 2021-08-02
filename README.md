@@ -14,12 +14,12 @@
 
 ## 📚 About
 
-<strong> Landing Page</strong> is a page that has all the elements aimed at converting the visitor into Lead, opportunity or customer. Also as landing pages or conversion pages, Landing Pages are widely used in Digital Marketing campaigns, as they tend to have high conversion rates.
+<strong> Landing Page</strong> is a website with all the elements to convert visitors into leads, opportunities, or customers. Also, like landing pages or conversion pages, Landing Pages are widely used in Digital Marketing campaigns, as they tend to have high conversion rates.
 
-## 🛠 Design pattern
+## 🛠 Design Pattern
 
 <p align="justify">
-<a href="https://github.com/ttoss/monorepo"><strong> Monorepo </strong></a> (ttoss Monorepo Template) as the name says, would be a single repository to keep the code of several projects. Each app domain is within this repository: backend, IoT, machine learning, web and mobile apps. This repository structure is useful because we can access any part of the application without changing the repository.
+<a href="https://github.com/ttoss/monorepo"><strong> Monorepo </strong></a> (ttoss Monorepo Template), as the name says, would be a single repository to keep the code of several projects. Each app domain is within this repository: backend, IoT, machine learning, web, and mobile apps. This repository structure is helpful because we can access any part of the application without changing the repository.
 </p>
 
 <br/>
@@ -58,7 +58,7 @@ We've adopted some specifications to define our <a href="https://theme-ui.com/th
 
 - ## Breakpoints
 
-We defined six breakpoints `['40rem', '48rem', '64rem', '80rem', '96rem', '120rem']`, which is equivalent to screens with `[640, 768, 1024, 1280, 1536, 1920]` pixels, if the root font size is equal to `16px`. Defining this array of breakpoints comes in handy because we can work with <a href="https://styled-system.com/guides/array-props/"><strong>array props </strong></a> when we need to implement responsiveness.
+We defined six breakpoints `['40rem', '48rem', '64rem', '80rem', '96rem', '120rem']`, which is equivalent to screens with `[640, 768, 1024, 1280, 1536, 1920]` pixels,if the root font size is equal to`16px`. Defining this array of breakpoints comes in handy because we can work with <a href="https://styled-system.com/guides/array-props/"><strong>array props</strong></a> to implement responsiveness.
 
 - ## Font Sizes
 
@@ -84,10 +84,9 @@ fontSizes: {
 
 ```
 
-If we want that some text has `sm` for the first screen (< 40rem), and `lg` for the subsequent screen sizes.
+If we want some text has `sm` for the first screen (< 40rem) and `lg` for the following screen sizes, then we can define a text component with the following style:
 
 ```jsx
-
 
 <Text sx={{ fontSize: ['sm', 'lg'] }}>
 
