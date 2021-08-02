@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-<a href="https://github.com/TriangulosTecnologia/lps/blob/main/LICENSE">
+<a href="https://github.com/TriangulosTecnologia/lps/blob/main/LICENSE"></a>
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License" />
   </a>
 </p>
@@ -52,15 +52,17 @@
 
 ## 🔖 Design
 
-We've adopted some specifications to define our Theme UI theme. You can check our full theme specifications here.
+We've adopted some specifications to define our <a href="https://theme-ui.com/theming/"><strong> Theme UI theme </strong></a>. You can check our <a href="https://github.com/TriangulosTecnologia/lps/blob/main/lps/simulare/src/theme.ts"><strong> full theme specifications here</strong></a>.
+
+</p>
 
 - ## Breakpoints
 
-We defined six breakpoints `['40rem', '48rem', '64rem', '80rem', '96rem', '120rem']`, which is equivalent to screens with `[640, 768, 1024, 1280, 1536, 1920]` pixels, if the root font size is equal to `16px`. Defining this array of breakpoints comes in handy because we can work with array props when we need to implement responsiveness.
+We defined six breakpoints `['40rem', '48rem', '64rem', '80rem', '96rem', '120rem']`, which is equivalent to screens with `[640, 768, 1024, 1280, 1536, 1920]` pixels, if the root font size is equal to `16px`. Defining this array of breakpoints comes in handy because we can work with <a href="https://styled-system.com/guides/array-props/"><strong>array props </strong></a> when we need to implement responsiveness.
 
 - ## Font Sizes
 
-We defined our font size based on Tailwind CSS convention.
+We defined our font size based on <a href="https://styled-system.com/guides/array-props/"><strong>Tailwind CSS </strong></a> convention.
 
 ```js
 
@@ -82,11 +84,39 @@ fontSizes: {
 
 ```
 
-If we want that some text has `sm` for the first screen (< 40rem), and `lg` for the subsequent screen sizes, we just need to define our component this way:
+If we want that some text has `sm` for the first screen (< 40rem), and `lg` for the subsequent screen sizes.
 
 ```jsx
 
-<Text sx={{ fontSize: ['sm', 'lg] }}>
+
+<Text sx={{ fontSize: ['sm', 'lg'] }}>
+
+```
+
+- ## FontFamily
+  We've added a `fonts` key to define the fontFamily, based on the `body` and `heading` props.
+
+```js
+
+ fonts: {
+    body: 'Montserrat',
+    heading: '"Source Sans Pro", sans-serif',
+  },
+```
+
+Our component can be defined according to the examples below:
+
+```jsx
+// examples: 1, 2 and 3
+
+return(
+
+<Text sx={{ fontFamily: "body" }}>example 1</Text>
+
+<Text sx={{ fontFamily: "heading" }}>example 2</Text>
+
+<Text sx={{ fontFamily: ["body","heading"] }}>example 3</Text>
+)
 
 ```
 
@@ -99,6 +129,14 @@ space: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597];
 ```
 
 We repeat the number `1` twice to match the indexes - `Fib(10) = space[10] = 55`.
+
+```jsx
+
+// Like this example below
+
+<Box sx={{ marginBottom: [4, 5, 3, 7] }}>
+
+```
 
 <br />
 

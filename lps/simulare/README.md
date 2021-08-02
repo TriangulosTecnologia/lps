@@ -2,12 +2,12 @@
   <a href="https://lps-simulare.vercel.app/">
     <img src="https://raw.githubusercontent.com/TriangulosTecnologia/lps/main/lps/simulare/public/logo.png" alt="Simulare" width="300" />
   </a>
-</p>
 
 <p align="center">FINANCING SIMULATOR</p>
+</p>
 <p align="center">
-<a href="https://github.com/TriangulosTecnologia/lps/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-green" alt="License" />
+<a href="https://opensource.org/licenses/"></a>
+    <img src="https://img.shields.io/badge/License-GPL%20v3-yellow.svg" alt="License" />
   </a>
 </p>
 
@@ -83,6 +83,12 @@ Remembering that you need to have an account at [Figma](http://figma.com/).
 
 <br/>
 
+## 🚀 Contributing
+
+Contributions are always welcome!
+
+<br/>
+
 ## 📝 License
 
-This project is under the MIT license. See the [LICENSE](https://github.com/TriangulosTecnologia/lps/blob/main/LICENSE) file for more details.
+This project is under the GPLv3 license. See the [LICENSE](https://opensource.org/licenses/) file for more details.
