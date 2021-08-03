@@ -16,13 +16,13 @@
 ## 📚 About
 
 <p align="justify">
-The <a href="https://lps-simulare.vercel.app/"> <strong> Simulare </strong> </a> solution was born with the purporse to facilitate the salles, creating land + construction deals with Caixa Econômica Federal on time finaces informations. That is the way Simulares solution brings more trust, speed and deals that fits in your custumer profile. The solution core is the production, with speed and accuracy, of proposal to make viable the financign of the own house construction.
+The <a href="https://lps-simulare.vercel.app/"> <strong> Simulare </strong> </a> solution was born to facilitate the sales, creating land + construction deals with Caixa Econômica Federal on-time finances information. That is how Simulare solution brings more trust, speed, and deals that fit your customer's profile. The solution core is the production, with speed and accuracy, of the proposal to make the financing of the house construction viable.
 </p>
 
 ## 💻 CRM
 
 <p align="justify">
-<a href="https://monday.com/"><strong> Monday.com </strong></a> Ltd. is a Cloud-based platform that allows companies to create their own applications and work management software. The tool have a many aplications, we can management marketing campaing, projetcs flow, sells pipeline and more. Monday is a system usefull to one or more department, that is why we chose work with them. We can make monday a hub to all Simulare projects, to including all department in just one enviroment.
+<a href="https://monday.com/"><strong> Monday.com </strong></a> Ltd. is a Cloud-based platform that allows companies to create their applications and work management software. The tool has many applications. We can manage marketing campaigns, projects flow, sales pipeline, and more. Monday is a valuable system to one or more departments, so we chose to work with them. We can make Monday a hub for all Simulare projects, including all departments in just one environment.
 </p>
 
 <br />
@@ -79,7 +79,7 @@ You can view the project layout through the link below:
 
 - [Link Layout](https://www.figma.com/proto/4YcN9TNkYF4rH7aha1aNOY/Simulare?node-id=463%3A143&scaling=min-zoom&page-id=443%3A6&starting-point-node-id=463%3A143)
 
-Remembering that you need to have an account at [Figma](http://figma.com/).
+Remember that you need to have an account at [Figma](http://figma.com/).
 
 <br/>
 
