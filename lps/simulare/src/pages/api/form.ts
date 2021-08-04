@@ -47,7 +47,6 @@ const getMutation = ({ name, email, phone }: FormData) => {
    * https://api.developer.monday.com/docs/guide-to-changing-column-data
    */
   const columnValues = {
-    name,
     phone: {
       phone: `+55${phoneCleaned}`,
       countryShortName: 'BR',
@@ -58,9 +57,11 @@ const getMutation = ({ name, email, phone }: FormData) => {
     },
   };
 
+  const itemName = `Protótipo - ${name}`;
+
   return `mutation {
     create_item(
-      item_name: "Protótipo",
+      item_name: "${itemName}",
       board_id: ${BOARD_ID},
       column_values: ${JSON.stringify(JSON.stringify(columnValues))},
       group_id: "topics"
