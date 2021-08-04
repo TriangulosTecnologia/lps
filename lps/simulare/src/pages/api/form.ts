@@ -2,7 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import graphql from '../../services/graphql';
 
-const BOARD_ID = 1504278890;
+/**
+ * We retrieve this ID accessing the board on browser. URL has the
+ * `/boards/$BOARD_ID format.
+ */
+const BOARD_ID = process.env.MONDAY_BOARD_ID;
 
 type FormData = {
   name: string;
@@ -17,7 +21,33 @@ const getMutation = ({ name, email, phone }: FormData) => {
     .replace(')', '')
     .replace('-', '');
 
+  /**
+   * You can define the columns values performing the GraphQL query:
+   *
+   * ```graphql
+   * query {
+   *   boards(ids:[$BOARD_ID]) {
+   *    name
+   *    id
+   *     groups {
+   *       id
+   *       title
+   *     }
+   *     columns {
+   *       id
+   *       title
+   *       type
+   *     }
+   *   }
+   * }
+   * ```
+   *
+   * The `columnValues` keys are the columns ids of the response. Each column
+   * has its special interface that you we can access here:
+   * https://api.developer.monday.com/docs/guide-to-changing-column-data
+   */
   const columnValues = {
+    name,
     phone: {
       phone: `+55${phoneCleaned}`,
       countryShortName: 'BR',
@@ -30,7 +60,7 @@ const getMutation = ({ name, email, phone }: FormData) => {
 
   return `mutation {
     create_item(
-      item_name: "${name}",
+      item_name: "Protótipo",
       board_id: ${BOARD_ID},
       column_values: ${JSON.stringify(JSON.stringify(columnValues))},
       group_id: "topics"
@@ -53,10 +83,12 @@ export default async function handler(
 
     const { data } = await graphql.post('/', { query });
 
-    if (data.errors) {
+    const error = data.errors || data.error_code;
+
+    if (error) {
       return res
         .status(400)
-        .json({ message: 'Error on Monday api request', error: data.errors });
+        .json({ message: 'Error on Monday api request', error });
     }
 
     return res.status(201).json({ message: 'Created with success!' });
