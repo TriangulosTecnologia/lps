@@ -37,7 +37,13 @@ const SmallLine = () => {
   );
 };
 
-const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
+const FeatureCard = ({
+  heading1,
+  heading2,
+  image,
+  text1,
+  text2,
+}: FeatureCardProps) => {
   const displaySecondBlock = useResponsiveValue([false, null, null, true]);
 
   return (
@@ -104,9 +110,9 @@ const FeatureCard = ({ heading1, heading2, image }: FeatureCardProps) => {
                 lineHeight: 'sm',
               }}
             >
-              {heading1}
+              {text1}
               <br />
-              {heading2}
+              {text2}
             </Text>
           </>
         )}
