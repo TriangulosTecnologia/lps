@@ -6,30 +6,26 @@ export const theme = {
   breakpoints: ['40rem', '48rem', '64rem', '80rem', '96rem', '120rem'],
 
   /**
-   * Fibonacci series.
+   * Fibonacci Series.
    */
   space: [
     0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597,
   ],
 
   /**
-   * Tailwind theme for font size and line height.
-   * https://tailwindcss.com/docs/font-size
+   * Perrin Series.
    */
   fontSizes: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    base: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '3.75rem',
-    '7xl': '4.5rem',
-    '8xl': '6rem',
-    '9xl': '8rem',
+    xxs: 7,
+    xs: 10,
+    sm: 12,
+    base: 17,
+    lg: 22,
+    xl: 29,
+    '2xl': 39,
+    '3xl': 51,
+    '4xl': 68,
+    '5xl': 90,
   },
   lineHeights: {
     xs: '1rem',
@@ -53,18 +49,31 @@ export const theme = {
   },
 
   colors: {
-    text: 'white',
-    background: '#2E2A3A',
-    primary: '#24BB78',
-    secondary: '#FF6600',
-    gray80: '#808080',
-    muted: '#808080',
-    textSecondary: '#D9D9D9',
+    primary: '#FEAC00',
+    secondary: '#283446',
+    text: '#343F55',
+    heading: '#231F20',
+    background: '#FDB92E',
+    accent: '#00A9B2',
+    highlight: '#FFFFFF',
+    muted: '#E0E0E0',
+    alert: '#C25450',
+    water: '#DDF2FF',
+    hop: '#8DDB81',
+    accentVariant: '#069959',
+    yellow1: '#F2BE37',
+    yellow2: '#EEA32B',
+    yellow3: '#F99F1B',
   },
 
   fonts: {
-    body: 'Montserrat',
-    heading: '"Source Sans Pro", sans-serif',
+    body: 'Lato, sans-serif',
+    heading: 'Anton, sans-serif',
+    accent: '"Permanent Marker", cursive',
+  },
+
+  sizes: {
+    container: '800px',
   },
 
   styles: {
@@ -74,9 +83,20 @@ export const theme = {
       lineHeight: 'base',
       fontSize: 'base',
     },
-    a: {
-      color: 'muted',
-      textDecoration: 'none',
+  },
+
+  buttons: {
+    accent: {
+      backgroundColor: 'accent',
+      paddingX: 8,
+      paddingY: 6,
+    },
+  },
+
+  text: {
+    heading: {
+      fontFamily: 'heading',
+      color: 'heading',
     },
   },
 };
