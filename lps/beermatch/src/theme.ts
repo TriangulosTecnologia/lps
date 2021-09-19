@@ -97,10 +97,14 @@ export const theme: Theme = {
       fontWeight: 700,
       paddingX: 8,
       paddingY: 6,
+      borderRadius: 0,
       '&:hover': {
         cursor: 'pointer',
       },
-      borderRadius: 0,
+      '&:disabled': {
+        cursor: 'auto',
+        backgroundColor: 'muted',
+      },
     };
 
     return {

@@ -2,6 +2,8 @@ import { InferGetStaticPropsType } from 'next';
 
 import { Queixapa } from '../../recipes';
 
+import Buy from '../components/Buy';
+
 export const getStaticProps = async () => {
   return {
     props: {
@@ -13,7 +15,12 @@ export const getStaticProps = async () => {
 const Comprar = ({
   recipe,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return <div>{recipe.name}</div>;
+  return (
+    <div>
+      {recipe.name}
+      <Buy />
+    </div>
+  );
 };
 
 export default Comprar;
