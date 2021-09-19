@@ -1,4 +1,6 @@
-export const theme = {
+import type { Theme } from 'theme-ui';
+
+export const theme: Theme = {
   /**
    * For a font size equals 16px, the breakpoints will be:
    * [640, 768, 1024, 1280, 1536, 1920] in pixels.
@@ -85,19 +87,37 @@ export const theme = {
       overflowX: 'hidden',
       h2: { fontSize: 'xl' },
     },
+    a: {
+      cursor: 'pointer',
+    },
   },
 
-  buttons: {
-    primary: {
-      fontWeight: '700',
-      backgroundColor: 'accent',
+  buttons: (() => {
+    const base = {
+      fontWeight: 700,
       paddingX: 8,
       paddingY: 6,
       '&:hover': {
         cursor: 'pointer',
       },
-    },
-  },
+      borderRadius: 0,
+    };
+
+    return {
+      primary: {
+        ...base,
+        backgroundColor: 'accent',
+      },
+      transparent: {
+        ...base,
+        color: 'secondary',
+        backgroundColor: 'transparent',
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: 'secondary',
+      },
+    };
+  })(),
 
   text: {
     heading: {

@@ -3,11 +3,15 @@ import type { AppProps } from 'next/app';
 
 import { theme } from '../theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import Layout from '../components/Layout';
+
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   );
-}
-export default MyApp;
+};
+export default App;
