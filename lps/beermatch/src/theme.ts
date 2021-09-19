@@ -45,7 +45,7 @@ export const theme = {
 
   fontWeights: {
     body: 400,
-    heading: 900,
+    heading: 400,
   },
 
   colors: {
@@ -82,14 +82,20 @@ export const theme = {
       fontWeight: 'body',
       lineHeight: 'base',
       fontSize: 'base',
+      overflowX: 'hidden',
+      h2: { fontSize: 'xl' },
     },
   },
 
   buttons: {
-    accent: {
+    primary: {
+      fontWeight: '700',
       backgroundColor: 'accent',
       paddingX: 8,
       paddingY: 6,
+      '&:hover': {
+        cursor: 'pointer',
+      },
     },
   },
 
@@ -97,6 +103,15 @@ export const theme = {
     heading: {
       fontFamily: 'heading',
       color: 'heading',
+      textTransform: 'uppercase',
+    },
+  },
+
+  layout: {
+    fullWidth: {
+      maxWidth: '100vw',
+      width: '100vw',
+      marginX: '-50vw',
     },
   },
 };
