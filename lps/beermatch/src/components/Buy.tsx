@@ -1,10 +1,10 @@
-import BuyQuantityButton from './BuyQuantityButtom';
+import BuyForm from './BuyForm';
 
 const Buy = () => {
   return (
     <>
       <span>oi</span>
-      <BuyQuantityButton />
+      <BuyForm />
     </>
   );
 };

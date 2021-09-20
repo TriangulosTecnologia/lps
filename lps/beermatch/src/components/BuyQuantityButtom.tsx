@@ -21,10 +21,16 @@ const RoundButton = (props: ButtonProps) => {
 
 const BuyQuantityButton = ({
   initialQuantity = 0,
+  onChange,
 }: {
   initialQuantity?: number;
+  onChange: (quantity: number) => void;
 }) => {
   const [quantity, setQuantity] = React.useState(initialQuantity);
+
+  React.useEffect(() => {
+    onChange(quantity);
+  }, [quantity, onChange]);
 
   const decrease = React.useCallback(() => {
     setQuantity((q) => (q > 0 ? q - 1 : q));
