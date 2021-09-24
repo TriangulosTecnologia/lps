@@ -1,0 +1,1 @@
+export { Queixapa } from './Queixapa';

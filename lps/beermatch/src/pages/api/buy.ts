@@ -1,21 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { NextApiRequest, NextApiResponse } from 'next';
+import pagarme from 'pagarme';
 
 import type { BuyData } from '../../components/BuyForm';
 
 const calculateShipping = async ({ cep }: { cep: string }) => {
-  return cep;
+  return 1000;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<BuyData>
+  res: NextApiResponse
 ) {
   if (req.method !== 'POST') {
     res.status(403).json({ message: 'Forbidden' });
     return;
   }
 
-  const { cep } = JSON.parse(req.body);
+  const client = await pagarme.client.connect({
+    api_key: 'ak_test_sucQGnA8DzvQABMmIMw4aS2py31qVd',
+  });
+
+  const { cep }: BuyData = JSON.parse(req.body);
 
   const price = calculateShipping({ cep });
 

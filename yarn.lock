@@ -8197,6 +8197,11 @@ pacote@^11.3.3:
     ssri "^8.0.1"
     tar "^6.1.0"
 
+pagarme@^4.19.6:
+  version "4.19.6"
+  resolved "https://registry.yarnpkg.com/pagarme/-/pagarme-4.19.6.tgz#9695e2fa093ba2d5990e90b629122e4d84f13d97"
+  integrity sha512-3nlMA92zoXo4dvPQlT3ceAKrvkJh+W1SiXIHjLJI5CZaqCz2XXi1+Wl8GSvFEQ0UfGKqCOe0EeTT0cbqT1SE3w==
+
 pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"

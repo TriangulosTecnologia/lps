@@ -6,6 +6,7 @@ const BUTTON_SIZE = 46;
 const RoundButton = (props: ButtonProps) => {
   return (
     <Button
+      type="button"
       sx={{
         backgroundColor: 'secondary',
         borderRadius: '100%',
@@ -20,29 +21,24 @@ const RoundButton = (props: ButtonProps) => {
 };
 
 const BuyQuantityButton = ({
-  initialQuantity = 0,
+  quantity = 0,
   onChange,
 }: {
-  initialQuantity?: number;
-  onChange: (quantity: number) => void;
+  quantity?: number;
+  onChange: (q: number) => void;
 }) => {
-  const [quantity, setQuantity] = React.useState(initialQuantity);
-
-  React.useEffect(() => {
-    onChange(quantity);
-  }, [quantity, onChange]);
-
   const decrease = React.useCallback(() => {
-    setQuantity((q) => (q > 0 ? q - 1 : q));
-  }, []);
+    onChange(quantity > 0 ? quantity - 1 : quantity);
+  }, [onChange, quantity]);
 
   const increase = React.useCallback(() => {
-    setQuantity((q) => q + 1);
-  }, []);
+    onChange(quantity + 1);
+  }, [onChange, quantity]);
 
   return (
     <Flex
       sx={{
+        width: 'fit-content',
         borderWidth: '2px',
         borderStyle: 'solid',
         borderColor: 'muted',

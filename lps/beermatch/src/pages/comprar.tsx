@@ -1,26 +1,25 @@
-import { InferGetStaticPropsType } from 'next';
-
-import { Queixapa } from '../../recipes';
-
-import Buy from '../components/Buy';
+import { getOnSaleRecipe } from '../../recipes';
 
 export const getStaticProps = async () => {
+  const recipe = getOnSaleRecipe();
+
+  if (recipe) {
+    return {
+      redirect: {
+        destination: `/${recipe.path}`,
+      },
+    };
+  }
+
   return {
-    props: {
-      recipe: Queixapa,
+    redirect: {
+      destination: '/',
     },
   };
 };
 
-const Comprar = ({
-  recipe,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return (
-    <div>
-      {recipe.name}
-      <Buy />
-    </div>
-  );
+const Comprar = () => {
+  return null;
 };
 
 export default Comprar;
