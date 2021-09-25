@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonProps, Flex, Text } from 'theme-ui';
 
-const BUTTON_SIZE = 46;
+const BUTTON_SIZE = 30;
 
 const RoundButton = (props: ButtonProps) => {
   return (
@@ -50,7 +50,7 @@ const BuyQuantityButton = ({
       <RoundButton disabled={quantity === 0} onClick={decrease}>
         &minus;
       </RoundButton>
-      <Text sx={{ fontSize: 'xl', color: 'text', marginX: 8 }}>{quantity}</Text>
+      <Text sx={{ fontSize: 4, color: 'text', marginX: 7 }}>{quantity}</Text>
       <RoundButton onClick={increase}>&#43;</RoundButton>
     </Flex>
   );

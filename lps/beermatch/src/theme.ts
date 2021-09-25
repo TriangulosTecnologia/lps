@@ -17,33 +17,7 @@ export const theme: Theme = {
   /**
    * Perrin Series.
    */
-  fontSizes: {
-    xxs: 7,
-    xs: 10,
-    sm: 12,
-    base: 17,
-    lg: 22,
-    xl: 29,
-    '2xl': 39,
-    '3xl': 51,
-    '4xl': 68,
-    '5xl': 90,
-  },
-  lineHeights: {
-    xs: '1rem',
-    sm: '1.25rem',
-    base: '1.5rem',
-    lg: '1.75rem',
-    xl: '1.75rem',
-    '2xl': '2rem',
-    '3xl': '2.25rem',
-    '4xl': '2.5rem',
-    '5xl': '1',
-    '6xl': '1',
-    '7xl': '1',
-    '8xl': '1',
-    '9xl': '1',
-  },
+  fontSizes: [7, 10, 12, 17, 22, 29, 39, 51, 68, 90],
 
   fontWeights: {
     body: 400,
@@ -74,6 +48,8 @@ export const theme: Theme = {
     accent: '"Permanent Marker", cursive',
   },
 
+  radii: [0, 6],
+
   sizes: {
     container: '800px',
   },
@@ -82,10 +58,14 @@ export const theme: Theme = {
     root: {
       fontFamily: 'body',
       fontWeight: 'body',
-      lineHeight: 'base',
-      fontSize: 'base',
+      fontSize: 3,
       overflowX: 'hidden',
-      h2: { fontSize: 'xl' },
+      h1: { fontSize: 9 },
+      h2: { fontSize: 8 },
+      h3: { fontSize: 7 },
+      h4: { fontSize: 6 },
+      h5: { fontSize: 5 },
+      h6: { fontSize: 4 },
     },
     a: {
       cursor: 'pointer',
@@ -96,7 +76,7 @@ export const theme: Theme = {
     const base = {
       fontWeight: 700,
       paddingX: 8,
-      paddingY: 6,
+      paddingY: 7,
       borderRadius: 0,
       '&:hover': {
         cursor: 'pointer',
@@ -123,19 +103,42 @@ export const theme: Theme = {
     };
   })(),
 
+  cards: {
+    highlight: {
+      backgroundColor: 'highlight',
+      padding: [7, 8],
+      borderRadius: 1,
+    },
+  },
+
+  forms: {
+    label: { fontSize: 2, fontWeight: 700, marginY: 5 },
+    input: {
+      borderColor: 'muted',
+      borderRadius: 0,
+      padding: 6,
+      '::placeholder': {
+        color: 'muted',
+      },
+    },
+  },
+
+  layout: {
+    container: {
+      paddingX: 7,
+    },
+    fullWidth: {
+      maxWidth: '100vw',
+      width: '100vw',
+      marginX: '-50vw',
+    },
+  },
+
   text: {
     heading: {
       fontFamily: 'heading',
       color: 'heading',
       textTransform: 'uppercase',
-    },
-  },
-
-  layout: {
-    fullWidth: {
-      maxWidth: '100vw',
-      width: '100vw',
-      marginX: '-50vw',
     },
   },
 };

@@ -8,7 +8,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container>
       <Flex
-        as="main"
         sx={{
           position: 'relative',
           flexDirection: 'column',

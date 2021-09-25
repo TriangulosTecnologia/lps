@@ -18,7 +18,7 @@ export default async function handler(
   }
 
   const client = await pagarme.client.connect({
-    api_key: 'ak_test_sucQGnA8DzvQABMmIMw4aS2py31qVd',
+    api_key: '',
   });
 
   const { cep }: BuyData = JSON.parse(req.body);

@@ -1,7 +1,6 @@
 export type Offer = {
   name: string;
-  description1: string;
-  description2: string;
+  description: string;
   pack: number;
   price: number;
   length: number; // cm
