@@ -60,6 +60,7 @@ export const theme: Theme = {
       fontWeight: 'body',
       fontSize: 3,
       overflowX: 'hidden',
+      textAlign: 'center',
       h1: { fontSize: 9 },
       h2: { fontSize: 8 },
       h3: { fontSize: 7 },
@@ -76,10 +77,12 @@ export const theme: Theme = {
 
   buttons: (() => {
     const base = {
+      fontSize: [3],
       fontWeight: 700,
       paddingX: 8,
       paddingY: 7,
       borderRadius: 0,
+      fontFamily: 'body',
       '&:hover': {
         cursor: 'pointer',
       },
@@ -141,6 +144,7 @@ export const theme: Theme = {
       fontFamily: 'heading',
       color: 'heading',
       textTransform: 'uppercase',
+      textAlign: 'center',
     },
   },
 };

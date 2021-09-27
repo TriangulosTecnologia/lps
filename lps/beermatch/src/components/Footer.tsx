@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { Box, Button, Divider, Flex, Link, Text } from 'theme-ui';
 
 import background from '../../public/background.png';
@@ -22,6 +23,8 @@ const contacts = [
 ];
 
 const Footer = () => {
+  const { push } = useRouter();
+
   const year = new Date().getFullYear();
 
   return (
@@ -47,15 +50,28 @@ const Footer = () => {
         ))}
       </Box>
 
-      <Box sx={{ zIndex: 1, marginBottom: 9 }}>
+      <Box sx={{ zIndex: 1, marginBottom: 9, maxWidth: '90%' }}>
         <Image src={bmYellowBg} alt="Beer Match logo" />
       </Box>
 
-      <Flex sx={{ flexDirection: 'column', marginBottom: 11 }}>
-        <Button variant="transparent" sx={{ marginBottom: 8 }}>
+      <Flex
+        sx={{
+          flexDirection: 'column',
+          marginBottom: 11,
+        }}
+      >
+        <Button
+          onClick={() => push('https://forms.office.com/r/uQv4ewNrNp')}
+          variant="transparent"
+          sx={{ marginBottom: 8, color: 'text' }}
+        >
           Quero participar do grupo de ideias &gt;
         </Button>
-        <Button variant="transparent">
+        <Button
+          onClick={() => push('https://forms.office.com/r/LJ1eC5QQrp')}
+          variant="transparent"
+          sx={{ color: 'text' }}
+        >
           Sou uma cervejaria, quero produzir &gt;
         </Button>
       </Flex>

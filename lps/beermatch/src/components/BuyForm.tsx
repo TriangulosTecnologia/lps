@@ -71,6 +71,11 @@ const useShippingPrice = ({
             quantities: JSON.parse(quantitiesJson),
           }),
         });
+
+        if (response.status !== 200) {
+          throw new Error('Error');
+        }
+
         const data = await response.json();
         setShippingPrice(data.price);
       } catch {
@@ -136,6 +141,8 @@ const BuyForm = (recipe: Recipe) => {
 
   const quantities = watch('quantities');
 
+  const items = quantities.reduce((acc, cur) => acc + cur, 0);
+
   const total = quantities.reduce((acc, cur, index) => {
     return acc + cur * offers[index].price;
   }, 0);
@@ -188,7 +195,7 @@ const BuyForm = (recipe: Recipe) => {
           </Card>
 
           <BuyOrderSummaryCard
-            items={3}
+            items={items}
             productsPrice={total}
             shippingPrice={shippingPrice}
             disabled={disableButton}

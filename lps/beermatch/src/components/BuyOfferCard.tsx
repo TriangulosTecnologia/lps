@@ -36,12 +36,23 @@ const BuyOfferCard = ({
 
   return (
     <Card variant="highlight">
-      <Grid columns="120px auto 120px" sx={{ gap: 6, alignItems: 'center' }}>
+      <Grid
+        columns={['120px auto 120px', '150px auto 120px']}
+        sx={{ gap: 6, alignItems: 'center' }}
+      >
         <Box sx={{ gridArea: '1 / 1 / span 1 / span 1' }}>
           <Image src={getImage(pack)} alt={`Pack com ${pack} garrafas`} />
         </Box>
-        <Box sx={{ gridArea: '1 / 2 / span 1 / span 2' }}>
-          <Heading as="h6">{name}</Heading>
+        <Box
+          sx={{
+            gridArea: '1 / 2 / span 1 / span 2',
+            textAlign: 'left',
+            paddingLeft: 8,
+          }}
+        >
+          <Heading as="h5" sx={{ textAlign: 'left', fontSize: [4, 5] }}>
+            {name}
+          </Heading>
           <Text sx={{ whiteSpace: 'pre-line', fontSize: 2 }}>
             {description}
           </Text>
@@ -50,7 +61,7 @@ const BuyOfferCard = ({
           <Heading as="h5">{currency.format(price)}</Heading>
         </Box>
         <Box sx={{ gridArea: '2 / 2 / span 1 / span 1', textAlign: 'center' }}>
-          <Text sx={{ fontWeight: 700, fontSize: [1, 2] }}>
+          <Text sx={{ fontWeight: 700, fontSize: [3] }}>
             valor por unidade
             <br />
             {currency.format(unitPrice)}

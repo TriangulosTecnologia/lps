@@ -5,8 +5,8 @@ import { getAllRecipes, Recipe } from '../../../recipes';
 const calculateShipping = async ({
   cep,
   recipe,
-}: // quantities,
-{
+  quantities,
+}: {
   cep: string;
   recipe: Recipe;
   quantities: number[];
@@ -17,15 +17,19 @@ const calculateShipping = async ({
     throw new Error('Recipe not found');
   }
 
-  // const weightCubed = (length * width * height) / 5000;
+  const peso = quantities.reduce((acc, curr, index) => {
+    const { weight, length, width, height } = foundRecipe.offers[index];
+    const weightCubed = (length * width * height) / 5000;
+    return acc + curr * Math.max(weight, weightCubed);
+  }, 0);
 
   const body = JSON.stringify({
     frete: [
       {
         cepori: '14801140',
-        cepdes: cep,
+        cepdes: cep.replace(/\D/g, ''),
         frap: null,
-        peso: 8.3,
+        peso,
         cnpj: '30488828000100',
         tpentrega: 'D',
         tpseguro: 'N',

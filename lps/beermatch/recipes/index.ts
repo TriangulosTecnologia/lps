@@ -1,8 +1,10 @@
 import * as recipes from './recipes';
 
+import type { Recipe } from './types';
+
 export * from './types';
 
-export const getAllRecipes = () => Object.values(recipes);
+export const getAllRecipes = () => Object.values(recipes) as Recipe[];
 
 export const getOnSaleRecipe = () => {
   const recipe = Object.values(recipes).find(

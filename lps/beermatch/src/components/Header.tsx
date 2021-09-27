@@ -39,10 +39,7 @@ const Header = () => {
             height="55px"
           />
         </Box>
-        <Button
-          onClick={() => push('/comprar')}
-          sx={{ fontSize: ['sm', 'base'] }}
-        >
+        <Button onClick={() => push('/comprar')} sx={{ fontSize: [2, 3] }}>
           Quero participar &gt;
         </Button>
       </Flex>

@@ -33,7 +33,7 @@ const BuyOrderSummaryCard = ({
   shippingPrice: number | string;
   disabled?: boolean;
 }) => {
-  const products = `Produtos (${items} item${items > 1 && 's'})`;
+  const products = `Produtos (${items} item${items > 1 ? 's' : ''})`;
 
   const total =
     typeof shippingPrice === 'number'

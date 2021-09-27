@@ -45,7 +45,7 @@ const WhyParticipate = () => {
             <Flex
               key={label}
               sx={{
-                width: 160,
+                width: [120, 160],
                 flexDirection: 'column',
                 alignItems: 'center',
                 marginX: [6, 8],
@@ -54,7 +54,12 @@ const WhyParticipate = () => {
             >
               <Image src={image} layout="fixed" alt={label} />
               <Text
-                sx={{ textAlign: 'center', fontWeight: 'bold', marginTop: 7 }}
+                sx={{
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  marginTop: 7,
+                  width: [90, 'auto'],
+                }}
               >
                 {label}
               </Text>
