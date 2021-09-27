@@ -1,10 +1,13 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Box, Button, Flex } from 'theme-ui';
 
 import background from '../../public/background.png';
 import bmYellowBg from '../../public/bm-yellow-bg.png';
 
 const Header = () => {
+  const { push } = useRouter();
+
   return (
     <>
       <Box
@@ -28,14 +31,19 @@ const Header = () => {
           zIndex: 1,
         }}
       >
-        <Image
-          src={bmYellowBg}
-          alt="BeerMatch logo"
-          width="112px"
-          height="55px"
-        />
-        <Button sx={{ fontSize: ['sm', 'base'] }}>
-          Quero participar do 1º Lote &gt;
+        <Box sx={{ cursor: 'pointer' }} onClick={() => push('/')}>
+          <Image
+            src={bmYellowBg}
+            alt="BeerMatch logo"
+            width="112px"
+            height="55px"
+          />
+        </Box>
+        <Button
+          onClick={() => push('/comprar')}
+          sx={{ fontSize: ['sm', 'base'] }}
+        >
+          Quero participar &gt;
         </Button>
       </Flex>
     </>

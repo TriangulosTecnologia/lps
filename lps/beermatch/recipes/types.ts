@@ -12,6 +12,7 @@ export type Offer = {
 export type Status = 'onSale';
 
 export type Recipe = {
+  id: string;
   name: string;
   path: string;
   status: Status;

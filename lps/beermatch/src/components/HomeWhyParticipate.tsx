@@ -25,9 +25,11 @@ const WhyParticipate = () => {
           flexDirection: 'column',
           alignItems: 'center',
           color: 'highlight',
+          paddingY: 8,
+          paddingX: 8,
         }}
       >
-        <Heading as="h2" sx={{ color: 'highlight' }}>
+        <Heading as="h5" sx={{ color: 'highlight', marginY: 8 }}>
           Porque Participar
         </Heading>
         <Text as="p" sx={{ textAlign: 'center' }}>
@@ -38,7 +40,7 @@ const WhyParticipate = () => {
           As possibilidades são infinitas, instigamos pessoas a terem ideias e
           de forma colaborativa fazer essas ideias acontecerem.
         </Text>
-        <Flex sx={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Flex sx={{ flexWrap: 'wrap', justifyContent: 'center', marginTop: 9 }}>
           {whyParticipateItems.map(({ image, label }) => (
             <Flex
               key={label}
@@ -47,11 +49,13 @@ const WhyParticipate = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 marginX: [6, 8],
-                marginY: 9,
+                marginY: 8,
               }}
             >
               <Image src={image} layout="fixed" alt={label} />
-              <Text sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+              <Text
+                sx={{ textAlign: 'center', fontWeight: 'bold', marginTop: 7 }}
+              >
                 {label}
               </Text>
             </Flex>

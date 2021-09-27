@@ -1,12 +1,17 @@
+import { useRouter } from 'next/router';
 import { Button, Heading } from 'theme-ui';
 
 const HomeParticipate = () => {
+  const { push } = useRouter();
+
   return (
     <>
-      <Heading as="h2">
+      <Heading as="h5" sx={{ marginY: 9 }}>
         DESAFIE, COLABORE E EXPERIMENTE. VIVA ESTE ESTILO
       </Heading>
-      <Button as="h2">Quero participar do 1&#186; lote &gt;</Button>
+      <Button sx={{ marginBottom: 9 }} onClick={() => push('/comprar')}>
+        Quero participar &gt;
+      </Button>
     </>
   );
 };

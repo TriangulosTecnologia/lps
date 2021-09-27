@@ -69,6 +69,8 @@ export const theme: Theme = {
     },
     a: {
       cursor: 'pointer',
+      textDecoration: 'none',
+      color: 'text',
     },
   },
 

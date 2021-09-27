@@ -1,6 +1,7 @@
 import type { Recipe } from './types';
 
 export const Queixapa: Recipe = {
+  id: 'Queixapa',
   name: 'Queixapa',
   path: 'Queixapa',
   status: 'onSale',

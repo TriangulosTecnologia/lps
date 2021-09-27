@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Button, Flex, Heading, Text } from 'theme-ui';
+import { useRouter } from 'next/router';
+import { Box, Button, Flex, Heading, Text } from 'theme-ui';
 
 import hiwIdealize from '../../public/hiw-idealize.png';
 import hiwOrganization from '../../public/hiw-organization.png';
@@ -53,21 +54,32 @@ const HowItWorksCard = ({ image, title, description }: HowItWorksProps) => {
         flexDirection: 'column',
         alignItems: 'center',
         maxWidth: '400px',
+        marginY: 9,
       }}
     >
       <Image src={image} layout="fixed" alt={description} />
-      <Heading as="h3" sx={{ textAlign: 'center' }}>
+      <Heading as="h6" sx={{ textAlign: 'center' }}>
         {title}
       </Heading>
+      <Box
+        sx={{
+          width: 60,
+          height: '10px',
+          backgroundColor: 'yellow3',
+          marginY: 7,
+        }}
+      />
       <Text sx={{ textAlign: 'center' }}>{description}</Text>
     </Flex>
   );
 };
 
 const HowItWorks = () => {
+  const { push } = useRouter();
+
   return (
     <>
-      <Heading as="h2" sx={{ marginY: 9 }}>
+      <Heading as="h5" sx={{ marginY: 9 }}>
         Como Funciona
       </Heading>
 
@@ -83,7 +95,9 @@ const HowItWorks = () => {
         ))}
       </Flex>
 
-      <Button sx={{ marginY: 9 }}>Quero participar &gt;</Button>
+      <Button sx={{ marginY: 9 }} onClick={() => push('/comprar')}>
+        Quero participar &gt;
+      </Button>
     </>
   );
 };

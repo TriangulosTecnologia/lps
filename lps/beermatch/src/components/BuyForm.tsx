@@ -16,13 +16,21 @@ const schema = yup
       .string()
       .required()
       .matches(/^(\d{5}-\d{3}|\d{8})$/),
-    quantity: yup.array().of(yup.number().required()).required(),
+    quantities: yup.array().of(yup.number().required()).required(),
   })
   .required();
 
 export type BuyData = yup.InferType<typeof schema>;
 
-const useShippingPrice = ({ cep }: { cep: string }): string | number => {
+const useShippingPrice = ({
+  cep,
+  recipe,
+  quantities,
+}: {
+  cep: string;
+  recipe: Recipe;
+  quantities: number[];
+}): string | number => {
   const [error, setError] = React.useState('');
 
   const [validatedCep, setValidatedCep] = React.useState('');
@@ -42,6 +50,10 @@ const useShippingPrice = ({ cep }: { cep: string }): string | number => {
     })();
   }, [cep]);
 
+  const quantitiesJson = JSON.stringify(quantities);
+
+  const recipeJson = JSON.stringify(recipe);
+
   React.useEffect(() => {
     if (!validatedCep) {
       return;
@@ -53,7 +65,11 @@ const useShippingPrice = ({ cep }: { cep: string }): string | number => {
         setCalculating(true);
         const response = await fetch(`/api/shipping`, {
           method: 'POST',
-          body: JSON.stringify({ cep: validatedCep }),
+          body: JSON.stringify({
+            cep: validatedCep,
+            recipe: JSON.parse(recipeJson),
+            quantities: JSON.parse(quantitiesJson),
+          }),
         });
         const data = await response.json();
         setShippingPrice(data.price);
@@ -63,7 +79,7 @@ const useShippingPrice = ({ cep }: { cep: string }): string | number => {
         setCalculating(false);
       }
     })();
-  }, [validatedCep]);
+  }, [quantitiesJson, recipeJson, validatedCep]);
 
   if (error) {
     return error;
@@ -80,13 +96,23 @@ const useShippingPrice = ({ cep }: { cep: string }): string | number => {
   return shippingPrice;
 };
 
-const BuyForm = ({ name: recipeName, offers }: Recipe) => {
-  const { control, register, handleSubmit, watch } = useForm<BuyData>({
+const BuyForm = (recipe: Recipe) => {
+  const { name: recipeName, offers } = recipe;
+
+  const {
+    control,
+    register,
+    formState: { isValid },
+    handleSubmit,
+    watch,
+  } = useForm<BuyData>({
     resolver: yupResolver(schema),
     defaultValues: {
+      cep: '',
       recipeName,
-      quantity: offers.map((_, index) => (index === 0 ? 1 : 0)),
+      quantities: offers.map((_, index) => (index === 0 ? 1 : 0)),
     },
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: FormData) => {
@@ -108,11 +134,19 @@ const BuyForm = ({ name: recipeName, offers }: Recipe) => {
     }
   };
 
-  const total = watch('quantity').reduce((acc, cur, index) => {
+  const quantities = watch('quantities');
+
+  const total = quantities.reduce((acc, cur, index) => {
     return acc + cur * offers[index].price;
   }, 0);
 
-  const shippingPrice = useShippingPrice({ cep: watch('cep') });
+  const shippingPrice = useShippingPrice({
+    cep: watch('cep'),
+    recipe,
+    quantities,
+  });
+
+  const disableButton = !isValid || typeof shippingPrice === 'string';
 
   return (
     <Container variant="fullWidth" sx={{ backgroundColor: 'secondary' }}>
@@ -131,7 +165,7 @@ const BuyForm = ({ name: recipeName, offers }: Recipe) => {
               <Controller
                 key={offer.name}
                 control={control}
-                name={`quantity.${index}`}
+                name={`quantities.${index}`}
                 render={({ field: { onChange, value } }) => {
                   return (
                     <BuyOfferCard
@@ -157,6 +191,7 @@ const BuyForm = ({ name: recipeName, offers }: Recipe) => {
             items={3}
             productsPrice={total}
             shippingPrice={shippingPrice}
+            disabled={disableButton}
           />
         </Flex>
       </Container>

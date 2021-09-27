@@ -9,23 +9,24 @@ import bmYellowBg from '../../public/bm-yellow-bg.png';
 const contacts = [
   {
     icon: 'ri:whatsapp-fill',
-    label: 'WhatsApp',
+    label: '(16) 98765.4321',
   },
   {
     icon: 'ri:instagram-fill',
-    label: 'Instagram',
+    label: '@beermatch',
   },
   {
     icon: 'ri:facebook-circle-fill',
-    label: 'Facebook',
+    label: '/beermatch',
   },
 ];
 
 const Footer = () => {
   const year = new Date().getFullYear();
+
   return (
     <>
-      <Text sx={{ textAlign: 'center' }}>
+      <Text sx={{ textAlign: 'center', marginTop: 11, marginBottom: 8 }}>
         Dúvidas ou mais informações?
         <br />
         Entre em contato conosco:
@@ -34,11 +35,11 @@ const Footer = () => {
       <Box sx={{ marginBottom: 11 }}>
         {contacts.map(({ icon, label }) => (
           <Text
-            as="p"
+            as="a"
             key={label}
-            sx={{ display: 'flex', alignItems: 'center' }}
+            sx={{ display: 'flex', alignItems: 'center', marginY: 6 }}
           >
-            <Text sx={{ fontSize: 'lg' }}>
+            <Text sx={{ fontSize: 6, marginRight: 7 }}>
               <Icon icon={icon} />
             </Text>
             {label}
@@ -46,7 +47,7 @@ const Footer = () => {
         ))}
       </Box>
 
-      <Box sx={{ zIndex: 1 }}>
+      <Box sx={{ zIndex: 1, marginBottom: 9 }}>
         <Image src={bmYellowBg} alt="Beer Match logo" />
       </Box>
 
@@ -59,13 +60,13 @@ const Footer = () => {
         </Button>
       </Flex>
 
-      <NextLink href="mailto:">
-        <Link>contato@beermatch.com.br</Link>
+      <NextLink href="mailto:" passHref>
+        <Link sx={{ marginY: 7 }}>contato@beermatch.com.br</Link>
       </NextLink>
 
       <Divider sx={{ color: 'text', width: 300 }} />
 
-      <Text sx={{ fontSize: 'sm' }}>
+      <Text sx={{ fontSize: 2, marginY: 7 }}>
         @{year} Beermatch. Todos os direitos reservados.
       </Text>
 
