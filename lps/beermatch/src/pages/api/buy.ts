@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { NextApiRequest, NextApiResponse } from 'next';
-import pagarme from 'pagarme';
 
 import type { BuyData } from '../../components/BuyForm';
 
-const calculateShipping = async ({ cep }: { cep: string }) => {
+// eslint-disable-next-line no-empty-pattern
+const calculateShipping = async ({}: { cep: string }) => {
   return 1000;
 };
 
@@ -17,13 +16,9 @@ export default async function handler(
     return;
   }
 
-  const client = await pagarme.client.connect({
-    api_key: '',
-  });
-
   const { cep }: BuyData = JSON.parse(req.body);
 
   const price = calculateShipping({ cep });
 
-  res.status(200).json({ price });
+  res.status(200).json({ price, cep });
 }
