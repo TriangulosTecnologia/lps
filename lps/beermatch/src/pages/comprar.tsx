@@ -1,24 +1,23 @@
+import { useRouter } from 'next/router';
+import * as React from 'react';
+
 import { getOnSaleRecipe } from '../../recipes';
 
 export const getStaticProps = async () => {
   const recipe = getOnSaleRecipe();
 
-  if (recipe) {
-    return {
-      redirect: {
-        destination: `/${recipe.path}`,
-      },
-    };
-  }
+  const href = recipe ? `/${recipe.path}` : '/';
 
-  return {
-    redirect: {
-      destination: '/',
-    },
-  };
+  return { props: { href } };
 };
 
-const Comprar = () => {
+const Comprar = ({ href }: { href: string }) => {
+  const { push } = useRouter();
+
+  React.useEffect(() => {
+    push(href);
+  }, [href, push]);
+
   return null;
 };
 
