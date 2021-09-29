@@ -1,4 +1,5 @@
 import { InferGetStaticPropsType } from 'next';
+import * as React from 'react';
 
 import { getAllRecipes } from '../../recipes';
 

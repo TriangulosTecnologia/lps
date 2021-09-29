@@ -25,26 +25,26 @@ const Line = ({
 const BuyOrderSummaryCard = ({
   items,
   productsPrice,
-  shippingPrice,
+  shippingFee,
   disabled,
 }: {
   items: number;
   productsPrice: number;
-  shippingPrice: number | string;
+  shippingFee: number | string;
   disabled?: boolean;
 }) => {
   const products = `Produtos (${items} item${items > 1 ? 's' : ''})`;
 
   const total =
-    typeof shippingPrice === 'number'
-      ? productsPrice + shippingPrice
+    typeof shippingFee === 'number'
+      ? productsPrice + shippingFee
       : productsPrice;
 
   return (
     <Card variant="highlight">
       <Label>Resumo do pedido</Label>
       <Line label={products} value={productsPrice} />
-      <Line label="Frete" value={shippingPrice} />
+      <Line label="Frete" value={shippingFee} />
       <Line label="Subtotal" value={total} fontWeight={700} />
       <Button
         type="submit"

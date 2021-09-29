@@ -9,6 +9,7 @@ export const Queixapa: Recipe = {
     'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
   offers: [
     {
+      id: '20210001A',
       name: 'APA (Queixapa) - 12 unid.',
       description:
         'Lote BRS1-001 - Cx. com 12 garrafas de 500ml\nEntrega estimada: 09/11/2021',
@@ -20,6 +21,7 @@ export const Queixapa: Recipe = {
       weight: 12,
     },
     {
+      id: '20210001B',
       name: 'APA (Queixapa) - 6 unid.',
       description:
         'Lote BRS1-001 - Cx. com 6 garrafas de 500ml\nEntrega estimada: 09/11/2021',

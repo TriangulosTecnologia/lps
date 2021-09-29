@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Card, Container, Field, Flex } from 'theme-ui';
+import { Card, Container, Field, Flex, useThemeUI } from 'theme-ui';
 import * as yup from 'yup';
 
 import type { Recipe } from '../../recipes';
@@ -22,7 +22,7 @@ const schema = yup
 
 export type BuyData = yup.InferType<typeof schema>;
 
-const useShippingPrice = ({
+const useShippingFee = ({
   cep,
   recipe,
   quantities,
@@ -37,7 +37,7 @@ const useShippingPrice = ({
 
   const [calculating, setCalculating] = React.useState(false);
 
-  const [shippingPrice, setShippingPrice] = React.useState(0);
+  const [shippingFee, setShippingFee] = React.useState(0);
 
   React.useEffect(() => {
     (async () => {
@@ -77,7 +77,7 @@ const useShippingPrice = ({
         }
 
         const data = await response.json();
-        setShippingPrice(data.price);
+        setShippingFee(data.price);
       } catch {
         setError('Erro ;/');
       } finally {
@@ -98,7 +98,88 @@ const useShippingPrice = ({
     return 'Calculando...';
   }
 
-  return shippingPrice;
+  return shippingFee;
+};
+
+const useCheckout = () => {
+  const { theme } = useThemeUI();
+
+  const checkout = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    /**
+     * https://docs.pagar.me/v4/docs/configura%C3%A7%C3%B5es-do-checkout
+     */
+    checkout.current = new (window as any).PagarMeCheckout.Checkout({
+      encryption_key: process.env.NEXT_PUBLIC_PAGARME_EK_KEY,
+      success(data: any) {
+        console.log(data);
+      },
+      error(err: any) {
+        console.log(err);
+      },
+      close() {
+        console.log('The modal has been closed.');
+      },
+    });
+  }, []);
+
+  const openCheckout = React.useCallback(
+    ({
+      recipe,
+      buyData,
+      productsPrice,
+      shippingFee,
+    }: {
+      recipe: Recipe;
+      buyData: BuyData;
+      productsPrice: number;
+      shippingFee: number;
+    }) => {
+      if (checkout.current) {
+        const args = {
+          amount: (productsPrice + shippingFee) * 100,
+          customerData: 'true',
+          reviewInformations: 'true',
+
+          paymentMethods: 'boleto,credit_card',
+
+          maxInstallments: 4,
+          defaultInstallment: 1,
+          minInstallments: 1,
+          freeInstallments: 1,
+          interestRate: 0.01,
+
+          uiColor: theme?.rawColors?.secondary,
+
+          createToken: 'true',
+
+          items: recipe.offers
+            .map((offer, index) => ({
+              id: offer.id,
+              title: offer.name,
+              unit_price: offer.price * 100,
+              quantity: buyData.quantities[index],
+              tangible: 'false',
+            }))
+            /**
+             * To avoid the error:
+             * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
+             */
+            .filter((item) => item.quantity > 0),
+
+          boletoExpirationDate: '2021-10-06',
+        };
+
+        console.log(args);
+
+        checkout.current.open(args);
+      }
+    },
+    [theme?.rawColors?.secondary]
+  );
+
+  return { openCheckout };
 };
 
 const BuyForm = (recipe: Recipe) => {
@@ -120,40 +201,33 @@ const BuyForm = (recipe: Recipe) => {
     mode: 'onChange',
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      const response = await fetch('/api/buy', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-
-      const json = await response.json();
-
-      if (response.ok) {
-        console.log(json);
-      }
-
-      throw response.json;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { openCheckout } = useCheckout();
 
   const quantities = watch('quantities');
 
   const items = quantities.reduce((acc, cur) => acc + cur, 0);
 
-  const total = quantities.reduce((acc, cur, index) => {
+  const productsPrice = quantities.reduce((acc, cur, index) => {
     return acc + cur * offers[index].price;
   }, 0);
 
-  const shippingPrice = useShippingPrice({
+  const shippingFee = useShippingFee({
     cep: watch('cep'),
     recipe,
     quantities,
   });
 
-  const disableButton = !isValid || typeof shippingPrice === 'string';
+  const onSubmit = async (buyData: BuyData) => {
+    try {
+      if (typeof shippingFee === 'number') {
+        openCheckout({ recipe, buyData, productsPrice, shippingFee });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const disableButton = !isValid || typeof shippingFee === 'string';
 
   return (
     <Container variant="fullWidth" sx={{ backgroundColor: 'secondary' }}>
@@ -196,8 +270,8 @@ const BuyForm = (recipe: Recipe) => {
 
           <BuyOrderSummaryCard
             items={items}
-            productsPrice={total}
-            shippingPrice={shippingPrice}
+            productsPrice={productsPrice}
+            shippingFee={shippingFee}
             disabled={disableButton}
           />
         </Flex>
