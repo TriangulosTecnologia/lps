@@ -1,5 +1,5 @@
-// import { Box, Container, Flex } from 'theme-ui';
 import Image from 'next/image';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Box, Heading, Text } from 'theme-ui';
 
 import cerveja1 from '../../public/cerveja-1.png';
@@ -7,14 +7,13 @@ import cerveja1 from '../../public/cerveja-1.png';
 import { Recipe as RecipeType } from '../../recipes';
 
 import BuyForm from './BuyForm';
+import RecipeGetYourQuota from './RecipeGetYourQuota';
 
 const Recipe = (recipe: RecipeType) => {
   const { description } = recipe;
 
   return (
     <>
-      {/* <Container variant="fullWidth" sx={{ backgroundColor: 'black' }}> */}
-      {/* <Container> */}
       <Heading as="h3">Faça parte do 1º lote</Heading>
       <Box sx={{ marginY: 6 }}>
         <Image src={cerveja1} alt="Cerveja 1" />
@@ -28,9 +27,10 @@ const Recipe = (recipe: RecipeType) => {
       >
         {description}
       </Text>
-      <BuyForm {...recipe} />
-      {/* </Container> */}
-      {/* </Container> */}
+      <RecipeGetYourQuota />
+      <ErrorBoundary fallback={null}>
+        <BuyForm {...recipe} />
+      </ErrorBoundary>
     </>
   );
 };
