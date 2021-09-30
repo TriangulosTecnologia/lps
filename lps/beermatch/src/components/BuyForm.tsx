@@ -106,6 +106,10 @@ const useCheckout = () => {
 
   const checkout = React.useRef<any>(null);
 
+  const [amount, setAmount] = React.useState(0);
+
+  const [checkoutSuccessData, setCheckoutSuccessData] = React.useState<any>();
+
   React.useEffect(() => {
     /**
      * https://docs.pagar.me/v4/docs/configura%C3%A7%C3%B5es-do-checkout
@@ -113,7 +117,7 @@ const useCheckout = () => {
     checkout.current = new (window as any).PagarMeCheckout.Checkout({
       encryption_key: process.env.NEXT_PUBLIC_PAGARME_EK_KEY,
       success(data: any) {
-        console.log(data);
+        setCheckoutSuccessData(data);
       },
       error(err: any) {
         console.log(err);
@@ -123,6 +127,23 @@ const useCheckout = () => {
       },
     });
   }, []);
+
+  React.useEffect(() => {
+    if (checkoutSuccessData) {
+      fetch(`/api/capture`, {
+        method: 'POST',
+        body: JSON.stringify({
+          amount,
+          token: checkoutSuccessData.token,
+          paymentMethod: checkoutSuccessData.payment_method,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('from api', data);
+        });
+    }
+  }, [amount, checkoutSuccessData]);
 
   const openCheckout = React.useCallback(
     ({
@@ -171,8 +192,8 @@ const useCheckout = () => {
           boletoExpirationDate: '2021-10-06',
         };
 
-        console.log(args);
-
+        setCheckoutSuccessData(null);
+        setAmount(args.amount);
         checkout.current.open(args);
       }
     },
