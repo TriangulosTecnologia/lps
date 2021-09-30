@@ -15,7 +15,8 @@ const schema = yup
     cep: yup
       .string()
       .required()
-      .matches(/^(\d{5}-\d{3}|\d{8})$/),
+      .matches(/^(\d{5}-\d{3}|\d{8})$/)
+      .transform((str) => str.replace('-', '')),
     quantities: yup.array().of(yup.number().required()).required(),
   })
   .required();
@@ -174,6 +175,12 @@ const useCheckout = () => {
           uiColor: theme?.rawColors?.secondary,
 
           createToken: 'true',
+
+          billing: {
+            address: {
+              zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
+            },
+          },
 
           items: recipe.offers
             .map((offer, index) => ({

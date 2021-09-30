@@ -39,11 +39,6 @@ class MyDocument extends Document {
               }}
             />
           )}
-          <script
-            src="https://assets.pagar.me/checkout/1.1.0/checkout.js"
-            async
-            defer
-          />
         </Head>
         <body>
           {this.gtmId && (
