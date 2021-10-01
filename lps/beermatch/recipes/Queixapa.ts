@@ -3,8 +3,21 @@ import type { Recipe } from './types';
 export const Queixapa: Recipe = {
   id: 'Queixapa',
   name: 'Queixapa',
+  style: 'American Pale Ale (APA)',
   path: 'Queixapa',
   status: 'onSale',
+  properties: {
+    color: '#F5D151',
+    alcohol: '5.5',
+    bitterness: 'Suave',
+    body: 'Leve',
+  },
+  idealizer: {
+    name: 'Zenon',
+  },
+  producer: {
+    name: 'Opera',
+  },
   description:
     'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
   offers: [

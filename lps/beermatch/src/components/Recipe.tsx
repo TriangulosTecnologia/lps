@@ -7,6 +7,7 @@ import cerveja1 from '../../public/cerveja-1.png';
 import { Recipe as RecipeType } from '../../recipes';
 
 import BuyForm from './BuyForm';
+import RecipeDetails from './RecipeDetails';
 import RecipeGetYourQuota from './RecipeGetYourQuota';
 
 const Recipe = (recipe: RecipeType) => {
@@ -21,12 +22,12 @@ const Recipe = (recipe: RecipeType) => {
       <Heading as="h4" sx={{ marginY: 7 }}>
         O que vamos produzir?
       </Heading>
-      <Text
-        as="p"
-        sx={{ whiteSpace: 'pre-line', textAlign: 'center', marginBottom: 10 }}
-      >
+      <Text as="p" sx={{ whiteSpace: 'pre-line', textAlign: 'center' }}>
         {description}
       </Text>
+      <Box sx={{ width: '100%', marginY: 10, '>div': { borderRadius: 1 } }}>
+        <RecipeDetails recipe={recipe} />
+      </Box>
       <RecipeGetYourQuota />
       <ErrorBoundary fallback={null}>
         <BuyForm {...recipe} />

@@ -48,7 +48,7 @@ export const theme: Theme = {
     accent: '"Permanent Marker", cursive',
   },
 
-  radii: [0, 6],
+  radii: [0, 12],
 
   sizes: {
     container: '800px',
@@ -72,6 +72,10 @@ export const theme: Theme = {
       cursor: 'pointer',
       textDecoration: 'none',
       color: 'text',
+    },
+    hr: {
+      borderWidth: 3,
+      width: '100%',
     },
   },
 
