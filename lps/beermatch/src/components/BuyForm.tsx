@@ -29,7 +29,17 @@ const schema = yup
         .matches(/^(\d{5}-\d{3}|\d{8})$/)
         .transform((str) => str.replace('-', '')),
     }),
-    quantities: yup.array().of(yup.number().required()).required(),
+    quantities: yup
+      .array()
+      .of(yup.number().required())
+      .required()
+      .test('sum', 'Should buy at least one product.', (rows: number[]) => {
+        const total = (rows || []).reduce((acc, curr) => {
+          return acc + (curr || 0);
+        }, 0);
+
+        return total > 0;
+      }),
   })
   .required();
 

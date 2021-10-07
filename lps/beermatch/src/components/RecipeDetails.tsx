@@ -204,7 +204,7 @@ const RecipeDetails = ({
               <Flex>
                 {items.map(({ name, avatar }) => (
                   <Flex
-                    key="name"
+                    key={name}
                     sx={{ flexDirection: 'column', marginY: 7, marginX: 7 }}
                   >
                     <Image src={avatar} alt="avatar" width={60} height={60} />
