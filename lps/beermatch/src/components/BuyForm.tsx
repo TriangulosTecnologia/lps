@@ -14,6 +14,7 @@ import * as yup from 'yup';
 
 import type { Recipe } from '../../recipes';
 
+import BuyCongratulations from './BuyCongratulations';
 import BuyOfferCard from './BuyOfferCard';
 import BuyOrderSummaryCard from './BuyOrderSummaryCard';
 
@@ -137,6 +138,12 @@ const useCheckout = () => {
 
   const [checkoutSuccessData, setCheckoutSuccessData] = React.useState<any>();
 
+  const [successData, setSuccessData] =
+    React.useState<{
+      success: boolean;
+      boleto?: { url: string; barcode: string };
+    }>();
+
   React.useEffect(() => {
     if (checkoutSuccessData) {
       fetch(`/api/capture`, {
@@ -150,6 +157,9 @@ const useCheckout = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log('from api', data);
+          if (data.success) {
+            setSuccessData(data);
+          }
         });
     }
   }, [amount, checkoutSuccessData]);
@@ -240,7 +250,7 @@ const useCheckout = () => {
     [theme?.rawColors?.secondary]
   );
 
-  return { openCheckout };
+  return { openCheckout, successData };
 };
 
 const BuyForm = (recipe: Recipe) => {
@@ -277,7 +287,7 @@ const BuyForm = (recipe: Recipe) => {
     }
   }, [pickUpOnTheSpot, setValue]);
 
-  const { openCheckout } = useCheckout();
+  const { openCheckout, successData } = useCheckout();
 
   const quantities = watch('quantities');
 
@@ -305,6 +315,10 @@ const BuyForm = (recipe: Recipe) => {
   };
 
   const disableButton = !isValid || typeof shippingFee === 'string';
+
+  if (successData) {
+    return <BuyCongratulations {...successData} recipe={recipe} />;
+  }
 
   return (
     <Container variant="fullWidth" sx={{ backgroundColor: 'secondary' }}>

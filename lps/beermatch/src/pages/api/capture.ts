@@ -37,7 +37,40 @@ export default async function handler(
       throw new Error(response.statusText);
     }
 
-    res.status(200).json({ message: 'ok' });
+    const data = await response.json();
+
+    const boleto =
+      data.payment_method === 'boleto'
+        ? { url: data.boleto_url, barcode: data.boleto_barcode }
+        : undefined;
+
+    /**
+     * Only works in production.
+     * https://docs.pagar.me/v4/reference#notificando-cliente-sobre-boleto-a-ser-pago
+     */
+    if (process.env.NODE_ENV === 'production' && boleto) {
+      const { tid, customer } = data;
+
+      try {
+        await fetch(
+          `https://api.pagar.me/1/transactions/${tid}/collect_payment`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              api_key: process.env.PAGARME_AK_KEY,
+              email: customer.email,
+            }),
+          }
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    res.status(200).json({ success: true, boleto });
   } catch (error: any) {
     console.log(error);
     res.status(500).json({ error: error?.message });

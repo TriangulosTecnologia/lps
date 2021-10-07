@@ -46,6 +46,7 @@ export const theme: Theme = {
     body: 'Lato, sans-serif',
     heading: 'Anton, sans-serif',
     accent: '"Permanent Marker", cursive',
+    monospace: 'Menlo, monospace',
   },
 
   radii: [0, 12],
