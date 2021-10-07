@@ -1,7 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Card, Container, Field, Flex, useThemeUI } from 'theme-ui';
+import {
+  Card,
+  Checkbox,
+  Container,
+  Field,
+  Flex,
+  Label,
+  useThemeUI,
+} from 'theme-ui';
 import * as yup from 'yup';
 
 import type { Recipe } from '../../recipes';
@@ -12,11 +20,15 @@ import BuyOrderSummaryCard from './BuyOrderSummaryCard';
 const schema = yup
   .object({
     recipeName: yup.string().required(),
-    cep: yup
-      .string()
-      .required()
-      .matches(/^(\d{5}-\d{3}|\d{8})$/)
-      .transform((str) => str.replace('-', '')),
+    pickUpOnTheSpot: yup.boolean().required(),
+    cep: yup.string().when('pickUpOnTheSpot', {
+      is: false,
+      then: yup
+        .string()
+        .required()
+        .matches(/^(\d{5}-\d{3}|\d{8})$/)
+        .transform((str) => str.replace('-', '')),
+    }),
     quantities: yup.array().of(yup.number().required()).required(),
   })
   .required();
@@ -27,9 +39,11 @@ const useShippingFee = ({
   cep,
   recipe,
   quantities,
+  pickUpOnTheSpot,
 }: {
-  cep: string;
+  cep?: string;
   recipe: Recipe;
+  pickUpOnTheSpot: boolean;
   quantities: number[];
 }): string | number => {
   const [error, setError] = React.useState('');
@@ -87,6 +101,10 @@ const useShippingFee = ({
     })();
   }, [quantitiesJson, recipeJson, validatedCep]);
 
+  if (pickUpOnTheSpot) {
+    return 0;
+  }
+
   if (error) {
     return error;
   }
@@ -105,29 +123,9 @@ const useShippingFee = ({
 const useCheckout = () => {
   const { theme } = useThemeUI();
 
-  const checkout = React.useRef<any>(null);
-
   const [amount, setAmount] = React.useState(0);
 
   const [checkoutSuccessData, setCheckoutSuccessData] = React.useState<any>();
-
-  React.useEffect(() => {
-    /**
-     * https://docs.pagar.me/v4/docs/configura%C3%A7%C3%B5es-do-checkout
-     */
-    checkout.current = new (window as any).PagarMeCheckout.Checkout({
-      encryption_key: process.env.NEXT_PUBLIC_PAGARME_EK_KEY,
-      success(data: any) {
-        setCheckoutSuccessData(data);
-      },
-      error(err: any) {
-        console.log(err);
-      },
-      close() {
-        console.log('The modal has been closed.');
-      },
-    });
-  }, []);
 
   React.useEffect(() => {
     if (checkoutSuccessData) {
@@ -158,51 +156,67 @@ const useCheckout = () => {
       productsPrice: number;
       shippingFee: number;
     }) => {
-      if (checkout.current) {
-        const args = {
-          amount: (productsPrice + shippingFee) * 100,
-          customerData: 'true',
-          reviewInformations: 'true',
+      /**
+       * https://docs.pagar.me/v4/docs/configura%C3%A7%C3%B5es-do-checkout
+       */
+      const checkout = new (window as any).PagarMeCheckout.Checkout({
+        encryption_key: process.env.NEXT_PUBLIC_PAGARME_EK_KEY,
+        success(data: any) {
+          setCheckoutSuccessData(data);
+        },
+        error(err: any) {
+          console.log(err);
+        },
+        close() {
+          console.log('The modal has been closed.');
+        },
+      });
 
-          paymentMethods: 'boleto,credit_card',
+      const args: any = {
+        amount: (productsPrice + shippingFee) * 100,
+        customerData: 'true',
+        reviewInformations: 'true',
 
-          maxInstallments: 4,
-          defaultInstallment: 1,
-          minInstallments: 1,
-          freeInstallments: 1,
-          interestRate: 0.01,
+        paymentMethods: 'boleto,credit_card',
 
-          uiColor: theme?.rawColors?.secondary,
+        maxInstallments: 4,
+        defaultInstallment: 1,
+        minInstallments: 1,
+        freeInstallments: 1,
+        interestRate: 0.01,
 
-          createToken: 'true',
+        uiColor: theme?.rawColors?.secondary,
 
-          billing: {
-            address: {
-              zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
-            },
+        createToken: 'true',
+
+        items: recipe.offers
+          .map((offer, index) => ({
+            id: offer.id,
+            title: offer.name,
+            unit_price: offer.price * 100,
+            quantity: buyData.quantities[index],
+            tangible: 'false',
+          }))
+          /**
+           * To avoid the error:
+           * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
+           */
+          .filter((item) => item.quantity > 0),
+
+        boletoExpirationDate: '2021-10-06',
+      };
+
+      if (buyData.cep) {
+        args.billing = {
+          address: {
+            zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
           },
-
-          items: recipe.offers
-            .map((offer, index) => ({
-              id: offer.id,
-              title: offer.name,
-              unit_price: offer.price * 100,
-              quantity: buyData.quantities[index],
-              tangible: 'false',
-            }))
-            /**
-             * To avoid the error:
-             * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
-             */
-            .filter((item) => item.quantity > 0),
-
-          boletoExpirationDate: '2021-10-06',
         };
-
-        setCheckoutSuccessData(null);
-        setAmount(args.amount);
-        checkout.current.open(args);
       }
+
+      setCheckoutSuccessData(null);
+      setAmount(args.amount);
+      checkout.open(args);
     },
     [theme?.rawColors?.secondary]
   );
@@ -216,18 +230,21 @@ const BuyForm = (recipe: Recipe) => {
   const {
     control,
     register,
-    formState: { isValid },
+    formState: { isValid, errors },
     handleSubmit,
     watch,
   } = useForm<BuyData>({
     resolver: yupResolver(schema),
     defaultValues: {
       cep: '',
+      pickUpOnTheSpot: false,
       recipeName,
       quantities: offers.map((_, index) => (index === 0 ? 1 : 0)),
     },
     mode: 'onChange',
   });
+
+  console.log({ errors });
 
   const { openCheckout } = useCheckout();
 
@@ -241,6 +258,7 @@ const BuyForm = (recipe: Recipe) => {
 
   const shippingFee = useShippingFee({
     cep: watch('cep'),
+    pickUpOnTheSpot: watch('pickUpOnTheSpot'),
     recipe,
     quantities,
   });
@@ -289,9 +307,17 @@ const BuyForm = (recipe: Recipe) => {
           })}
 
           <Card variant="highlight">
+            <Label sx={{ fontSize: 3, marginBottom: 8 }}>
+              <Checkbox
+                sx={{ marginRight: 5 }}
+                {...register('pickUpOnTheSpot')}
+              />
+              Retirar no Local
+            </Label>
             <Field
               label="Calcule seu frete"
               placeholder="CEP: 00000-000"
+              disabled={watch('pickUpOnTheSpot')}
               {...register('cep')}
             />
           </Card>

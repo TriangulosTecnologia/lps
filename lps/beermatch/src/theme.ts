@@ -67,6 +67,7 @@ export const theme: Theme = {
       h4: { fontSize: 6 },
       h5: { fontSize: 5 },
       h6: { fontSize: 4 },
+      p: { lineHeight: 1.5, whiteSpace: 'pre-line' },
     },
     a: {
       cursor: 'pointer',
@@ -121,13 +122,21 @@ export const theme: Theme = {
   },
 
   forms: {
-    label: { fontSize: 2, fontWeight: 700, marginY: 5 },
+    label: {
+      fontSize: 2,
+      fontWeight: 700,
+      marginY: 5,
+      alignItems: 'center',
+    },
     input: {
       borderColor: 'muted',
       borderRadius: 0,
       padding: 6,
       '::placeholder': {
         color: 'muted',
+      },
+      ':disabled': {
+        backgroundColor: 'muted',
       },
     },
   },

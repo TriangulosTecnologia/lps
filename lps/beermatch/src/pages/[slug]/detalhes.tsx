@@ -1,10 +1,10 @@
 import { InferGetStaticPropsType } from 'next';
-import Script from 'next/script';
 import * as React from 'react';
+import { Container } from 'theme-ui';
 
-import { getAllRecipes } from '../../recipes';
+import { getAllRecipes } from '../../../recipes';
 
-import Recipe from '../components/Recipe';
+import RecipeDetails from '../../components/RecipeDetails';
 
 export const getStaticPaths = async () => {
   const paths = getAllRecipes().map(({ path }) => ({
@@ -32,13 +32,11 @@ const RecipePage = ({
   recipe,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <>
-      <Script
-        src="https://assets.pagar.me/checkout/1.1.0/checkout.js"
-        strategy="beforeInteractive"
-      />
-      <Recipe {...recipe} />
-    </>
+    <Container variant="fullWidth" sx={{ backgroundColor: 'secondary' }}>
+      <Container>
+        <RecipeDetails fullDetails recipe={recipe} />
+      </Container>
+    </Container>
   );
 };
 

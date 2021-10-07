@@ -12,6 +12,11 @@ export type Offer = {
 
 export type Status = 'onSale';
 
+type People = {
+  name: string;
+  avatar: string;
+};
+
 export type Recipe = {
   id: string;
   name: string;
@@ -26,10 +31,22 @@ export type Recipe = {
     bitterness: string;
     body: string;
   };
-  idealizer: {
+  idealizer: People;
+  creators: People[];
+  designers: People[];
+  producer: {
+    avatar: string;
     name: string;
   };
-  producer: {
-    name: string;
+  highlights: {
+    local: string;
+    hop: string;
+    text: string;
+    hero: {
+      src: string;
+      alt: string;
+      height: number;
+      width: number;
+    };
   };
 };
