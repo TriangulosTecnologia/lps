@@ -251,6 +251,7 @@ const BuyForm = (recipe: Recipe) => {
     register,
     formState: { isValid, errors },
     handleSubmit,
+    setValue,
     watch,
   } = useForm<BuyData>({
     resolver: yupResolver(schema),
@@ -264,6 +265,17 @@ const BuyForm = (recipe: Recipe) => {
   });
 
   console.log({ errors });
+
+  const pickUpOnTheSpot = watch('pickUpOnTheSpot');
+
+  /**
+   * Reset CEP every time the user changes the pickUpOnTheSpot value
+   */
+  React.useEffect(() => {
+    if (pickUpOnTheSpot) {
+      setValue('cep', '');
+    }
+  }, [pickUpOnTheSpot, setValue]);
 
   const { openCheckout } = useCheckout();
 
