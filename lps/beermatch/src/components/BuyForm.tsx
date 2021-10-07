@@ -33,12 +33,12 @@ const schema = yup
       .array()
       .of(yup.number().required())
       .required()
-      .test('sum', 'Should buy at least one product.', (rows: number[]) => {
+      .test('sum', 'Should buy at least one product.', (rows) => {
         const total = (rows || []).reduce((acc, curr) => {
-          return acc + (curr || 0);
+          return (acc || 0) + (curr || 0);
         }, 0);
 
-        return total > 0;
+        return (total || 0) > 0;
       }),
   })
   .required();

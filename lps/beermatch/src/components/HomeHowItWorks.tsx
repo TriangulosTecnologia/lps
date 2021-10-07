@@ -51,25 +51,38 @@ const HowItWorksCard = ({ image, title, description }: HowItWorksProps) => {
   return (
     <Flex
       sx={{
-        flexDirection: 'column',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        maxWidth: '400px',
-        marginY: 9,
+        justifyContent: 'center',
+        marginY: [9, 10],
+        ':nth-child(even)': {
+          flexDirection: 'row-reverse',
+        },
       }}
     >
       <Image src={image} layout="fixed" alt={description} />
-      <Heading as="h6" sx={{ textAlign: 'center' }}>
-        {title}
-      </Heading>
-      <Box
+      <Flex
         sx={{
-          width: 60,
-          height: '10px',
-          backgroundColor: 'yellow3',
-          marginY: 7,
+          flexDirection: 'column',
+          alignItems: 'center',
+          maxWidth: '400px',
+          marginX: 8,
         }}
-      />
-      <Text sx={{ textAlign: 'center' }}>{description}</Text>
+      >
+        <Heading as="h6" sx={{ textAlign: 'center' }}>
+          {title}
+        </Heading>
+        <Box
+          sx={{
+            width: 60,
+            height: '10px',
+            backgroundColor: 'yellow3',
+            marginY: 7,
+          }}
+        />
+        <Text sx={{ textAlign: 'center' }}>{description}</Text>
+      </Flex>
     </Flex>
   );
 };
