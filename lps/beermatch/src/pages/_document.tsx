@@ -60,7 +60,11 @@ class MyDocument extends Document {
 }
 
 class D extends MyDocument {
-  fonts = ['https://fonts.googleapis.com/css2?family=Anton&display=swap'];
+  fonts = [
+    'https://fonts.googleapis.com/css2?family=Anton&display=swap',
+    'https://fonts.googleapis.com/css2?family=Lato&display=swap',
+    'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap',
+  ];
 
   gtmId = '';
 }
