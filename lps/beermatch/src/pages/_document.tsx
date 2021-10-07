@@ -66,7 +66,7 @@ class D extends MyDocument {
     'https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap',
   ];
 
-  gtmId = '';
+  gtmId = 'GTM-52XW83F';
 }
 
 export default D;

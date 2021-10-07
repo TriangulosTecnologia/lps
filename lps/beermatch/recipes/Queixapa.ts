@@ -60,7 +60,7 @@ export const Queixapa: Recipe = {
       description:
         'Lote BRS1-001 - Cx. com 12 garrafas de 500ml\nEntrega estimada: 09/11/2021',
       pack: 12,
-      price: 200,
+      price: 2,
       length: 12,
       width: 12,
       height: 12,
@@ -72,7 +72,7 @@ export const Queixapa: Recipe = {
       description:
         'Lote BRS1-001 - Cx. com 6 garrafas de 500ml\nEntrega estimada: 09/11/2021',
       pack: 6,
-      price: 100,
+      price: 1,
       length: 12,
       width: 12,
       height: 12,
