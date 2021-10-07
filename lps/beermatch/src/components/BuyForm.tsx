@@ -67,13 +67,13 @@ const useShippingFee = ({
   React.useEffect(() => {
     (async () => {
       try {
-        const c = await schema.validateAt('cep', { cep });
+        const c = await schema.validateAt('cep', { cep, pickUpOnTheSpot });
         setValidatedCep(c as unknown as string);
       } catch {
         setValidatedCep('');
       }
     })();
-  }, [cep]);
+  }, [cep, pickUpOnTheSpot]);
 
   const quantitiesJson = JSON.stringify(quantities);
 
@@ -182,6 +182,24 @@ const useCheckout = () => {
         },
       });
 
+      const boletoExpirationDate = new Date();
+
+      boletoExpirationDate.setDate(boletoExpirationDate.getDate() + 7);
+
+      const items = recipe.offers
+        .map((offer, index) => ({
+          id: offer.id,
+          title: offer.name,
+          unit_price: offer.price * 100,
+          quantity: buyData.quantities[index],
+          tangible: 'true',
+        }))
+        /**
+         * To avoid the error:
+         * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
+         */
+        .filter((item) => item.quantity > 0);
+
       const args: any = {
         amount: (productsPrice + shippingFee) * 100,
         customerData: 'true',
@@ -199,30 +217,21 @@ const useCheckout = () => {
 
         createToken: 'true',
 
-        items: recipe.offers
-          .map((offer, index) => ({
-            id: offer.id,
-            title: offer.name,
-            unit_price: offer.price * 100,
-            quantity: buyData.quantities[index],
-            tangible: 'false',
-          }))
-          /**
-           * To avoid the error:
-           * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
-           */
-          .filter((item) => item.quantity > 0),
+        items,
 
-        boletoExpirationDate: '2021-10-06',
+        boletoExpirationDate,
+
+        metadata: { items },
       };
 
-      if (buyData.cep) {
-        args.billing = {
-          address: {
-            zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
-          },
-        };
-      }
+      // if (buyData.cep) {
+      //   args.billing = {
+      //     name: 'Beer Match billing',
+      //     address: {
+      //       zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
+      //     },
+      //   };
+      // }
 
       setCheckoutSuccessData(null);
       setAmount(args.amount);
