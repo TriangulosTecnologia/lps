@@ -44,7 +44,7 @@ const schema = yup
   })
   .required();
 
-export type BuyData = yup.InferType<typeof schema>;
+export type BuyFormData = yup.InferType<typeof schema>;
 
 const useShippingFee = ({
   cep,
@@ -103,7 +103,7 @@ const useShippingFee = ({
         }
 
         const data = await response.json();
-        setShippingFee(data.price);
+        setShippingFee(data.shippingFee);
       } catch {
         setError('Erro ;/');
       } finally {
@@ -134,123 +134,126 @@ const useShippingFee = ({
 const useCheckout = () => {
   const { theme } = useThemeUI();
 
-  const [amount, setAmount] = React.useState(0);
-
-  const [checkoutSuccessData, setCheckoutSuccessData] = React.useState<any>();
-
-  const [successData, setSuccessData] =
+  const [checkoutSuccessData, setCheckoutSuccessData] =
     React.useState<{
       success: boolean;
       boleto?: { url: string; barcode: string };
     }>();
 
-  React.useEffect(() => {
-    if (checkoutSuccessData) {
-      fetch(`/api/capture`, {
-        method: 'POST',
-        body: JSON.stringify({
-          amount,
-          token: checkoutSuccessData.token,
-          paymentMethod: checkoutSuccessData.payment_method,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('from api', data);
-          if (data.success) {
-            setSuccessData(data);
-          }
-        });
-    }
-  }, [amount, checkoutSuccessData]);
-
   const openCheckout = React.useCallback(
     ({
       recipe,
-      buyData,
-      productsPrice,
+      buyFormData,
+      productsPricing,
       shippingFee,
     }: {
       recipe: Recipe;
-      buyData: BuyData;
-      productsPrice: number;
+      buyFormData: BuyFormData;
+      productsPricing: number;
       shippingFee: number;
     }) => {
+      setCheckoutSuccessData(undefined);
+
+      const checkoutArgs = (() => {
+        const boletoExpirationDate = new Date();
+
+        boletoExpirationDate.setDate(boletoExpirationDate.getDate() + 7);
+
+        const items = recipe.offers
+          .map((offer, index) => ({
+            id: offer.id,
+            title: offer.name,
+            unit_price: offer.price * 100,
+            quantity: buyFormData.quantities[index],
+            tangible: 'true',
+          }))
+          /**
+           * To avoid the error:
+           * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
+           */
+          .filter((item) => item.quantity > 0);
+
+        const args: any = {
+          amount: productsPricing + shippingFee,
+          customerData: 'true',
+          reviewInformations: 'true',
+
+          paymentMethods: 'boleto,credit_card',
+
+          maxInstallments: 4,
+          defaultInstallment: 1,
+          minInstallments: 1,
+          freeInstallments: 1,
+          interestRate: 0.01,
+
+          uiColor: theme?.rawColors?.secondary,
+
+          createToken: 'false',
+
+          items,
+
+          boletoExpirationDate,
+        };
+
+        if (buyFormData.cep) {
+          args.billing = {
+            name: 'Beer Match billing',
+            address: {
+              zipcode: `${buyFormData.cep.slice(0, 5)}-${buyFormData.cep.slice(
+                5
+              )}`,
+            },
+          };
+        }
+
+        return args;
+      })();
+
       /**
        * https://docs.pagar.me/v4/docs/configura%C3%A7%C3%B5es-do-checkout
        */
       const checkout = new (window as any).PagarMeCheckout.Checkout({
         encryption_key: process.env.NEXT_PUBLIC_PAGARME_EK_KEY,
-        success(data: any) {
-          setCheckoutSuccessData(data);
+        success: async (checkoutForm: any) => {
+          try {
+            const response = await fetch(`/api/checkout`, {
+              method: 'POST',
+              body: JSON.stringify({
+                checkoutArgs,
+                checkoutForm,
+                recipe,
+                buyFormData,
+                productsPricing,
+                shippingFee,
+              }),
+            });
+
+            const json = await response.json();
+
+            if (response.status !== 200) {
+              throw json;
+            }
+
+            console.log({ checkoutForm, json });
+            setCheckoutSuccessData(json);
+          } catch (err) {
+            console.log(err);
+          }
         },
-        error(err: any) {
+        error: (err: any) => {
           console.log(err);
         },
-        close() {
+        close: () => {
           console.log('The modal has been closed.');
         },
       });
 
-      const boletoExpirationDate = new Date();
-
-      boletoExpirationDate.setDate(boletoExpirationDate.getDate() + 7);
-
-      const items = recipe.offers
-        .map((offer, index) => ({
-          id: offer.id,
-          title: offer.name,
-          unit_price: offer.price * 100,
-          quantity: buyData.quantities[index],
-          tangible: 'true',
-        }))
-        /**
-         * To avoid the error:
-         * ""value" at position 1 fails because [child "quantity" fails because ["quantity" must be larger than or equal to 1]]"
-         */
-        .filter((item) => item.quantity > 0);
-
-      const args: any = {
-        amount: (productsPrice + shippingFee) * 100,
-        customerData: 'true',
-        reviewInformations: 'true',
-
-        paymentMethods: 'boleto,credit_card',
-
-        maxInstallments: 4,
-        defaultInstallment: 1,
-        minInstallments: 1,
-        freeInstallments: 1,
-        interestRate: 0.01,
-
-        uiColor: theme?.rawColors?.secondary,
-
-        createToken: 'true',
-
-        items,
-
-        boletoExpirationDate,
-
-        metadata: { items },
-      };
-
-      // if (buyData.cep) {
-      //   args.billing = {
-      //     name: 'Beer Match billing',
-      //     address: {
-      //       zipcode: `${buyData.cep.slice(0, 5)}-${buyData.cep.slice(5)}`,
-      //     },
-      //   };
-      // }
-
-      setCheckoutSuccessData(null);
-      setAmount(args.amount);
-      checkout.open(args);
+      checkout.open(checkoutArgs);
     },
     [theme?.rawColors?.secondary]
   );
 
-  return { openCheckout, successData };
+  return { openCheckout, checkoutSuccessData };
 };
 
 const BuyForm = (recipe: Recipe) => {
@@ -263,7 +266,7 @@ const BuyForm = (recipe: Recipe) => {
     handleSubmit,
     setValue,
     watch,
-  } = useForm<BuyData>({
+  } = useForm<BuyFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       cep: '',
@@ -287,13 +290,13 @@ const BuyForm = (recipe: Recipe) => {
     }
   }, [pickUpOnTheSpot, setValue]);
 
-  const { openCheckout, successData } = useCheckout();
+  const { openCheckout, checkoutSuccessData } = useCheckout();
 
   const quantities = watch('quantities');
 
   const items = quantities.reduce((acc, cur) => acc + cur, 0);
 
-  const productsPrice = quantities.reduce((acc, cur, index) => {
+  const productsPricing = quantities.reduce((acc, cur, index) => {
     return acc + cur * offers[index].price;
   }, 0);
 
@@ -304,10 +307,15 @@ const BuyForm = (recipe: Recipe) => {
     quantities,
   });
 
-  const onSubmit = async (buyData: BuyData) => {
+  const onSubmit = async (buyFormData: BuyFormData) => {
     try {
       if (typeof shippingFee === 'number') {
-        openCheckout({ recipe, buyData, productsPrice, shippingFee });
+        openCheckout({
+          recipe,
+          buyFormData,
+          productsPricing,
+          shippingFee,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -316,8 +324,8 @@ const BuyForm = (recipe: Recipe) => {
 
   const disableButton = !isValid || typeof shippingFee === 'string';
 
-  if (successData) {
-    return <BuyCongratulations {...successData} recipe={recipe} />;
+  if (checkoutSuccessData) {
+    return <BuyCongratulations {...checkoutSuccessData} recipe={recipe} />;
   }
 
   return (
@@ -369,7 +377,7 @@ const BuyForm = (recipe: Recipe) => {
 
           <BuyOrderSummaryCard
             items={items}
-            productsPrice={productsPrice}
+            productsPricing={productsPricing}
             shippingFee={shippingFee}
             disabled={disableButton}
           />

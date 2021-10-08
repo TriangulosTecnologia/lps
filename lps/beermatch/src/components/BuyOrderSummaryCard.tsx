@@ -17,19 +17,21 @@ const Line = ({
   return (
     <Flex sx={{ fontWeight, justifyContent: 'space-between', marginY: 7 }}>
       <Text>{label}</Text>
-      <Text>{typeof value === 'number' ? currency.format(value) : value}</Text>
+      <Text>
+        {typeof value === 'number' ? currency.format(value / 100) : value}
+      </Text>
     </Flex>
   );
 };
 
 const BuyOrderSummaryCard = ({
   items,
-  productsPrice,
+  productsPricing,
   shippingFee,
   disabled,
 }: {
   items: number;
-  productsPrice: number;
+  productsPricing: number;
   shippingFee: number | string;
   disabled?: boolean;
 }) => {
@@ -37,13 +39,13 @@ const BuyOrderSummaryCard = ({
 
   const total =
     typeof shippingFee === 'number'
-      ? productsPrice + shippingFee
-      : productsPrice;
+      ? productsPricing + shippingFee
+      : productsPricing;
 
   return (
     <Card variant="highlight">
       <Label>Resumo do pedido</Label>
-      <Line label={products} value={productsPrice} />
+      <Line label={products} value={productsPricing} />
       <Line label="Frete" value={shippingFee} />
       <Line label="Subtotal" value={total} fontWeight={700} />
       <Button

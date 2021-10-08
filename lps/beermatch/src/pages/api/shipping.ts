@@ -56,13 +56,13 @@ const calculateShipping = async ({
 
   const data: any = await response.json();
 
-  const shippingPrice = data?.frete?.[0]?.vltotal;
+  const shippingFee = data?.frete?.[0]?.vltotal * 100;
 
-  if (!shippingPrice) {
+  if (!shippingFee) {
     throw new Error('Could not calculate shipping price');
   }
 
-  return shippingPrice;
+  return shippingFee;
 };
 
 export default async function handler(
@@ -75,8 +75,8 @@ export default async function handler(
   }
 
   try {
-    const price = await calculateShipping(JSON.parse(req.body));
-    res.status(200).json({ price });
+    const shippingFee = await calculateShipping(JSON.parse(req.body));
+    res.status(200).json({ shippingFee });
   } catch (error) {
     res.status(500).json({ message: ((error as any) || {}).message });
   }
