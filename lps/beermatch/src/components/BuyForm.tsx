@@ -20,7 +20,7 @@ import BuyOrderSummaryCard from './BuyOrderSummaryCard';
 
 const schema = yup
   .object({
-    recipeName: yup.string().required(),
+    recipeId: yup.string().required(),
     pickUpOnTheSpot: yup.boolean().required(),
     cep: yup.string().when('pickUpOnTheSpot', {
       is: false,
@@ -257,7 +257,7 @@ const useCheckout = () => {
 };
 
 const BuyForm = (recipe: Recipe) => {
-  const { name: recipeName, offers } = recipe;
+  const { id: recipeId, offers } = recipe;
 
   const {
     control,
@@ -271,7 +271,7 @@ const BuyForm = (recipe: Recipe) => {
     defaultValues: {
       cep: '',
       pickUpOnTheSpot: false,
-      recipeName,
+      recipeId,
       quantities: offers.map((_, index) => (index === 0 ? 1 : 0)),
     },
     mode: 'onChange',
