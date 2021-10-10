@@ -329,7 +329,11 @@ const BuyForm = (recipe: Recipe) => {
   }
 
   return (
-    <Container variant="fullWidth" sx={{ backgroundColor: 'secondary' }}>
+    <Container
+      id="buy-form"
+      variant="fullWidth"
+      sx={{ backgroundColor: 'secondary' }}
+    >
       <Container>
         <Flex
           as="form"

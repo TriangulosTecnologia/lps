@@ -1,7 +1,10 @@
+import * as dateFns from 'date-fns';
 import Image from 'next/image';
 import { Box, Flex, Heading, Text } from 'theme-ui';
 
 import hop from '../../public/hop.png';
+
+import { Recipe } from '../../recipes';
 
 const texts = [
   'Produção e lote único! Não será produzido novamente.',
@@ -11,7 +14,16 @@ const texts = [
   'Compra mínima de 1 quota de 12 garrafas de 500ml.',
 ];
 
-const RecipeGetYourQuota = () => {
+const RecipeGetYourQuota = ({ recipe }: { recipe: Recipe }) => {
+  const { closingOfSalesDate } = recipe;
+
+  const daysLeft = dateFns.differenceInDays(
+    dateFns.parse(closingOfSalesDate, 'yyyy-MM-dd', new Date()),
+    new Date()
+  );
+
+  const daysLeftText = `${daysLeft} ${daysLeft === 1 ? 'dia' : 'dias'}`;
+
   return (
     <>
       <Heading as="h5">Adquira a sua quota</Heading>
@@ -32,6 +44,20 @@ const RecipeGetYourQuota = () => {
           </Flex>
         ))}
       </Flex>
+      <Text sx={{ fontSize: 3 }}>Atenção! As vendas se encerram em:</Text>
+      <Heading
+        as="h3"
+        sx={{
+          marginTop: 8,
+          marginBottom: 10,
+          paddingY: 6,
+          paddingX: 9,
+          backgroundColor: 'secondary',
+          color: 'highlight',
+        }}
+      >
+        {daysLeftText}
+      </Heading>
     </>
   );
 };

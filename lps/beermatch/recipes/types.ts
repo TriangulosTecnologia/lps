@@ -17,12 +17,21 @@ type People = {
   avatar: string;
 };
 
+type Image = {
+  src: string;
+  alt: string;
+  height: number;
+  width: number;
+};
+
 export type Recipe = {
   id: string;
   name: string;
   style: string;
   path: string;
   status: Status;
+  closingOfSalesDate: string;
+  estimatedDeliveryDate: string;
   description: string;
   offers: Offer[];
   properties: {
@@ -36,17 +45,13 @@ export type Recipe = {
   designers: People[];
   producer: {
     avatar: string;
+    image: Image;
     name: string;
   };
   highlights: {
     local: string;
     hop: string;
     text: string;
-    hero: {
-      src: string;
-      alt: string;
-      height: number;
-      width: number;
-    };
+    hero: Image;
   };
 };

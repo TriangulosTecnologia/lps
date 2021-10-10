@@ -6,6 +6,8 @@ export const Queixapa: Recipe = {
   style: 'American Pale Ale (APA)',
   path: 'Queixapa',
   status: 'onSale',
+  closingOfSalesDate: '2021-10-10',
+  estimatedDeliveryDate: '2021-11-10',
   properties: {
     color: '#F5D151',
     alcohol: '5.5',
@@ -38,6 +40,12 @@ export const Queixapa: Recipe = {
   ],
   producer: {
     avatar: '/avatar-opera.png',
+    image: {
+      src: '/partner-opera.png',
+      alt: 'Fábrica da Opera',
+      width: 960,
+      height: 712,
+    },
     name: 'Opera',
   },
   description:

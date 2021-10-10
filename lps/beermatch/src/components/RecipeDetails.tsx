@@ -1,6 +1,18 @@
+/* eslint-disable jsx-a11y/alt-text */
+import * as dateFns from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { Box, Divider, Flex, Heading, Link, Text } from 'theme-ui';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  Link,
+  Text,
+} from 'theme-ui';
 import * as React from 'react';
 
 import { Recipe } from '../../recipes';
@@ -10,13 +22,11 @@ import hops from '../../public/hops.png';
 import water from '../../public/water.png';
 import yeast from '../../public/yeast.png';
 
-import CTAButton from './CTAButton';
-
 const ICONS = { water, yeast, hops, barley };
 
 const SectionLabel = ({ children }: { children: string }) => {
   return (
-    <Text sx={{ color: 'highlight', fontWeight: 'bold', marginBottom: 7 }}>
+    <Text sx={{ color: 'highlight', fontWeight: 'bold', marginBottom: 6 }}>
       {children}
     </Text>
   );
@@ -88,6 +98,26 @@ const RecipeDetails = ({
       label: recipe.highlights.hop,
     },
   ];
+
+  const status = 'Vendendo Quotas';
+
+  const dates = [
+    {
+      label: 'Encerramento das Vendas',
+      date: recipe.closingOfSalesDate,
+    },
+    {
+      label: 'Data Estimada de Entrega',
+      date: recipe.estimatedDeliveryDate,
+    },
+  ].map(({ label, date }) => ({
+    label,
+    date: dateFns.format(
+      dateFns.parse(date, 'yyyy-MM-dd', new Date()),
+      'dd.MMM.yy',
+      { locale: ptBR }
+    ),
+  }));
 
   return (
     <Flex
@@ -180,41 +210,72 @@ const RecipeDetails = ({
           <Text as="p" sx={{ textAlign: 'left', marginTop: 7 }}>
             {recipe.highlights.text}
           </Text>
-          <Box sx={{ marginY: 9 }}>
-            <Image
-              {...recipe.highlights.hero}
-              alt={recipe.highlights.hero.alt}
-            />
-          </Box>
+          <Container variant="fullWidth" sx={{ marginY: 9 }}>
+            <Image {...recipe.highlights.hero} />
+          </Container>
         </>
       )}
 
       {fullDetails && (
-        <Flex
-          sx={{
-            flexDirection: 'column',
-            width: '100%',
-            alignItems: 'flex-start',
-          }}
-        >
-          {peopleFullDetails.map(({ label, items }) => (
-            <React.Fragment key={label}>
-              <Divider sx={{ marginY: 7 }} />
-              <SectionLabel>{label}</SectionLabel>
-              <Flex>
-                {items.map(({ name, avatar }) => (
-                  <Flex
-                    key={name}
-                    sx={{ flexDirection: 'column', marginY: 7, marginX: 7 }}
-                  >
-                    <Image src={avatar} alt="avatar" width={60} height={60} />
-                    <Text sx={{ marginTop: 7 }}>{name}</Text>
-                  </Flex>
-                ))}
+        <>
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              width: '100%',
+              alignItems: 'flex-start',
+            }}
+          >
+            {peopleFullDetails.map(({ label, items }) => (
+              <React.Fragment key={label}>
+                <Divider sx={{ marginY: 7 }} />
+                <SectionLabel>{label}</SectionLabel>
+                <Flex>
+                  {items.map(({ name, avatar }) => (
+                    <Flex
+                      key={name}
+                      sx={{ flexDirection: 'column', marginY: 7, marginX: 7 }}
+                    >
+                      <Image src={avatar} alt="avatar" width={60} height={60} />
+                      <Text sx={{ marginTop: 7 }}>{name}</Text>
+                    </Flex>
+                  ))}
+                </Flex>
+              </React.Fragment>
+            ))}
+          </Flex>
+          <Container variant="fullWidth" sx={{ marginY: 9 }}>
+            <Image {...recipe.producer.image} />
+          </Container>
+          <Text sx={{ textAlign: 'left' }}>
+            * Será agendada uma visita na fábrica no dia da produção para todos
+            os participantes do lote. Avisaremos o dia com antecedência.
+          </Text>
+          <Divider sx={{ marginY: 10 }} />
+          <SectionLabel>Status</SectionLabel>
+          <Heading
+            as="h4"
+            sx={{
+              paddingY: 5,
+              paddingX: 8,
+              borderRadius: 40,
+              backgroundColor: 'primary',
+              color: 'text',
+              fontSize: 5,
+            }}
+          >
+            {status}
+          </Heading>
+          <Flex sx={{ gap: 10, justifyContent: 'center', marginY: 10 }}>
+            {dates.map(({ label, date }) => (
+              <Flex key={label} sx={{ flexDirection: 'column' }}>
+                <SectionLabel>{label}</SectionLabel>
+                <Heading sx={{ color: 'highlight', fontSize: 6 }}>
+                  {date}
+                </Heading>
               </Flex>
-            </React.Fragment>
-          ))}
-        </Flex>
+            ))}
+          </Flex>
+        </>
       )}
 
       {!fullDetails && (
@@ -242,7 +303,20 @@ const RecipeDetails = ({
       )}
 
       {fullDetails ? (
-        <CTAButton />
+        <Flex sx={{ gap: 10 }}>
+          <NextLink href={`/${recipe.id}#buy-form`} passHref>
+            <Button as="a">Compar</Button>
+          </NextLink>
+          <NextLink
+            href={`/${recipe.id}#recipe-details`}
+            passHref
+            scroll={false}
+          >
+            <Button variant="transparent" as="a">
+              Voltar
+            </Button>
+          </NextLink>
+        </Flex>
       ) : (
         <NextLink passHref href={`/${recipe.id}/detalhes`}>
           <Link sx={{ color: 'highlight', textDecoration: 'underline' }}>

@@ -25,10 +25,13 @@ const Recipe = (recipe: RecipeType) => {
       <Text as="p" sx={{ whiteSpace: 'pre-line', textAlign: 'center' }}>
         {description}
       </Text>
-      <Box sx={{ width: '100%', marginY: 10, '>div': { borderRadius: 1 } }}>
+      <Box
+        id="recipe-details"
+        sx={{ width: '100%', marginY: 10, '>div': { borderRadius: 1 } }}
+      >
         <RecipeDetails recipe={recipe} />
       </Box>
-      <RecipeGetYourQuota />
+      <RecipeGetYourQuota recipe={recipe} />
       <ErrorBoundary fallback={null}>
         <BuyForm {...recipe} />
       </ErrorBoundary>

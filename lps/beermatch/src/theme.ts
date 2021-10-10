@@ -105,11 +105,11 @@ export const theme: Theme = {
       },
       transparent: {
         ...base,
-        color: 'secondary',
+        color: 'highlight',
         backgroundColor: 'transparent',
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: 'secondary',
+        borderColor: 'highlight',
       },
     };
   })(),
