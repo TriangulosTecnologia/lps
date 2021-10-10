@@ -1,10 +1,13 @@
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'theme-ui';
 
 import { theme } from '../theme';
 
 import Layout from '../components/Layout';
+
+const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -13,11 +16,13 @@ const App = ({ Component, pageProps }: AppProps) => {
         src="https://assets.pagar.me/checkout/1.1.0/checkout.js"
         strategy="beforeInteractive"
       />
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 };

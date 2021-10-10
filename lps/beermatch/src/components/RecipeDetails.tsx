@@ -128,8 +128,18 @@ const RecipeDetails = ({
         paddingY: 10,
         paddingX: 9,
         color: 'highlight',
+        borderRadius: 1,
       }}
     >
+      {fullDetails && (
+        <>
+          <Heading as="h4" sx={{ color: 'highlight' }}>
+            {recipe.pack}
+          </Heading>
+          <Divider sx={{ marginY: 9 }} />
+        </>
+      )}
+
       <SectionLabel>Estilo</SectionLabel>
       <Heading
         as="h2"
@@ -312,7 +322,11 @@ const RecipeDetails = ({
             passHref
             scroll={false}
           >
-            <Button variant="transparent" as="a">
+            <Button
+              variant="transparent"
+              as="a"
+              sx={{ borderColor: 'highlight' }}
+            >
               Voltar
             </Button>
           </NextLink>

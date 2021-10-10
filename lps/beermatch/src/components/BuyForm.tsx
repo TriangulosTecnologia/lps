@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -14,7 +15,6 @@ import * as yup from 'yup';
 
 import type { Recipe } from '../../recipes';
 
-import BuyCongratulations from './BuyCongratulations';
 import BuyOfferCard from './BuyOfferCard';
 import BuyOrderSummaryCard from './BuyOrderSummaryCard';
 
@@ -134,11 +134,17 @@ const useShippingFee = ({
 const useCheckout = () => {
   const { theme } = useThemeUI();
 
-  const [checkoutSuccessData, setCheckoutSuccessData] =
-    React.useState<{
-      success: boolean;
-      boleto?: { url: string; barcode: string };
-    }>();
+  const [onBuying, setOnBuying] = React.useState(false);
+
+  const { push } = useRouter();
+
+  const [transactionId, setTransactionId] = React.useState<string>('');
+
+  React.useEffect(() => {
+    if (transactionId) {
+      push(`/parabens?transactionId=${transactionId}`, '/parabens');
+    }
+  }, [push, transactionId]);
 
   const openCheckout = React.useCallback(
     ({
@@ -152,7 +158,9 @@ const useCheckout = () => {
       productsPricing: number;
       shippingFee: number;
     }) => {
-      setCheckoutSuccessData(undefined);
+      setTransactionId('');
+
+      setOnBuying(true);
 
       const checkoutArgs = (() => {
         const boletoExpirationDate = new Date();
@@ -234,14 +242,15 @@ const useCheckout = () => {
               throw json;
             }
 
-            console.log({ checkoutForm, json });
-            setCheckoutSuccessData(json);
+            setTransactionId(json.transactionId);
           } catch (err) {
-            console.log(err);
+            console.error(err);
+            setOnBuying(false);
           }
         },
         error: (err: any) => {
-          console.log(err);
+          console.error(err);
+          setOnBuying(false);
         },
         close: () => {
           console.log('The modal has been closed.');
@@ -253,7 +262,7 @@ const useCheckout = () => {
     [theme?.rawColors?.secondary]
   );
 
-  return { openCheckout, checkoutSuccessData };
+  return { openCheckout, transactionId, onBuying };
 };
 
 const BuyForm = (recipe: Recipe) => {
@@ -290,7 +299,7 @@ const BuyForm = (recipe: Recipe) => {
     }
   }, [pickUpOnTheSpot, setValue]);
 
-  const { openCheckout, checkoutSuccessData } = useCheckout();
+  const { openCheckout, onBuying } = useCheckout();
 
   const quantities = watch('quantities');
 
@@ -317,16 +326,12 @@ const BuyForm = (recipe: Recipe) => {
           shippingFee,
         });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
   const disableButton = !isValid || typeof shippingFee === 'string';
-
-  if (checkoutSuccessData) {
-    return <BuyCongratulations {...checkoutSuccessData} recipe={recipe} />;
-  }
 
   return (
     <Container
@@ -384,6 +389,7 @@ const BuyForm = (recipe: Recipe) => {
             productsPricing={productsPricing}
             shippingFee={shippingFee}
             disabled={disableButton}
+            onBuying={onBuying}
           />
         </Flex>
       </Container>

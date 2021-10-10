@@ -23,10 +23,7 @@ export default async function handler(
       items,
       productsPricing,
       shippingFee,
-      recipe: {
-        id: recipe.id,
-        name: recipe.name,
-      },
+      recipe,
       buyFormData,
     };
 
@@ -123,7 +120,7 @@ export default async function handler(
       }
     }
 
-    res.status(200).json({ success: true, tid });
+    res.status(200).json({ success: true, transactionId: tid });
   } catch (error: any) {
     console.error(error);
     res.status(500).json({ error });

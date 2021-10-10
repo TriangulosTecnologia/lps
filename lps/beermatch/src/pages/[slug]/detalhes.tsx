@@ -7,8 +7,8 @@ import { getAllRecipes } from '../../../recipes';
 import RecipeDetails from '../../components/RecipeDetails';
 
 export const getStaticPaths = async () => {
-  const paths = getAllRecipes().map(({ path }) => ({
-    params: { slug: path },
+  const paths = getAllRecipes().map(({ id }) => ({
+    params: { slug: id },
   }));
 
   return { paths, fallback: false };
@@ -19,7 +19,7 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const recipe = getAllRecipes().find(({ path }) => params.slug === path);
+  const recipe = getAllRecipes().find(({ id }) => params.slug === id);
 
   if (!recipe) {
     throw new Error('Recipe not found');

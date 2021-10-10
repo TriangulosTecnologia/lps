@@ -4,7 +4,7 @@ export const Queixapa: Recipe = {
   id: 'Queixapa',
   name: 'Queixapa',
   style: 'American Pale Ale (APA)',
-  path: 'Queixapa',
+  pack: 'Lote BRS01-001',
   status: 'onSale',
   closingOfSalesDate: '2021-10-10',
   estimatedDeliveryDate: '2021-11-10',

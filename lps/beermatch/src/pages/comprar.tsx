@@ -6,7 +6,7 @@ import { getOnSaleRecipe } from '../../recipes';
 export const getStaticProps = async () => {
   const recipe = getOnSaleRecipe();
 
-  const href = recipe ? `/${recipe.path}` : '/';
+  const href = recipe ? `/${recipe.id}` : '/';
 
   return { props: { href } };
 };

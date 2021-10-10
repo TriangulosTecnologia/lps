@@ -109,7 +109,7 @@ export const theme: Theme = {
         backgroundColor: 'transparent',
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderColor: 'highlight',
+        borderColor: 'secondary',
       },
     };
   })(),

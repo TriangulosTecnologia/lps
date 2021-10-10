@@ -28,7 +28,7 @@ export type Recipe = {
   id: string;
   name: string;
   style: string;
-  path: string;
+  pack: string;
   status: Status;
   closingOfSalesDate: string;
   estimatedDeliveryDate: string;

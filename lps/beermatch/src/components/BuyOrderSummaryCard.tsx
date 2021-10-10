@@ -29,7 +29,9 @@ const BuyOrderSummaryCard = ({
   productsPricing,
   shippingFee,
   disabled,
+  onBuying,
 }: {
+  onBuying: boolean;
   items: number;
   productsPricing: number;
   shippingFee: number | string;
@@ -50,14 +52,14 @@ const BuyOrderSummaryCard = ({
       <Line label="Subtotal" value={total} fontWeight={700} />
       <Button
         type="submit"
-        disabled={disabled}
+        disabled={disabled || onBuying}
         sx={{
           backgroundColor: disabled ? 'muted' : 'accentVariant',
           width: '100%',
           marginTop: 8,
         }}
       >
-        Comprar
+        {onBuying ? 'Comprando...' : 'Comprar'}
       </Button>
     </Card>
   );
