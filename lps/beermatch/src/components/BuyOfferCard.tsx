@@ -31,7 +31,7 @@ const BuyOfferCard = ({
   quantityOnChange: (q: number) => void;
 }) => {
   const { name, description, price: priceInCents, pack } = offer;
-  
+
   const price = priceInCents / 100;
 
   const unitPrice = price / pack;

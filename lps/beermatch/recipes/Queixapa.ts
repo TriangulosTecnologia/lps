@@ -71,8 +71,8 @@ export const Queixapa: Recipe = {
       price: 23900,
       length: 30.5,
       width: 23,
-      height: 23.5, //cm
-      weight: 11.315, //kg
+      height: 23.5, // cm
+      weight: 11.315, // kg
     },
     {
       id: '20210001B',
@@ -83,8 +83,8 @@ export const Queixapa: Recipe = {
       price: 12800,
       length: 23.5,
       width: 15.8,
-      height: 25, //cm
-      weight: 5.788, //kg
+      height: 25, // cm
+      weight: 5.788, // kg
     },
   ],
 };
