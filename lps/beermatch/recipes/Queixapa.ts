@@ -80,7 +80,7 @@ export const Queixapa: Recipe = {
       description:
         'Cx. com 6 garrafas de 500ml (Lote BRS1-001)\nEntrega estimada: 05/12/2021',
       pack: 6,
-      price: 12400,
+      price: 12800,
       length: 23.5,
       width: 15.8,
       height: 25, //cm
