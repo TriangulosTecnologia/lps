@@ -6,8 +6,8 @@ export const Queixapa: Recipe = {
   style: 'American Pale Ale (APA)',
   pack: 'Lote BRS01-001',
   status: 'onSale',
-  closingOfSalesDate: '2021-10-10',
-  estimatedDeliveryDate: '2021-11-10',
+  closingOfSalesDate: '2021-11-07',
+  estimatedDeliveryDate: '2021-12-05',
   properties: {
     color: '#F5D151',
     alcohol: '5.5',
