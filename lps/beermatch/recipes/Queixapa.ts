@@ -49,10 +49,10 @@ export const Queixapa: Recipe = {
     name: 'Opera',
   },
   description:
-    'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
+    'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com <b>lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores</b>.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
   highlights: {
     local: 'Los Angeles, CA (East)',
-    hop: 'Mosaic(R) WA399 T90 - 2020/2021',
+    hop: '<b>Mosaic(R) WA399 T90 - 2020/2021</b>',
     text: 'O Lúpulo deste lote é originário da fazenda Puterbaugh, localizada no coração do vale do Yakima. Uma fazenda centenária, conhecida pela grande tradição e uma das mais inovadoras dos EUA.\n\nDecidimos usar somente este lúpulo em toda a receita com um dry-hop carregado. Resultando em um produto single hop com qualidade superior e frescor inigualável, incorporando um dos melhores lúpulos que o mundo pode oferecer.',
     hero: {
       src: '/planting.png',
@@ -64,9 +64,9 @@ export const Queixapa: Recipe = {
   offers: [
     {
       id: '20210001A',
-      name: 'APA (Queixapa) - 12 unid.',
+      name: 'APA (Queixapa): 12 unid.',
       description:
-        'Cx. com 12 garrafas de 500ml (Lote BRS1-001)\nEntrega estimada: 05/12/2021',
+        'Cx. 12 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 12,
       price: 23900,
       length: 30.5,
@@ -76,9 +76,9 @@ export const Queixapa: Recipe = {
     },
     {
       id: '20210001B',
-      name: 'APA (Queixapa) - 6 unid.',
+      name: 'APA (Queixapa): 6 unid.',
       description:
-        'Cx. com 6 garrafas de 500ml (Lote BRS1-001)\nEntrega estimada: 05/12/2021',
+        'Cx. 6 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 6,
       price: 12800,
       length: 23.5,
