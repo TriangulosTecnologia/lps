@@ -30,7 +30,7 @@ const BuyOfferCard = ({
   quantity: number;
   quantityOnChange: (q: number) => void;
 }) => {
-  const { name, description, price = priceInCents, pack } = offer;
+  const { name, description, price: priceInCents, pack } = offer;
   
   const price = priceInCents / 100;
 
