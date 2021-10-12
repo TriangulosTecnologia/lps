@@ -14,11 +14,11 @@ const contacts = [
   },
   {
     icon: 'ri:instagram-fill',
-    label: '@beermatch',
+    label: '@beermatch.beer',
   },
   {
     icon: 'ri:facebook-circle-fill',
-    label: '/beermatch',
+    label: '/beermatch.beer',
   },
 ];
 
@@ -77,7 +77,7 @@ const Footer = () => {
       </Flex>
 
       <NextLink href="mailto:" passHref>
-        <Link sx={{ marginY: 7 }}>contato@beermatch.com.br</Link>
+        <Link sx={{ marginY: 7 }}>quero@beermatch.beer</Link>
       </NextLink>
 
       <Divider sx={{ color: 'text', width: 300 }} />
