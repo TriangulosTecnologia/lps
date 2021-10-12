@@ -63,7 +63,7 @@ const BuyOfferCard = ({
           <Heading as="h5">{currency.format(price)}</Heading>
         </Box>
         <Box sx={{ gridArea: '2 / 2 / span 1 / span 1', textAlign: 'center' }}>
-          <Text sx={{ fontWeight: 700, fontSize: [2,3] }}>
+          <Text sx={{ fontWeight: 700, fontSize: [2] }}>
             R$ / unid.
             <br />
             {currency.format(unitPrice)}
