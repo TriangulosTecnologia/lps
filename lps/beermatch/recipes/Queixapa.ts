@@ -64,7 +64,7 @@ export const Queixapa: Recipe = {
   offers: [
     {
       id: '20210001A',
-      name: 'APA (Queixapa): 12 unid.',
+      name: 'APA (Queixapa) 12 unid.',
       description:
         'Cx. 12 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 12,
@@ -76,7 +76,7 @@ export const Queixapa: Recipe = {
     },
     {
       id: '20210001B',
-      name: 'APA (Queixapa): 6 unid.',
+      name: 'APA (Queixapa) 6 unid.',
       description:
         'Cx. 6 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 6,
