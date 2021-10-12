@@ -374,7 +374,7 @@ const BuyForm = (recipe: Recipe) => {
                 sx={{ marginRight: 5 }}
                 {...register('pickUpOnTheSpot')}
               />
-              Retirar no Local
+              Retirar no Local (Cervejaria Ópera - Araraquara/SP)
             </Label>
             <Field
               label="Calcule seu frete"
