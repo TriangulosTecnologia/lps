@@ -14,11 +14,11 @@ const contacts = [
   },
   {
     icon: 'ri:instagram-fill',
-    label: '@beermatch.beer',
+    label: '@beermatch',
   },
   {
     icon: 'ri:facebook-circle-fill',
-    label: '/beermatch.beer',
+    label: '/beermatch',
   },
 ];
 
