@@ -49,7 +49,7 @@ export const Queixapa: Recipe = {
     name: 'Opera',
   },
   description:
-    'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com <b>lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores</b>.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
+    'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
   highlights: {
     local: 'Los Angeles, CA (East)',
     hop: '<b>Mosaic(R) WA399 T90 - 2020/2021</b>',
