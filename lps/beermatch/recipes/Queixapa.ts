@@ -52,7 +52,7 @@ export const Queixapa: Recipe = {
     'Uma cerveja leve, com baixo amargor, e com todo o frescor que pode oferecer em um final de tarde, de cor amarelo-alaranjado, carregando um complexo aroma tropical e sabores que lembram manga, goiaba, pinho e citrus.\n\nProduzida com lúpulos especiais orgânicos, frescos, fornecidos por pequenos produtores.\n\nUma excelente cerveja para ser apreciada a qualquer horário.',
   highlights: {
     local: 'Los Angeles, CA (East)',
-    hop: '<b>Mosaic(R) WA399 T90 - 2020/2021</b>',
+    hop: 'Mosaic(R) WA399 T90 - 2020/2021',
     text: 'O Lúpulo deste lote é originário da fazenda Puterbaugh, localizada no coração do vale do Yakima. Uma fazenda centenária, conhecida pela grande tradição e uma das mais inovadoras dos EUA.\n\nDecidimos usar somente este lúpulo em toda a receita com um dry-hop carregado. Resultando em um produto single hop com qualidade superior e frescor inigualável, incorporando um dos melhores lúpulos que o mundo pode oferecer.',
     hero: {
       src: '/planting.png',
@@ -69,10 +69,10 @@ export const Queixapa: Recipe = {
         'Cx. 12 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 12,
       price: 23900,
-      length: 30.5,
+      length: 31,
       width: 23,
-      height: 23.5, // cm
-      weight: 11.315, // kg
+      height: 24, // cm
+      weight: 12, // kg
     },
     {
       id: '20210001B',
@@ -81,10 +81,10 @@ export const Queixapa: Recipe = {
         'Cx. 6 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 6,
       price: 12800,
-      length: 23.5,
-      width: 15.8,
+      length: 24,
+      width: 16,
       height: 25, // cm
-      weight: 5.788, // kg
+      weight: 5.8, // kg
     },
   ],
 };
