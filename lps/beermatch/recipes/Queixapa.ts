@@ -69,10 +69,10 @@ export const Queixapa: Recipe = {
         'Cx. 12 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 12,
       price: 23900,
-      length: 31,
-      width: 23,
-      height: 24, // cm
-      weight: 12, // kg
+      length: 31 + 1,
+      width: 23 + 1,
+      height: 24 + 1, // cm
+      weight: 12 + 0.5, // kg
     },
     {
       id: '20210001B',
@@ -81,10 +81,10 @@ export const Queixapa: Recipe = {
         'Cx. 6 garrafas de 500ml (Lote BRS01-001)\nEntrega estimada: 05/12/2021',
       pack: 6,
       price: 12800,
-      length: 24,
-      width: 16,
-      height: 25, // cm
-      weight: 5.8, // kg
+      length: 24 + 1,
+      width: 16 + 1,
+      height: 25 + 1, // cm
+      weight: 5.8 + 0.5, // kg
     },
   ],
 };
