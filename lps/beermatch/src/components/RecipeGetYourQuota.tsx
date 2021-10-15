@@ -11,16 +11,17 @@ const texts = [
   'Você poderá acompanhar o dia da produção na cervejaria.',
   'Receba em seu endereço ou retire pessoalmente.',
   'Manteremos você informado durante todo o processo, não se preocupe.',
-  'Compra mínima de 1 quota de 12 garrafas de 500ml.',
+  'Compra mínima de 1 quota de 12 ou 6 garrafas de 500ml',
 ];
 
 const RecipeGetYourQuota = ({ recipe }: { recipe: Recipe }) => {
   const { closingOfSalesDate } = recipe;
 
-  const daysLeft = dateFns.differenceInDays(
-    dateFns.parse(closingOfSalesDate, 'yyyy-MM-dd', new Date()),
-    new Date()
-  );
+  const daysLeft =
+    dateFns.differenceInDays(
+      dateFns.parse(closingOfSalesDate, 'yyyy-MM-dd', new Date()),
+      new Date()
+    ) + 1;
 
   const daysLeftText = `${daysLeft} ${daysLeft === 1 ? 'dia' : 'dias'}`;
 

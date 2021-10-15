@@ -194,7 +194,7 @@ const useCheckout = () => {
           freeInstallments: 1,
           interestRate: 0.01,
 
-          uiColor: theme?.rawColors?.primary,
+          uiColor: theme?.rawColors?.accentVariant,
 
           createToken: 'false',
 
@@ -254,12 +254,13 @@ const useCheckout = () => {
         },
         close: () => {
           console.log('The modal has been closed.');
+          setOnBuying(false);
         },
       });
 
       checkout.open(checkoutArgs);
     },
-    [theme?.rawColors?.secondary]
+    [theme?.rawColors?.accentVariant]
   );
 
   return { openCheckout, transactionId, onBuying };
