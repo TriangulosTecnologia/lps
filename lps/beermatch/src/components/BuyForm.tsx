@@ -194,7 +194,7 @@ const useCheckout = () => {
           freeInstallments: 1,
           interestRate: 0.01,
 
-          uiColor: theme?.rawColors?.secondary,
+          uiColor: theme?.rawColors?.primary,
 
           createToken: 'false',
 

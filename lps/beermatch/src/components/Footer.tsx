@@ -10,15 +10,18 @@ import bmYellowBg from '../../public/bm-yellow-bg.png';
 const contacts = [
   {
     icon: 'ri:whatsapp-fill',
-    label: '(16) 98765.4321',
+    label: '(11) 97287-6552',
+    url: 'https://api.whatsapp.com/send?phone=+5511972876552',
   },
   {
     icon: 'ri:instagram-fill',
-    label: '@beermatch',
+    label: '@beermatch.beer',
+    url: 'https://instagram.com/beermatch.beer',
   },
   {
     icon: 'ri:facebook-circle-fill',
-    label: '/beermatch',
+    label: '/beermatch.beer',
+    url: 'https://facebook.com/beermatch.beer',
   },
 ];
 
@@ -36,17 +39,20 @@ const Footer = () => {
       </Text>
 
       <Box sx={{ marginBottom: 11 }}>
-        {contacts.map(({ icon, label }) => (
-          <Text
-            as="a"
+        {contacts.map(({ icon, label, url }) => (
+          <Link
             key={label}
-            sx={{ display: 'flex', alignItems: 'center', marginY: 6 }}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Text sx={{ fontSize: 6, marginRight: 7 }}>
-              <Icon icon={icon} />
+            <Text sx={{ display: 'flex', alignItems: 'center', marginY: 6 }}>
+              <Text sx={{ fontSize: 6, marginRight: 7 }}>
+                <Icon icon={icon} />
+              </Text>
+              {label}
             </Text>
-            {label}
-          </Text>
+          </Link>
         ))}
       </Box>
 
