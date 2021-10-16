@@ -23,7 +23,7 @@ const AgeModal = () => {
           top: '50%',
           transform: 'translate(-50%, -50%)',
           padding: 0,
-          overflow: 'hidden',
+          height: '400px',
           width: '90%',
           maxWidth: '600px',
         },
