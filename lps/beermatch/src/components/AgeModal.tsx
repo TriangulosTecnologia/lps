@@ -18,19 +18,23 @@ const AgeModal = () => {
           backgroundColor: 'rgba(0, 0, 0, 0.75)',
         },
         content: {
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
           padding: 0,
-          height: '400px',
-          width: '90%',
-          maxWidth: '600px',
+          backgroundColor: 'transparent',
+          border: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         },
       }}
       contentLabel="Example Modal"
     >
-      <Flex>
+      <Flex
+        sx={{
+          flexDirection: 'column',
+          width: '100%',
+          maxWidth: '600px',
+        }}
+      >
         <Heading
           as="h4"
           sx={{
@@ -43,36 +47,36 @@ const AgeModal = () => {
         >
           Verificação de Idade
         </Heading>
-      </Flex>
-      <Flex
-        sx={{
-          backgroundColor: 'primary',
-          flexDirection: 'column',
-          alignItems: 'center',
-          height: '100%',
-        }}
-      >
-        <Text sx={{ paddingX: 8, paddingY: 10, fontSize: 4 }}>
-          Este website comercializa bebidas alcóolicas e portanto deve ser
-          utilizado somente por maiores de 18 anos. Ao navegar em nosso site,
-          você atesta estar legalmente apto ao consumo de nossos produtos.
-        </Text>
         <Flex
           sx={{
-            flexDirection: ['column', 'row'],
-            gap: 8,
-            marginBottom: 10,
-            button: {
-              backgroundColor: 'secondary',
-            },
+            backgroundColor: 'primary',
+            flexDirection: 'column',
+            alignItems: 'center',
+            height: '100%',
           }}
         >
-          <Button onClick={() => setIsOpen(false)}>
-            Tenho mais de 18 anos
-          </Button>
-          <Button onClick={() => push('https://www.leitejussara.com.br/')}>
-            Sou menor, me tire daqui
-          </Button>
+          <Text sx={{ paddingX: 8, paddingY: 10, fontSize: [3, 4] }}>
+            Este website comercializa bebidas alcóolicas e portanto deve ser
+            utilizado somente por maiores de 18 anos. Ao navegar em nosso site,
+            você atesta estar legalmente apto ao consumo de nossos produtos.
+          </Text>
+          <Flex
+            sx={{
+              flexDirection: ['column', 'row'],
+              gap: 8,
+              marginBottom: 10,
+              button: {
+                backgroundColor: 'secondary',
+              },
+            }}
+          >
+            <Button onClick={() => setIsOpen(false)}>
+              Tenho mais de 18 anos
+            </Button>
+            <Button onClick={() => push('https://www.leitejussara.com.br/')}>
+              Sou menor, me tire daqui
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </Modal>
