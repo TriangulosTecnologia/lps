@@ -23,7 +23,7 @@ const AgeModal = () => {
           top: '50%',
           transform: 'translate(-50%, -50%)',
           padding: 0,
-          height: 'fit-content',
+          overflow: 'hidden',
           width: '90%',
           maxWidth: '600px',
         },
@@ -47,9 +47,9 @@ const AgeModal = () => {
       <Flex
         sx={{
           backgroundColor: 'primary',
-          height: 'auto',
           flexDirection: 'column',
           alignItems: 'center',
+          height: '100%',
         }}
       >
         <Text sx={{ paddingX: 8, paddingY: 10, fontSize: 4 }}>
