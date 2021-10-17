@@ -315,7 +315,7 @@ const RecipeDetails = ({
       {fullDetails ? (
         <Flex sx={{ gap: 10 }}>
           <NextLink href={`/${recipe.id}#buy-form`} passHref>
-            <Button as="a">Compar</Button>
+            <Button as="a">Comprar</Button>
           </NextLink>
           <NextLink
             href={`/${recipe.id}#recipe-details`}
