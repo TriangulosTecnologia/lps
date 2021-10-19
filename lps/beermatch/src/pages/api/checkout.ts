@@ -23,7 +23,7 @@ export default async function handler(
       items,
       productsPricing,
       shippingFee,
-      recipe,
+      recipeId: recipe.id,
       buyFormData,
     };
 
@@ -59,6 +59,10 @@ export default async function handler(
       delete address.address.complementary;
     }
 
+    const shipping: any = { ...address };
+
+    shipping.fee = shippingFee;
+
     const body = {
       api_key: process.env.PAGARME_AK_KEY,
       /**
@@ -75,6 +79,7 @@ export default async function handler(
       items,
       metadata,
       billing: address,
+      shipping,
     };
 
     const response = await fetch('https://api.pagar.me/1/transactions', {

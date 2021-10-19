@@ -6,6 +6,12 @@ export * from './types';
 
 export const getAllRecipes = () => Object.values(recipes) as Recipe[];
 
+export const getRecipeById = async (id: string) => {
+  const allRecipes = getAllRecipes();
+  const recipe = allRecipes.find((r) => r.id === id);
+  return recipe;
+};
+
 export const getOnSaleRecipe = () => {
   const recipe = Object.values(recipes).find(
     ({ status }) => status === 'onSale'

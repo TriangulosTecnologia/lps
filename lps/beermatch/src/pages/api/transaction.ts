@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { getRecipeById } from '../../../recipes';
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -40,7 +42,9 @@ export default async function handler(
       return undefined;
     })();
 
-    const { recipe, items } = json.metadata;
+    const { recipeId, items } = json.metadata;
+
+    const recipe = await getRecipeById(recipeId);
 
     res.status(200).json({ recipe, items, transactionId, boleto });
   } catch (error) {

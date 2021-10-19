@@ -171,7 +171,7 @@ const useCheckout = () => {
           .map((offer, index) => ({
             id: offer.id,
             title: offer.name,
-            unit_price: offer.price * 100,
+            unit_price: offer.price,
             quantity: buyFormData.quantities[index],
             tangible: 'true',
           }))
@@ -192,7 +192,7 @@ const useCheckout = () => {
           defaultInstallment: 1,
           minInstallments: 1,
           freeInstallments: 1,
-          interestRate: 0.01,
+          interestRate: 1,
 
           uiColor: theme?.rawColors?.accentVariant,
 
