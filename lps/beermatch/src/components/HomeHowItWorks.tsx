@@ -19,7 +19,7 @@ const howItWorks: HowItWorksProps[] = [
     image: hiwIdealize,
     title: 'IDEALIZE, CURTA IDEIAS',
     description:
-      'Criamos grupos e comunidades para que você possa ter ou curtir novas ideas de qualquer perfil de cerveja, deixe a imaginação fluir.',
+      'Criamos grupos e comunidades para que você possa ter ou curtir novas ideias de qualquer perfil de cerveja, deixe a imaginação fluir.',
   },
   {
     image: hiwOrganization,
