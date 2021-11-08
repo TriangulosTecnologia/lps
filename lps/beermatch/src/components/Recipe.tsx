@@ -1,3 +1,6 @@
+import * as dateFns from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import * as React from 'react';
 import Image from 'next/image';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Box, Heading, Text } from 'theme-ui';
@@ -11,7 +14,29 @@ import RecipeDetails from './RecipeDetails';
 import RecipeGetYourQuota from './RecipeGetYourQuota';
 
 const Recipe = (recipe: RecipeType) => {
-  const { description } = recipe;
+  const { closingOfSalesDate, description } = recipe;
+
+  const closingOfSalesDateParsed = React.useMemo(
+    () => new Date(closingOfSalesDate),
+    [closingOfSalesDate]
+  );
+
+  const [remainingTime, setRemainingTime] = React.useState('');
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainingTime(
+        dateFns.formatDistanceToNow(closingOfSalesDateParsed, {
+          locale: ptBR,
+          includeSeconds: true,
+        })
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [closingOfSalesDateParsed]);
+
+  const isSalesClosed = dateFns.isAfter(new Date(), closingOfSalesDateParsed);
 
   return (
     <>
@@ -28,10 +53,12 @@ const Recipe = (recipe: RecipeType) => {
       <Box id="recipe-details" sx={{ width: '100%', marginY: 10 }}>
         <RecipeDetails recipe={recipe} />
       </Box>
-      <RecipeGetYourQuota recipe={recipe} />
-      <ErrorBoundary fallback={null}>
-        <BuyForm {...recipe} />
-      </ErrorBoundary>
+      <RecipeGetYourQuota {...{ recipe, isSalesClosed, remainingTime }} />
+      {!isSalesClosed && (
+        <ErrorBoundary fallback={null}>
+          <BuyForm {...recipe} />
+        </ErrorBoundary>
+      )}
     </>
   );
 };

@@ -104,20 +104,23 @@ const RecipeDetails = ({
   const dates = [
     {
       label: 'Encerramento das Vendas',
-      date: recipe.closingOfSalesDate,
+      date: dateFns.format(
+        new Date(recipe.closingOfSalesDate),
+        "dd.MMM.yy hh':'mm",
+        {
+          locale: ptBR,
+        }
+      ),
     },
     {
       label: 'Data Estimada de Entrega',
-      date: recipe.estimatedDeliveryDate,
+      date: dateFns.format(
+        dateFns.parse(recipe.estimatedDeliveryDate, 'yyyy-MM-dd', new Date()),
+        'dd.MMM.yy',
+        { locale: ptBR }
+      ),
     },
-  ].map(({ label, date }) => ({
-    label,
-    date: dateFns.format(
-      dateFns.parse(date, 'yyyy-MM-dd', new Date()),
-      'dd.MMM.yy',
-      { locale: ptBR }
-    ),
-  }));
+  ];
 
   return (
     <Flex

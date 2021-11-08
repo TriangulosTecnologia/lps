@@ -1,5 +1,5 @@
-import * as dateFns from 'date-fns';
 import Image from 'next/image';
+import * as React from 'react';
 import { Box, Flex, Heading, Text } from 'theme-ui';
 
 import hop from '../../public/hop.png';
@@ -14,16 +14,15 @@ const texts = [
   'Compra mínima de 1 quota de 12 ou 6 garrafas de 500ml',
 ];
 
-const RecipeGetYourQuota = ({ recipe }: { recipe: Recipe }) => {
-  const { closingOfSalesDate } = recipe;
-
-  const daysLeft =
-    dateFns.differenceInDays(
-      dateFns.parse(closingOfSalesDate, 'yyyy-MM-dd', new Date()),
-      new Date()
-    ) + 1;
-
-  const daysLeftText = `${daysLeft} ${daysLeft === 1 ? 'dia' : 'dias'}`;
+const RecipeGetYourQuota = ({
+  remainingTime,
+  isSalesClosed,
+}: {
+  recipe: Recipe;
+  remainingTime: string;
+  isSalesClosed: boolean;
+}) => {
+  const daysLeftText = isSalesClosed ? 'Vendas Encerradas!' : remainingTime;
 
   return (
     <>
