@@ -99,7 +99,7 @@ const RecipeDetails = ({
     },
   ];
 
-  const status = 'Vendendo Quotas';
+  const status = 'Em Produção';
 
   const dates = [
     {
